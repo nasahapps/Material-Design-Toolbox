@@ -20,7 +20,7 @@ The [`Toolbar`](https://developer.android.com/reference/android/support/v7/widge
 
 ### [Tooltips](http://www.google.com/design/spec/components/tooltips.html)  
 
-Tooltips (extends `TextView) are similar to [`Toasts`](https://developer.android.com/reference/android/widget/Toast.html), both in appearance and in function. Creating a `Tooltip` is very similar to creating a `Toast` or `Snackbar`:
+Tooltips (extends `TextView`) are similar to [`Toasts`](https://developer.android.com/reference/android/widget/Toast.html), both in appearance and in function. Creating a `Tooltip` is very similar to creating a `Toast` or `Snackbar`:
 
 ```java
 Tooltip.makeTooltip(context, "Tooltip text", Tooltip.LENGTH_SHORT, anchorView).show();
