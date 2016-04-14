@@ -9,10 +9,20 @@ As this library reaches closer to completion, it will be published on JCenter.
 This library supports Android 4.0 (API 15) and up, however, not all components/methods will be supported pre-API 21.
 
 * [Components](#components)
+  * [Tabs](#tabs)
+  * [Text Fields](#text-fields)
   * [Toolbars](#toolbars)
   * [Tooltips](#tooltips)
 
-## Components  
+## Components
+
+### [Tabs](http://www.google.com/design/spec/components/tabs.html)
+
+The [`TabLayout`](https://developer.android.com/reference/android/support/design/widget/TabLayout.html) widget is part of the `design` support library.
+
+### [Text Fields](http://www.google.com/design/spec/components/text-fields.html)
+
+The [`TextInputLayout`](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html) widget is part of the `design` support library.
 
 ### [Toolbars](http://www.google.com/design/spec/components/toolbars.html)  
 
