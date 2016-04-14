@@ -1,8 +1,9 @@
-package com.nasahapps.materialdesigntoolbox.example;
+package com.nasahapps.materialdesigntoolbox.example.ui;
 
 import android.view.View;
 
 import com.nasahapps.materialdesigntoolbox.components.Tooltip;
+import com.nasahapps.materialdesigntoolbox.example.R;
 
 import butterknife.OnClick;
 

@@ -1,6 +1,9 @@
-package com.nasahapps.materialdesigntoolbox.example;
+package com.nasahapps.materialdesigntoolbox.example.ui;
 
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
+import android.support.v4.content.ContextCompat;
 
 import icepick.Icepick;
 
@@ -19,6 +22,11 @@ public abstract class BaseActivity extends com.nasahapps.nasahutils.app.BaseActi
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Icepick.saveInstanceState(this, outState);
+    }
+
+    @ColorInt
+    protected int getColorInt(@ColorRes int colorRes) {
+        return ContextCompat.getColor(this, colorRes);
     }
 
 }
