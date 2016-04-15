@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                      xmlns:tools="http://schemas.android.com/tools"
+                      xmlns:app="http://schemas.android.com/apk/res-auto"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content">
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#fff"
@@ -13,238 +13,55 @@
         android:paddingRight="16dp">
 
         <View
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_gravity="center_vertical"
-            android:background="@color/nh_grey_400"
-            tools:layout_width="700dp"/>
+            android:layout_alignEnd="@+id/stepperLayout"
+            android:layout_alignLeft="@+id/stepperLayout"
+            android:layout_alignRight="@+id/stepperLayout"
+            android:layout_alignStart="@+id/stepperLayout"
+            android:layout_centerVertical="true"
+            android:background="@color/nh_grey_400"/>
 
         <LinearLayout
+            android:id="@+id/stepperLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <LinearLayout
+            <com.nasahapps.materialdesigntoolbox.components.Stepper
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="#fff"
-                android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingBottom="24dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="24dp">
+                app:stepperAccent="@color/nh_indigo_500"
+                app:stepperCompleted="true"
+                app:stepperStepText="1"
+                app:stepperTitle="Select campaign settings"/>
 
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/stepper_circle_background"
-                        android:gravity="center"
-                        android:text="1"
-                        android:textColor="#fff"
-                        android:textSize="12sp"
-                        android:visibility="gone"/>
-
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_nh_check_circle"
-                        android:tint="@color/nh_indigo_500"/>
-
-                </FrameLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Select campaign settings"
-                    android:textColor="@color/nh_black_87"
-                    android:textSize="14sp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <com.nasahapps.materialdesigntoolbox.components.Stepper
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="48dp"
-                android:layout_marginStart="48dp"
-                android:background="#fff"
-                android:gravity="center_vertical"
+                android:layout_marginLeft="56dp"
+                android:layout_marginStart="56dp"
                 android:orientation="horizontal"
-                android:paddingBottom="24dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="24dp">
+                app:stepperAccent="@color/nh_indigo_500"
+                app:stepperActive="true"
+                app:stepperStepText="2"
+                app:stepperSubtitle="Optional"
+                app:stepperTitle="Create an ad group"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/stepper_circle_background"
-                    android:gravity="center"
-                    android:text="2"
-                    android:textColor="#fff"
-                    android:textSize="12sp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
-                        android:text="Create an ad group"
-                        android:textColor="@color/nh_black_87"
-                        android:textSize="14sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Optional"
-                        android:textColor="@color/nh_black_54"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
+            <com.nasahapps.materialdesigntoolbox.components.Stepper
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="48dp"
-                android:layout_marginStart="48dp"
-                android:background="#fff"
-                android:gravity="center_vertical"
+                android:layout_marginLeft="56dp"
+                android:layout_marginStart="56dp"
                 android:orientation="horizontal"
-                android:paddingBottom="24dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="24dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/stepper_circle_background"
-                    android:backgroundTint="@color/nh_black_38"
-                    android:gravity="center"
-                    android:text="3"
-                    android:textColor="#fff"
-                    android:textSize="12sp"/>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Create an ad"
-                        android:textColor="@color/nh_black_38"
-                        android:textSize="14sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Optional"
-                        android:textColor="@color/nh_black_54"
-                        android:textSize="12sp"
-                        android:visibility="gone"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="48dp"
-                android:layout_marginStart="48dp"
-                android:background="#fff"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingBottom="24dp"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="24dp">
-
-                <FrameLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/stepper_circle_background"
-                        android:gravity="center"
-                        android:text="1"
-                        android:textColor="#fff"
-                        android:textSize="12sp"
-                        android:visibility="gone"/>
-
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_nh_check_circle"
-                        android:tint="@color/nh_indigo_500"
-                        android:visibility="gone"/>
-
-                    <ImageView
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/ic_nh_report_problem"
-                        android:tint="@color/nh_red_500"/>
-
-                </FrameLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginStart="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ad templates"
-                        android:textColor="@color/nh_red_500"
-                        android:textSize="14sp"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Alert message"
-                        android:textColor="@color/nh_red_500"
-                        android:textSize="12sp"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
+                app:stepperAccent="@color/nh_indigo_500"
+                app:stepperStepText="3"
+                app:stepperTitle="Create an ad"/>
 
         </LinearLayout>
 
-    </FrameLayout>
+    </RelativeLayout>
 
 </HorizontalScrollView>

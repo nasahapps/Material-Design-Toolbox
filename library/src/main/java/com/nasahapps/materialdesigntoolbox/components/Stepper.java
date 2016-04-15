@@ -163,6 +163,8 @@ public class Stepper extends LinearLayout {
                 } else {
                     mStepperCircleCheck.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(),
                             R.drawable.ic_nh_check_circle), mAccent));
+                    mStepperTitle.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
+                    mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_87));
                 }
             } else {
                 mStepperCircleCheck.setVisibility(GONE);

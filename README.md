@@ -22,7 +22,7 @@ The [`TabLayout`](https://developer.android.com/reference/android/support/design
 
 ### [Text Fields](http://www.google.com/design/spec/components/text-fields.html)
 
-The [`TextInputLayout`](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html) widget is part of the `design` support library.
+The [`TextInputLayout`](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html) widget is part of the `design` support library. It is suggested to use a `TextInputEditText` instead of a regular `EditText` in this layout.
 
 ### [Toolbars](http://www.google.com/design/spec/components/toolbars.html)  
 

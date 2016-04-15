@@ -5,15 +5,45 @@
              android:layout_height="match_parent"
              android:orientation="vertical">
 
-    <com.nasahapps.materialdesigntoolbox.components.Stepper
+    <com.nasahapps.materialdesigntoolbox.components.StepperLayout
+        android:id="@+id/stepperLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:stepperAccent="@color/nh_indigo_500"
-        app:stepperActive="true"
-        app:stepperCompleted="true"
-        app:stepperStepText="1"
-        app:stepperSubtitle="Optional"
-        app:stepperTitle="Select campaign settings"/>
+        app:stepperLayoutMargin="56dp">
+
+        <com.nasahapps.materialdesigntoolbox.components.Stepper
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperActive="true"
+            app:stepperStepText="1"
+            app:stepperTitle="Select campaign settings"/>
+
+        <com.nasahapps.materialdesigntoolbox.components.Stepper
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperStepText="2"
+            app:stepperSubtitle="Optional"
+            app:stepperTitle="Create an ad group"/>
+
+        <com.nasahapps.materialdesigntoolbox.components.Stepper
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperStepText="3"
+            app:stepperTitle="Create an ad"/>
+
+    </com.nasahapps.materialdesigntoolbox.components.StepperLayout>
+
+    <Button
+        android:id="@+id/nextStep"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Next Step"/>
 
 </FrameLayout>
