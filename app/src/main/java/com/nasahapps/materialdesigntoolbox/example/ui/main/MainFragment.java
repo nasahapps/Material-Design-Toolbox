@@ -1,6 +1,5 @@
 package com.nasahapps.materialdesigntoolbox.example.ui.main;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.content.ContextCompat;
@@ -31,7 +30,7 @@ public class MainFragment extends ListFragment {
         super.onResume();
         ((MainActivity) getActivity()).setToolbarColor(ContextCompat.getColor(getContext(), R.color.nh_cyan_500));
         ((MainActivity) getActivity()).setStatusBarColor(ContextCompat.getColor(getContext(), R.color.nh_cyan_700));
-        ((MainActivity) getActivity()).setToolbarTitleTextColor(Color.BLACK);
+        ((MainActivity) getActivity()).setToolbarTitleTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_87));
         ((MainActivity) getActivity()).setToolbarTitle(getString(R.string.app_name));
     }
 
