@@ -29,6 +29,8 @@ import com.nasahapps.materialdesigntoolbox.Utils;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Hakeem on 4/16/16.
@@ -47,6 +49,8 @@ public class StepperProgressLayout extends RelativeLayout {
 
     int mMaxProgress, mCurrentProgress = 1, mProgressType, mAccent;
     String mFinishText = "Finish", mNextText = "Next";
+
+    List<OnStepperProgressListener> mOnStepperProgressListeners = new ArrayList<>();
 
     public StepperProgressLayout(Context context) {
         super(context);
@@ -69,6 +73,7 @@ public class StepperProgressLayout extends RelativeLayout {
         mStepTextView = new AppCompatTextView(getContext());
         ViewCompat.setElevation(mStepTextView, Utils.dpToPixel(getContext(), 4));
         mStepTextView.setPadding(dp16, dp16, dp16, dp16);
+        mStepTextView.setId(R.id.nh_stepper_progress_text);
         TextViewCompat.setTextAppearance(mStepTextView, android.support.v7.appcompat.R.style.TextAppearance_AppCompat);
         addView(mStepTextView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -83,6 +88,7 @@ public class StepperProgressLayout extends RelativeLayout {
         mBottomBar = new LinearLayout(getContext());
         ViewCompat.setElevation(mBottomBar, Utils.dpToPixel(getContext(), 4));
         mBottomBar.setOrientation(LinearLayout.HORIZONTAL);
+        mBottomBar.setId(R.id.nh_stepper_progress_bottom_bar);
         LayoutParams bottomBarLp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         bottomBarLp.addRule(ALIGN_PARENT_BOTTOM);
@@ -146,6 +152,10 @@ public class StepperProgressLayout extends RelativeLayout {
             public void onClick(View v) {
                 if (mCurrentProgress < mMaxProgress) {
                     setProgress(mCurrentProgress + 1);
+                } else {
+                    for (OnStepperProgressListener listener : mOnStepperProgressListeners) {
+                        listener.onStepsFinished();
+                    }
                 }
             }
         });
@@ -257,8 +267,8 @@ public class StepperProgressLayout extends RelativeLayout {
                 dot.setLayoutParams(lp);
             }
         } else if (mProgressType == TYPE_BAR) {
-            mStepProgressBar.setMax(mMaxProgress);
-            mStepProgressBar.setProgress(mCurrentProgress);
+            mStepProgressBar.setMax(mMaxProgress * 100);
+            mStepProgressBar.setProgress(mCurrentProgress * 100);
         }
 
         if (mCurrentProgress <= 1) {
@@ -293,6 +303,11 @@ public class StepperProgressLayout extends RelativeLayout {
     }
 
     public void setProgress(int currentProgress) {
+        for (OnStepperProgressListener listener : mOnStepperProgressListeners) {
+            listener.onStepSelected(currentProgress - 1);
+            listener.onStepDeselected(mCurrentProgress - 1);
+        }
+
         mCurrentProgress = currentProgress;
         updateView();
     }
@@ -319,6 +334,80 @@ public class StepperProgressLayout extends RelativeLayout {
 
     public void setFinishButtonText(String text) {
         mFinishText = text;
+    }
+
+    public void addOnStepperProgressListener(OnStepperProgressListener listener) {
+        if (!mOnStepperProgressListeners.contains(listener)) {
+            mOnStepperProgressListeners.add(listener);
+        }
+    }
+
+    public void removeOnStepperProgressListener(OnStepperProgressListener listener) {
+        mOnStepperProgressListeners.remove(listener);
+    }
+
+    @Override
+    public void addView(View child) {
+        if (child != mStepTextView && child != mContainerView
+                && child != mBottomBar) {
+            // Add it to our container view
+            mContainerView.addView(child);
+        } else {
+            super.addView(child);
+        }
+    }
+
+    @Override
+    public void addView(View child, int index, ViewGroup.LayoutParams params) {
+        if (child != mStepTextView && child != mContainerView
+                && child != mBottomBar) {
+            // Add it to our container view
+            mContainerView.addView(child, index, params);
+        } else {
+            super.addView(child, index, params);
+        }
+    }
+
+    @Override
+    public void addView(View child, int width, int height) {
+        if (child != mStepTextView && child != mContainerView
+                && child != mBottomBar) {
+            // Add it to our container view
+            mContainerView.addView(child, width, height);
+        } else {
+            super.addView(child, width, height);
+        }
+    }
+
+    @Override
+    public void addView(View child, ViewGroup.LayoutParams params) {
+        if (child != mStepTextView && child != mContainerView
+                && child != mBottomBar) {
+            // Add it to our container view
+            mContainerView.addView(child, params);
+        } else {
+            super.addView(child, params);
+        }
+    }
+
+    @Override
+    public void addView(View child, int index) {
+        if (child != mStepTextView && child != mContainerView
+                && child != mBottomBar) {
+            // Add it to our container view
+            mContainerView.addView(child, index);
+        } else {
+            super.addView(child, index);
+        }
+    }
+
+    public void setContainerView(FrameLayout containerView) {
+        mContainerView.removeAllViews();
+        mContainerView.addView(containerView);
+    }
+
+    public void removeContainerView() {
+        mContainerView.removeAllViews();
     }
 
     @IntDef({TYPE_TEXT, TYPE_DOTS, TYPE_BAR})
