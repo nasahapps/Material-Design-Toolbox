@@ -75,7 +75,6 @@ public class StepperLayout extends HorizontalScrollView {
 
         mStepperLayout = new LinearLayout(getContext());
         mStepperLayout.setId(R.id.nh_stepper_layout);
-        mStepperLayout.setGravity(Gravity.CENTER);
         mStepperLayout.setOrientation(LinearLayout.HORIZONTAL);
         rl.addView(mStepperLayout, 1,
                 new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -115,13 +114,17 @@ public class StepperLayout extends HorizontalScrollView {
             mStepperLayout.addView(child, index, params);
 
             // Doing this AFTER calling addView() works. Calling it before addView() did not work.
-            if (params instanceof MarginLayoutParams && mStepperLayout.getChildCount() > 1) {
-                // Add start margin
-                MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
-                MarginLayoutParamsCompat.setMarginStart(lp, mStepperMargin);
-                child.setLayoutParams(lp);
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child.getLayoutParams();
+            if (((Stepper) child).getOrientation() == LinearLayout.VERTICAL) {
+                lp.gravity = Gravity.TOP;
+            } else {
+                lp.gravity = Gravity.CENTER_VERTICAL;
             }
-
+            if (mStepperLayout.getChildCount() > 1) {
+                // Add start margin
+                MarginLayoutParamsCompat.setMarginStart(lp, mStepperMargin);
+            }
+            child.setLayoutParams(lp);
         } else {
             super.addView(child, index, params);
         }
@@ -142,12 +145,17 @@ public class StepperLayout extends HorizontalScrollView {
             mStepperLayout.addView(child, params);
 
             // Doing this AFTER calling addView() works. Calling it before addView() did not work.
-            if (params instanceof MarginLayoutParams && mStepperLayout.getChildCount() > 1) {
-                // Add start margin
-                MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
-                MarginLayoutParamsCompat.setMarginStart(lp, mStepperMargin);
-                child.setLayoutParams(lp);
+            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child.getLayoutParams();
+            if (((Stepper) child).getOrientation() == LinearLayout.VERTICAL) {
+                lp.gravity = Gravity.TOP;
+            } else {
+                lp.gravity = Gravity.CENTER_VERTICAL;
             }
+            if (mStepperLayout.getChildCount() > 1) {
+                // Add start margin
+                MarginLayoutParamsCompat.setMarginStart(lp, mStepperMargin);
+            }
+            child.setLayoutParams(lp);
         } else {
             super.addView(child, params);
         }
@@ -160,6 +168,15 @@ public class StepperLayout extends HorizontalScrollView {
         } else {
             super.addView(child, index);
         }
+    }
+
+    @Orientation
+    public int getOrientation() {
+        return mOrientation;
+    }
+
+    public void setOrientation(@Orientation int orientation) {
+        mOrientation = orientation;
     }
 
     @IntDef({HORIZONTAL, VERTICAL})
