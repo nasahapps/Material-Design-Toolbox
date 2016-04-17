@@ -4,5 +4,6 @@
                                                                       android:layout_width="match_parent"
                                                                       android:layout_height="match_parent"
                                                                       app:stepperMaxProgress="6"
-                                                                      app:stepperProgress="3">
+                                                                      app:stepperProgressAccent="@color/nh_indigo_500"
+                                                                      app:stepperProgressType="bar">
 </com.nasahapps.materialdesigntoolbox.components.StepperProgressLayout>

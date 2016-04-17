@@ -53,6 +53,24 @@ public class Utils {
         }
     }
 
+    /**
+     * Retrieves a Drawable from an attribute, e.g. R.attr.selectableItemBackground, or null if
+     * it doesn't exist
+     */
+    @ColorInt
+    public static Drawable getDrawableFromAttribute(Context c, @AttrRes int res) {
+        try {
+            TypedValue tv = new TypedValue();
+            TypedArray ta = c.obtainStyledAttributes(tv.data, new int[]{res});
+            Drawable drawable = ta.getDrawable(0);
+            ta.recycle();
+            return drawable;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     public static Drawable getTintedDrawable(Drawable drawable, @ColorInt int color) {
         drawable = DrawableCompat.wrap(drawable.mutate());
         DrawableCompat.setTint(drawable, color);

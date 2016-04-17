@@ -3,11 +3,14 @@ package com.nasahapps.materialdesigntoolbox.components;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.annotation.IntDef;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.widget.TextViewCompat;
-import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
@@ -42,7 +45,7 @@ public class StepperProgressLayout extends RelativeLayout {
     Button mBackButton, mNextButton;
     ProgressBar mStepProgressBar;
 
-    int mMaxProgress, mCurrentProgress = 1, mProgressType;
+    int mMaxProgress, mCurrentProgress = 1, mProgressType, mAccent;
     String mFinishText = "Finish", mNextText = "Next";
 
     public StepperProgressLayout(Context context) {
@@ -61,9 +64,10 @@ public class StepperProgressLayout extends RelativeLayout {
     }
 
     private void init(AttributeSet attrs) {
+        int dp16 = Utils.dpToPixel(getContext(), 16);
+
         mStepTextView = new AppCompatTextView(getContext());
         ViewCompat.setElevation(mStepTextView, Utils.dpToPixel(getContext(), 4));
-        int dp16 = Utils.dpToPixel(getContext(), 16);
         mStepTextView.setPadding(dp16, dp16, dp16, dp16);
         TextViewCompat.setTextAppearance(mStepTextView, android.support.v7.appcompat.R.style.TextAppearance_AppCompat);
         addView(mStepTextView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -84,12 +88,26 @@ public class StepperProgressLayout extends RelativeLayout {
         bottomBarLp.addRule(ALIGN_PARENT_BOTTOM);
         addView(mBottomBar, bottomBarLp);
 
-        mBackButton = new AppCompatButton(new ContextThemeWrapper(getContext(),
-                android.support.v7.appcompat.R.style.Widget_AppCompat_Button_Borderless));
+        mBackButton = new AppCompatButton(getContext());
         TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(mBackButton, R.drawable.ic_arrow_left, 0, 0, 0);
         mBackButton.setText("Back");
-        mBottomBar.addView(mBackButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mBackButton.setBackground(Utils.getDrawableFromAttribute(getContext(),
+                    R.attr.selectableItemBackgroundBorderless));
+        } else {
+            mBackButton.setBackgroundDrawable(Utils.getDrawableFromAttribute(getContext(),
+                    R.attr.selectableItemBackgroundBorderless));
+        }
+        LinearLayout.LayoutParams backLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        MarginLayoutParamsCompat.setMarginStart(backLp, dp16 / 2);
+        mBottomBar.addView(mBackButton, backLp);
+        mBackButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setProgress(mCurrentProgress - 1);
+            }
+        });
 
         FrameLayout progressFl = new FrameLayout(getContext());
         LinearLayout.LayoutParams progressLp = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1);
@@ -104,19 +122,33 @@ public class StepperProgressLayout extends RelativeLayout {
         progressFl.addView(mStepDotsLayout, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        mStepProgressBar = new ProgressBar(new ContextThemeWrapper(getContext(),
-                android.support.v7.appcompat.R.style.Widget_AppCompat_ProgressBar_Horizontal));
+        mStepProgressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleHorizontal);
+        mStepProgressBar.setIndeterminate(false);
         mStepProgressBar.setVisibility(GONE);
         progressFl.addView(mStepProgressBar, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        mNextButton = new AppCompatButton(new ContextThemeWrapper(getContext(),
-                android.support.v7.appcompat.R.style.Widget_AppCompat_Button_Borderless));
-        TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(mNextButton, 0, 0,
-                R.drawable.ic_arrow_right, 0);
+        mNextButton = new AppCompatButton(getContext());
         mNextButton.setText("Next");
-        mBottomBar.addView(mNextButton, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mNextButton.setBackground(Utils.getDrawableFromAttribute(getContext(),
+                    R.attr.selectableItemBackground));
+        } else {
+            mNextButton.setBackgroundDrawable(Utils.getDrawableFromAttribute(getContext(),
+                    R.attr.selectableItemBackground));
+        }
+        LinearLayout.LayoutParams nextLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);
+        MarginLayoutParamsCompat.setMarginEnd(nextLp, dp16 / 2);
+        mBottomBar.addView(mNextButton, nextLp);
+        mNextButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mCurrentProgress < mMaxProgress) {
+                    setProgress(mCurrentProgress + 1);
+                }
+            }
+        });
 
         if (attrs != null) {
             TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.StepperProgressLayout, 0, 0);
@@ -140,6 +172,8 @@ public class StepperProgressLayout extends RelativeLayout {
                 }
 
                 mProgressType = a.getInt(R.styleable.StepperProgressLayout_stepperProgressType, TYPE_TEXT);
+                mAccent = a.getColor(R.styleable.StepperProgressLayout_stepperProgressAccent,
+                        Utils.getColorFromAttribute(getContext(), R.attr.colorPrimary));
             } finally {
                 a.recycle();
             }
@@ -173,6 +207,11 @@ public class StepperProgressLayout extends RelativeLayout {
                 mStepTextView.setVisibility(GONE);
                 mStepDotsLayout.setVisibility(GONE);
                 mStepProgressBar.setVisibility(VISIBLE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mStepProgressBar.setProgressTintList(ColorStateList.valueOf(mAccent));
+                } else {
+                    mStepProgressBar.getProgressDrawable().setColorFilter(mAccent, PorterDuff.Mode.SRC_IN);
+                }
                 break;
         }
 
@@ -194,21 +233,26 @@ public class StepperProgressLayout extends RelativeLayout {
             for (int i = 0; i < mStepDotsLayout.getChildCount(); i++) {
                 View dot = mStepDotsLayout.getChildAt(i);
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) dot.getLayoutParams();
-                if (i == mCurrentProgress) {
+                int dp;
+                Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.stepper_circle_background);
+                if (i == mCurrentProgress - 1) {
                     // Dot enlarged at 12dp
-                    int dp12 = Utils.dpToPixel(getContext(), 12);
-                    lp.width = dp12;
-                    lp.height = dp12;
+                    dp = Utils.dpToPixel(getContext(), 12);
                     // And tinted background
-                    ViewCompat.setBackgroundTintList(dot, ColorStateList.valueOf(Utils
-                            .getColorFromAttribute(getContext(), R.attr.colorPrimary)));
+                    background = Utils.getTintedDrawable(background, mAccent);
                 } else {
                     // Regular size of 8dp
-                    int dp8 = Utils.dpToPixel(getContext(), 8);
-                    lp.width = dp8;
-                    lp.height = dp8;
+                    dp = Utils.dpToPixel(getContext(), 8);
                     // Remove tinted background
-                    ViewCompat.setBackgroundTintList(dot, null);
+                    background = Utils.getTintedDrawable(background, ContextCompat.getColor(getContext(),
+                            R.color.nh_black_38));
+                }
+                lp.width = dp;
+                lp.height = dp;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    dot.setBackground(background);
+                } else {
+                    dot.setBackgroundDrawable(background);
                 }
                 dot.setLayoutParams(lp);
             }
@@ -227,8 +271,11 @@ public class StepperProgressLayout extends RelativeLayout {
         if (mCurrentProgress == mMaxProgress) {
             // Change the next button text to the finish text
             mNextButton.setText(mFinishText);
+            mNextButton.setCompoundDrawables(null, null, null, null);
         } else {
             mNextButton.setText(mNextText);
+            TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(mNextButton, 0, 0,
+                    R.drawable.ic_arrow_right, 0);
         }
     }
 

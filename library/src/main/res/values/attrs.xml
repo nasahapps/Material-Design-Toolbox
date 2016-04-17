@@ -29,5 +29,6 @@
             <enum name="dots" value="1"/>
             <enum name="bar" value="2"/>
         </attr>
+        <attr name="stepperProgressAccent" format="color"/>
     </declare-styleable>
 </resources>
