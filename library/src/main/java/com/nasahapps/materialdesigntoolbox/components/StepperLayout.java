@@ -96,7 +96,27 @@ public class StepperLayout extends HorizontalScrollView {
     }
 
     public int getStepperCount() {
-        return mStepperLayout.getChildCount();
+        int count = 0;
+        for (int i = 0; i < mStepperLayout.getChildCount(); i++) {
+            if (mStepperLayout.getChildAt(i) instanceof Stepper) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+    public void setStepperActive(int index, boolean active) {
+        Stepper stepper = getStepper(index);
+        stepper.setActive(active);
+        if (active) {
+            // Also scroll to that stepper
+            smoothScrollTo((int) stepper.getX(), (int) stepper.getY());
+        }
+    }
+
+    public void setStepperCompleted(int index, boolean completed) {
+        getStepper(index).setCompleted(completed);
     }
 
     @Override

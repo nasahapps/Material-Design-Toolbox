@@ -23,6 +23,7 @@ public class StepperListFragment extends ListFragment {
 
         setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,
                 new String[]{
+                        "Stepper Horizontal Layout",
                         "Stepper Progress w/Text",
                         "Stepper Progress w/Dots",
                         "Stepper Progress w/Bar"
@@ -46,12 +47,15 @@ public class StepperListFragment extends ListFragment {
 
         switch (position) {
             case 0:
-                ((MainActivity) getActivity()).startFragment(StepperProgressFragment.newInstance(StepperProgressLayout.TYPE_TEXT));
+                ((MainActivity) getActivity()).startFragment(new StepperHorizonalFragment());
                 break;
             case 1:
-                ((MainActivity) getActivity()).startFragment(StepperProgressFragment.newInstance(StepperProgressLayout.TYPE_DOTS));
+                ((MainActivity) getActivity()).startFragment(StepperProgressFragment.newInstance(StepperProgressLayout.TYPE_TEXT));
                 break;
             case 2:
+                ((MainActivity) getActivity()).startFragment(StepperProgressFragment.newInstance(StepperProgressLayout.TYPE_DOTS));
+                break;
+            case 3:
                 ((MainActivity) getActivity()).startFragment(StepperProgressFragment.newInstance(StepperProgressLayout.TYPE_BAR));
                 break;
         }

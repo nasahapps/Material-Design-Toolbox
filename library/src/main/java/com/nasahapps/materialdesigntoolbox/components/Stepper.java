@@ -5,6 +5,7 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewCompat;
@@ -100,11 +101,6 @@ public class Stepper extends LinearLayout {
                     mStepperSubtitle.setText(subtitle);
                 }
 
-                String stepText = a.getString(R.styleable.Stepper_stepperStepText);
-                if (stepText != null) {
-                    mStepperCircleText.setText(stepText);
-                }
-
                 mActive = a.getBoolean(R.styleable.Stepper_stepperActive, false);
                 mCompleted = a.getBoolean(R.styleable.Stepper_stepperCompleted, false);
                 mError = a.getBoolean(R.styleable.Stepper_stepperError, false);
@@ -141,12 +137,21 @@ public class Stepper extends LinearLayout {
             }
 
             if (mActive) {
-                ViewCompat.setBackgroundTintList(mStepperCircleText, ColorStateList.valueOf(mAccent));
+                if (mStepperCircleText.getBackground() instanceof GradientDrawable) {
+                    ((GradientDrawable) mStepperCircleText.getBackground()).setColor(mAccent);
+                } else {
+                    ViewCompat.setBackgroundTintList(mStepperCircleText, ColorStateList.valueOf(mAccent));
+                }
                 mStepperTitle.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
                 mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_87));
             } else {
-                ViewCompat.setBackgroundTintList(mStepperCircleText, ColorStateList.valueOf(ContextCompat.getColor(getContext(),
-                        R.color.nh_black_38)));
+                if (mStepperCircleText.getBackground() instanceof GradientDrawable) {
+                    ((GradientDrawable) mStepperCircleText.getBackground()).setColor(ContextCompat.getColor(getContext(),
+                            R.color.nh_black_38));
+                } else {
+                    ViewCompat.setBackgroundTintList(mStepperCircleText, ColorStateList.valueOf(ContextCompat.getColor(getContext(),
+                            R.color.nh_black_38)));
+                }
                 mStepperTitle.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
                 mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_38));
             }
@@ -179,18 +184,30 @@ public class Stepper extends LinearLayout {
         }
     }
 
+    private int getStepperPositionInLayout() {
+        ViewGroup parent = (ViewGroup) getParent();
+        if (parent != null) {
+            for (int i = 0; i < parent.getChildCount(); i++) {
+                if (parent.getChildAt(i) instanceof Stepper
+                        && parent.getChildAt(i) == this) {
+                    return i;
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    @Override
+    protected void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        mStepperCircleText.setText(String.format("%d", getStepperPositionInLayout() + 1));
+    }
+
     @Override
     public void setOrientation(int orientation) {
         super.setOrientation(orientation);
         setupView();
-    }
-
-    public CharSequence getStepperCircleText() {
-        return mStepperCircleText.getText();
-    }
-
-    public void setStepperCircleText(CharSequence text) {
-        mStepperCircleText.setText(text);
     }
 
     public CharSequence getStepperTitle() {

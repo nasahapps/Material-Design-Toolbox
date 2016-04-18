@@ -3,7 +3,6 @@
     <declare-styleable name="Stepper">
         <attr name="stepperTitle" format="string"/>
         <attr name="stepperSubtitle" format="string"/>
-        <attr name="stepperStepText" format="string"/>
         <attr name="stepperCompleted" format="boolean"/>
         <attr name="stepperActive" format="boolean"/>
         <attr name="stepperAccent" format="color"/>
