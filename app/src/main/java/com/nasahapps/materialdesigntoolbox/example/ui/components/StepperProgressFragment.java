@@ -1,32 +1,49 @@
-package com.nasahapps.materialdesigntoolbox.example.ui;
+package com.nasahapps.materialdesigntoolbox.example.ui.components;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 
 import com.nasahapps.materialdesigntoolbox.components.OnStepperProgressListener;
 import com.nasahapps.materialdesigntoolbox.components.StepperProgressLayout;
 import com.nasahapps.materialdesigntoolbox.example.R;
 import com.nasahapps.materialdesigntoolbox.example.ui.adapter.MockViewPagerAdapter;
+import com.nasahapps.materialdesigntoolbox.example.ui.main.MainActivity;
 
 import butterknife.Bind;
 
-public class TestActivity extends BaseActivity {
+/**
+ * Created by Hakeem on 4/17/16.
+ */
+public class StepperProgressFragment extends ComponentFragment {
+
+    private static final String EXTRA_TYPE = "type";
 
     @Bind(R.id.viewPager)
     ViewPager mViewPager;
     @Bind(R.id.layout)
     StepperProgressLayout mLayout;
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_test;
+    public static StepperProgressFragment newInstance(@StepperProgressLayout.ProgressType int type) {
+        Bundle args = new Bundle();
+        args.putInt(EXTRA_TYPE, type);
+
+        StepperProgressFragment fragment = new StepperProgressFragment();
+        fragment.setArguments(args);
+
+        return fragment;
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public int getLayoutId() {
+        return R.layout.fragment_stepper_progress;
+    }
 
-        mViewPager.setAdapter(new MockViewPagerAdapter(getSupportFragmentManager()));
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mViewPager.setAdapter(new MockViewPagerAdapter(getFragmentManager()));
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -43,6 +60,8 @@ public class TestActivity extends BaseActivity {
 
             }
         });
+        mLayout.setMaxProgress(MockViewPagerAdapter.MAX_COUNT);
+        mLayout.setProgressType(getArguments().getInt(EXTRA_TYPE));
         mLayout.addOnStepperProgressListener(new OnStepperProgressListener() {
             @Override
             public void onStepSelected(int position) {
@@ -66,4 +85,9 @@ public class TestActivity extends BaseActivity {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((MainActivity) getActivity()).setToolbarTitle("Steppers");
+    }
 }

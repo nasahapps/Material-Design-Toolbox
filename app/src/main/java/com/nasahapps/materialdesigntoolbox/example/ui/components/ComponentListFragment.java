@@ -1,5 +1,6 @@
-package com.nasahapps.materialdesigntoolbox.example.ui.main;
+package com.nasahapps.materialdesigntoolbox.example.ui.components;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.content.ContextCompat;
@@ -8,12 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.nasahapps.materialdesigntoolbox.example.R;
-import com.nasahapps.materialdesigntoolbox.example.ui.components.ComponentListFragment;
+import com.nasahapps.materialdesigntoolbox.example.ui.main.MainActivity;
 
 /**
  * Created by Hakeem on 4/13/16.
  */
-public class MainFragment extends ListFragment {
+public class ComponentListFragment extends ListFragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -21,17 +22,20 @@ public class MainFragment extends ListFragment {
 
         setListAdapter(new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,
                 new String[]{
-                        "Components"
+                        "Steppers",
+                        "Tooltips"
                 }));
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        ((MainActivity) getActivity()).setToolbarColor(ContextCompat.getColor(getContext(), R.color.nh_cyan_500));
-        ((MainActivity) getActivity()).setStatusBarColor(ContextCompat.getColor(getContext(), R.color.nh_cyan_700));
-        ((MainActivity) getActivity()).setToolbarTitleTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_87));
-        ((MainActivity) getActivity()).setToolbarTitle(getString(R.string.app_name));
+        ((MainActivity) getActivity()).setToolbarColor(ContextCompat.getColor(getContext(),
+                R.color.nh_indigo_500));
+        ((MainActivity) getActivity()).setStatusBarColor(ContextCompat.getColor(getContext(),
+                R.color.nh_indigo_700));
+        ((MainActivity) getActivity()).setToolbarTitleTextColor(Color.WHITE);
+        ((MainActivity) getActivity()).setToolbarTitle("Components");
     }
 
     @Override
@@ -40,8 +44,10 @@ public class MainFragment extends ListFragment {
 
         switch (position) {
             case 0:
-                ((MainActivity) getActivity()).startFragment(new ComponentListFragment());
+                ((MainActivity) getActivity()).startFragment(new StepperListFragment());
                 break;
+            case 1:
+                ((MainActivity) getActivity()).startFragment(new TooltipFragment());
         }
     }
 }

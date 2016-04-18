@@ -1,40 +1,40 @@
 package com.nasahapps.materialdesigntoolbox.example.ui.mock;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.TextViewCompat;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.nasahapps.materialdesigntoolbox.example.ui.BaseFragment;
-
-import java.util.Random;
 
 /**
  * Created by Hakeem on 4/17/16.
  */
 public class MockFragment extends BaseFragment {
 
-    private static final int[] RANDOM_COLORS = {
-            Color.BLACK,
-            Color.BLUE,
-            Color.CYAN,
-            Color.DKGRAY,
-            Color.LTGRAY,
-            Color.GRAY,
-            Color.GREEN,
-            Color.MAGENTA,
-            Color.RED,
-            Color.YELLOW,
-            Color.WHITE
-    };
+    private static final String EXTRA_PAGE = "page";
+
+    public static MockFragment newInstance(int page) {
+        Bundle args = new Bundle();
+        args.putInt(EXTRA_PAGE, page);
+
+        MockFragment fragment = new MockFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = new View(getContext());
-        v.setBackgroundColor(RANDOM_COLORS[new Random().nextInt(RANDOM_COLORS.length)]);
+        TextView v = new TextView(getContext());
+        TextViewCompat.setTextAppearance(v, android.support.v7.appcompat.R.style.TextAppearance_AppCompat);
+        v.setText("Page " + getArguments().getInt(EXTRA_PAGE));
+        v.setGravity(Gravity.CENTER);
         return v;
     }
 }

@@ -1,10 +1,13 @@
 package com.nasahapps.materialdesigntoolbox.components;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
 import android.support.annotation.IntDef;
 import android.support.v4.content.ContextCompat;
@@ -74,6 +77,7 @@ public class StepperProgressLayout extends RelativeLayout {
         ViewCompat.setElevation(mStepTextView, Utils.dpToPixel(getContext(), 4));
         mStepTextView.setPadding(dp16, dp16, dp16, dp16);
         mStepTextView.setId(R.id.nh_stepper_progress_text);
+        mStepTextView.setBackgroundColor(Color.WHITE);
         TextViewCompat.setTextAppearance(mStepTextView, android.support.v7.appcompat.R.style.TextAppearance_AppCompat);
         addView(mStepTextView, new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -89,6 +93,7 @@ public class StepperProgressLayout extends RelativeLayout {
         ViewCompat.setElevation(mBottomBar, Utils.dpToPixel(getContext(), 4));
         mBottomBar.setOrientation(LinearLayout.HORIZONTAL);
         mBottomBar.setId(R.id.nh_stepper_progress_bottom_bar);
+        mBottomBar.setBackgroundColor(Color.WHITE);
         LayoutParams bottomBarLp = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
         bottomBarLp.addRule(ALIGN_PARENT_BOTTOM);
@@ -99,10 +104,10 @@ public class StepperProgressLayout extends RelativeLayout {
         mBackButton.setText("Back");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             mBackButton.setBackground(Utils.getDrawableFromAttribute(getContext(),
-                    R.attr.selectableItemBackgroundBorderless));
+                    R.attr.selectableItemBackground));
         } else {
             mBackButton.setBackgroundDrawable(Utils.getDrawableFromAttribute(getContext(),
-                    R.attr.selectableItemBackgroundBorderless));
+                    R.attr.selectableItemBackground));
         }
         LinearLayout.LayoutParams backLp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -240,35 +245,80 @@ public class StepperProgressLayout extends RelativeLayout {
         if (mProgressType == TYPE_TEXT) {
             mStepTextView.setText(String.format("Step %d of %d", mCurrentProgress, mMaxProgress));
         } else if (mProgressType == TYPE_DOTS) {
+            int dp8 = Utils.dpToPixel(getContext(), 8);
+            int dp12 = Utils.dpToPixel(getContext(), 12);
             for (int i = 0; i < mStepDotsLayout.getChildCount(); i++) {
-                View dot = mStepDotsLayout.getChildAt(i);
-                LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) dot.getLayoutParams();
-                int dp;
+                final View dot = mStepDotsLayout.getChildAt(i);
+                // flag for seeing which dots are actually changing and animate if needed
+                boolean selectionChanged = false;
+                int finalSize;
                 Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.stepper_circle_background);
                 if (i == mCurrentProgress - 1) {
                     // Dot enlarged at 12dp
-                    dp = Utils.dpToPixel(getContext(), 12);
+                    finalSize = dp12;
                     // And tinted background
-                    background = Utils.getTintedDrawable(background, mAccent);
+                    if (background instanceof GradientDrawable) {
+                        ((GradientDrawable) background).setColor(mAccent);
+                    } else {
+                        background = Utils.getTintedDrawable(background, mAccent);
+                    }
+                    // Set a tag saying that this dot is the currently selected one
+                    if (dot.getTag() != true) {
+                        selectionChanged = true;
+                    }
+                    dot.setTag(true);
                 } else {
                     // Regular size of 8dp
-                    dp = Utils.dpToPixel(getContext(), 8);
+                    finalSize = dp8;
                     // Remove tinted background
-                    background = Utils.getTintedDrawable(background, ContextCompat.getColor(getContext(),
-                            R.color.nh_black_38));
+                    if (background instanceof GradientDrawable) {
+                        ((GradientDrawable) background).setColor(ContextCompat.getColor(getContext(),
+                                R.color.nh_black_38));
+                    } else {
+                        background = Utils.getTintedDrawable(background, ContextCompat.getColor(getContext(),
+                                R.color.nh_black_38));
+                    }
+                    // Unset the dot's tag for it's no longer selected
+                    if (dot.getTag() != false) {
+                        selectionChanged = true;
+                    }
+                    dot.setTag(false);
                 }
-                lp.width = dp;
-                lp.height = dp;
+
+                if (selectionChanged) {
+                    // Animate the dot size, if needed
+                    int originalSize = (boolean) dot.getTag() ? dp8 : dp12;
+                    ValueAnimator sizeAnim = ValueAnimator.ofInt(originalSize, finalSize);
+                    sizeAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                        @Override
+                        public void onAnimationUpdate(ValueAnimator animation) {
+                            LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) dot.getLayoutParams();
+                            lp.width = (int) animation.getAnimatedValue();
+                            lp.height = (int) animation.getAnimatedValue();
+                            dot.setLayoutParams(lp);
+                        }
+                    });
+                    sizeAnim.start();
+                }
+
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                     dot.setBackground(background);
                 } else {
                     dot.setBackgroundDrawable(background);
                 }
-                dot.setLayoutParams(lp);
             }
         } else if (mProgressType == TYPE_BAR) {
             mStepProgressBar.setMax(mMaxProgress * 100);
-            mStepProgressBar.setProgress(mCurrentProgress * 100);
+            // Animate the progress
+            int oldProgress = mStepProgressBar.getProgress();
+            ValueAnimator progressAnim = ValueAnimator.ofInt(oldProgress, mCurrentProgress * 100);
+            progressAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    mStepProgressBar.setProgress((int) animation.getAnimatedValue());
+                }
+            });
+            progressAnim.start();
         }
 
         if (mCurrentProgress <= 1) {
@@ -310,6 +360,16 @@ public class StepperProgressLayout extends RelativeLayout {
 
         mCurrentProgress = currentProgress;
         updateView();
+    }
+
+    @ProgressType
+    public int getProgressType() {
+        return mProgressType;
+    }
+
+    public void setProgressType(@ProgressType int progressType) {
+        mProgressType = progressType;
+        setupView();
     }
 
     public CharSequence getBackButtonText() {
