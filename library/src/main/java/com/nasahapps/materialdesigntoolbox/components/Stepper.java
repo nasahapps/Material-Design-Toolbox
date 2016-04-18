@@ -186,11 +186,17 @@ public class Stepper extends LinearLayout {
 
     private int getStepperPositionInLayout() {
         ViewGroup parent = (ViewGroup) getParent();
+        // We have a separate index variable to count the number of Stepper siblings instead of
+        // overall siblings
+        int index = 0;
         if (parent != null) {
             for (int i = 0; i < parent.getChildCount(); i++) {
-                if (parent.getChildAt(i) instanceof Stepper
-                        && parent.getChildAt(i) == this) {
-                    return i;
+                if (parent.getChildAt(i) instanceof Stepper) {
+                    if (parent.getChildAt(i) == this) {
+                        return index;
+                    } else {
+                        index++;
+                    }
                 }
             }
         }

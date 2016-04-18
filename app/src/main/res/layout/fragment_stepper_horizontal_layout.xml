@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.nasahapps.materialdesigntoolbox.components.StepperLayout
+    <com.nasahapps.materialdesigntoolbox.components.HorizontalStepperLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -30,7 +30,7 @@
             app:stepperAccent="@color/nh_indigo_500"
             app:stepperTitle="Create an ad"/>
 
-    </com.nasahapps.materialdesigntoolbox.components.StepperLayout>
+    </com.nasahapps.materialdesigntoolbox.components.HorizontalStepperLayout>
 
     <Button
         android:id="@+id/button"

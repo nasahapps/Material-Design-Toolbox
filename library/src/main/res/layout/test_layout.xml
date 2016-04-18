@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:animateLayoutChanges="true"
+        android:background="#fff">
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/three"
+            android:layout_alignTop="@+id/one"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/nh_grey_400"/>
+
+        <com.nasahapps.materialdesigntoolbox.components.Stepper
+            android:id="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperActive="true"
+            app:stepperTitle="Select campaign settings"/>
+
+        <com.nasahapps.materialdesigntoolbox.components.Stepper
+            android:id="@+id/two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/one"
+            android:layout_marginTop="56dp"
+            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperSubtitle="Optional"
+            app:stepperTitle="Create an ad group"/>
+
+        <com.nasahapps.materialdesigntoolbox.components.Stepper
+            android:id="@+id/three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/two"
+            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperTitle="Create an ad"/>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_below="@+id/one"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="40dp"/>
+
+    </RelativeLayout>
+
+</android.support.v4.widget.NestedScrollView>

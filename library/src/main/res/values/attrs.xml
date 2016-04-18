@@ -10,10 +10,6 @@
     </declare-styleable>
 
     <declare-styleable name="StepperLayout">
-        <attr name="stepperLayoutOrientation" format="enum">
-            <enum name="horizontal" value="0"/>
-            <enum name="vertical" value="1"/>
-        </attr>
         <attr name="stepperLayoutMargin" format="dimension"/>
     </declare-styleable>
 

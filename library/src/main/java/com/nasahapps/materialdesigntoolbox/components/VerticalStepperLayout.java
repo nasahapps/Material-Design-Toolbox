@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.annotation.IntDef;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewCompat;
@@ -19,31 +18,31 @@ import android.widget.RelativeLayout;
 import com.nasahapps.materialdesigntoolbox.R;
 import com.nasahapps.materialdesigntoolbox.Utils;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-
 /**
  * Created by hhasan on 4/15/16.
+ * <p/>
+ * A {@link RelativeLayout} that conveys progress through numbered steps. It can also be used for
+ * navigation.
+ * <p/>
+ * http://www.google.com/design/spec/components/steppers.html
  */
-public class StepperLayout extends HorizontalScrollView {
+public class VerticalStepperLayout extends HorizontalScrollView {
 
-    public static final int HORIZONTAL = 0;
-    public static final int VERTICAL = 1;
     View mConnectorLine;
     LinearLayout mStepperLayout;
-    int mOrientation, mStepperMargin;
+    int mStepperMargin;
 
-    public StepperLayout(Context context) {
+    public VerticalStepperLayout(Context context) {
         super(context);
         init(null);
     }
 
-    public StepperLayout(Context context, AttributeSet attrs) {
+    public VerticalStepperLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public StepperLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public VerticalStepperLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
@@ -82,7 +81,6 @@ public class StepperLayout extends HorizontalScrollView {
         if (attrs != null) {
             TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.StepperLayout, 0, 0);
             try {
-                mOrientation = a.getInt(R.styleable.StepperLayout_stepperLayoutOrientation, HORIZONTAL);
                 mStepperMargin = a.getDimensionPixelSize(R.styleable.StepperLayout_stepperLayoutMargin,
                         Utils.dpToPixel(getContext(), 56));
             } finally {
@@ -188,19 +186,5 @@ public class StepperLayout extends HorizontalScrollView {
         } else {
             super.addView(child, index);
         }
-    }
-
-    @Orientation
-    public int getOrientation() {
-        return mOrientation;
-    }
-
-    public void setOrientation(@Orientation int orientation) {
-        mOrientation = orientation;
-    }
-
-    @IntDef({HORIZONTAL, VERTICAL})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Orientation {
     }
 }

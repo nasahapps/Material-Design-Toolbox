@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.nasahapps.materialdesigntoolbox.components.StepperLayout;
+import com.nasahapps.materialdesigntoolbox.components.HorizontalStepperLayout;
 import com.nasahapps.materialdesigntoolbox.example.R;
 import com.nasahapps.materialdesigntoolbox.example.ui.main.MainActivity;
 
@@ -17,7 +17,7 @@ import butterknife.OnClick;
 public class StepperHorizonalFragment extends ComponentFragment {
 
     @Bind(R.id.layout)
-    StepperLayout mStepperLayout;
+    HorizontalStepperLayout mStepperLayout;
 
     int mCurrentStep, mMaxStep;
 

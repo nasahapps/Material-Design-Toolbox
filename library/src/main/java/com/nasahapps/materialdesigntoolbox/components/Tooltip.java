@@ -26,6 +26,14 @@ import java.lang.annotation.RetentionPolicy;
 
 /**
  * Created by Hakeem on 4/12/16.
+ * <p/>
+ * A {@link android.widget.TextView} that may appear on hover and focus when the user hovers over an
+ * element with a cursor, focuses on an element using a keyboard (usually through the TAB key), or
+ * upon touch (without releasing) in a touch UI. It may contain textual indentification for the
+ * element in question. It may also contain brief helper text regarding the function of the element.
+ * The label itself cannot receive input focus.
+ * <p/>
+ * <a href=http://www.google.com/design/spec/components/tooltips.html>http://www.google.com/design/spec/components/tooltips.html</a>
  */
 public class Tooltip extends AppCompatTextView {
 
