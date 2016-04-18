@@ -9,12 +9,49 @@ As this library reaches closer to completion, it will be published on JCenter.
 This library supports Android 4.0 (API 15) and up, however, not all components/methods will be supported pre-API 21.
 
 * [Components](#components)
+  * [Steppers](#steppers)
   * [Tabs](#tabs)
   * [Text Fields](#text-fields)
   * [Toolbars](#toolbars)
   * [Tooltips](#tooltips)
 
 ## Components
+
+### [Steppers](http://www.google.com/design/spec/components/steppers.html)  
+
+This library provides two stepper layouts:
+
+`StepperProgressLayout`: Displays step progress using plain text (e.g. Step 4 of 6), dots, or with a tinted ProgressBar. The `StepperProgressLayout` provides "Back" and "Next" buttons for going forwards/backwards between steps, with the "Next" button turning into a "Finish" button on the last step. Also, it is a `ViewGroup`, so any views you add to it will automatically be placed accordingly. (TODO: add pictures)  
+
+Custom attributes: 
+* stepperMaxProgress 
+ * the max number of steps
+ * default value: 1
+* stepperProgress
+ * the current step 
+ * default value: 1
+* stepperBackButtonText 
+ * default value: "Back"
+* stepperNextButtonText
+ * default value: "Next"
+* stepperFinishButtonText
+ * the text to be displayed on the "Next" button when on the last step
+ * default value: "Finish"
+* stepperProgressType
+ * the type of progress to be shown, one of TYPE_TEXT, TYPE_DOTS, or TYPE_BAR
+ * default value: TYPE_TEXT
+* stepperProgressAccent
+ * the accent color to use for the dots/bar progress
+ * default value: R.attr.colorPrimary
+
+`StepperLayout`: Displays steps using `Stepper` views in either a horizontal or vertical fashion. Steppers have one of four states: `COMPLETED`, `ACTIVE`, `INACTIVE`, or `ERROR`. 
+Custom attributes:
+* stepperLayoutOrientation
+ * flag for if the Stepper children should be laid out horizontally or verically
+ * default value: HORIZONTAL
+* stepperLayoutMargin
+ * the margin between each Stepper
+ * default value: 56dp
 
 ### [Tabs](http://www.google.com/design/spec/components/tabs.html)
 
