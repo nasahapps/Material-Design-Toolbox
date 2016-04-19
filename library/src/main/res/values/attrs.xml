@@ -3,10 +3,13 @@
     <declare-styleable name="Stepper">
         <attr name="stepperTitle" format="string"/>
         <attr name="stepperSubtitle" format="string"/>
-        <attr name="stepperCompleted" format="boolean"/>
-        <attr name="stepperActive" format="boolean"/>
+        <attr name="stepperState" format="enum">
+            <enum name="active" value="1"/>
+            <enum name="inactive" value="2"/>
+            <enum name="completed" value="3"/>
+            <enum name="error" value="4"/>
+        </attr>
         <attr name="stepperAccent" format="color"/>
-        <attr name="stepperError" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="StepperLayout">

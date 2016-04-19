@@ -104,17 +104,13 @@ public class VerticalStepperLayout extends HorizontalScrollView {
         return count;
     }
 
-    public void setStepperActive(int index, boolean active) {
+    public void setStepperState(int index, @Stepper.State int state) {
         Stepper stepper = getStepper(index);
-        stepper.setActive(active);
-        if (active) {
-            // Also scroll to that stepper
+        stepper.setState(state);
+        if (state == Stepper.ACTIVE) {
+            // Also scroll to that stepper if just made active
             smoothScrollTo((int) stepper.getX(), (int) stepper.getY());
         }
-    }
-
-    public void setStepperCompleted(int index, boolean completed) {
-        getStepper(index).setCompleted(completed);
     }
 
     @Override

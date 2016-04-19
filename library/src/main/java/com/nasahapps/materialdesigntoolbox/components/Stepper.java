@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
+import android.support.annotation.IntDef;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v4.view.ViewCompat;
@@ -24,18 +25,25 @@ import android.widget.TextView;
 import com.nasahapps.materialdesigntoolbox.R;
 import com.nasahapps.materialdesigntoolbox.Utils;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
 /**
  * Created by Hakeem on 4/14/16.
  */
 public class Stepper extends LinearLayout {
+
+    public static final int ACTIVE = 1;
+    public static final int INACTIVE = 2;
+    public static final int COMPLETED = 3;
+    public static final int ERROR = 4;
 
     TextView mStepperCircleText;
     ImageView mStepperCircleCheck;
     TextView mStepperTitle;
     TextView mStepperSubtitle;
 
-    boolean mActive, mCompleted, mError;
-    int mAccent;
+    int mAccent, mState;
 
     public Stepper(Context context) {
         super(context);
@@ -101,9 +109,7 @@ public class Stepper extends LinearLayout {
                     mStepperSubtitle.setText(subtitle);
                 }
 
-                mActive = a.getBoolean(R.styleable.Stepper_stepperActive, false);
-                mCompleted = a.getBoolean(R.styleable.Stepper_stepperCompleted, false);
-                mError = a.getBoolean(R.styleable.Stepper_stepperError, false);
+                mState = a.getInt(R.styleable.Stepper_stepperState, INACTIVE);
                 mAccent = a.getColor(R.styleable.Stepper_stepperAccent,
                         Utils.getColorFromAttribute(getContext(), R.attr.colorPrimary));
             } finally {
@@ -136,7 +142,7 @@ public class Stepper extends LinearLayout {
                 ll.setLayoutParams(lp);
             }
 
-            if (mActive) {
+            if (mState == ACTIVE) {
                 if (mStepperCircleText.getBackground() instanceof GradientDrawable) {
                     ((GradientDrawable) mStepperCircleText.getBackground()).setColor(mAccent);
                 } else {
@@ -157,10 +163,10 @@ public class Stepper extends LinearLayout {
             }
             mStepperSubtitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_54));
 
-            if (mCompleted || mError) {
+            if (mState == COMPLETED || mState == ERROR) {
                 mStepperCircleText.setVisibility(GONE);
                 mStepperCircleCheck.setVisibility(VISIBLE);
-                if (mError) {
+                if (mState == ERROR) {
                     mStepperCircleCheck.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(),
                             R.drawable.ic_nh_report_problem), ContextCompat.getColor(getContext(), R.color.nh_red_500)));
                     mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_red_500));
@@ -232,30 +238,18 @@ public class Stepper extends LinearLayout {
         mStepperSubtitle.setText(text);
     }
 
-    public boolean isActive() {
-        return mActive;
+    @State
+    public int getState() {
+        return mState;
     }
 
-    public void setActive(boolean active) {
-        mActive = active;
+    public void setState(@State int state) {
+        mState = state;
         setupView();
     }
 
-    public boolean isCompleted() {
-        return mCompleted;
-    }
-
-    public void setCompleted(boolean completed) {
-        mCompleted = completed;
-        setupView();
-    }
-
-    public boolean isError() {
-        return mError;
-    }
-
-    public void setError(boolean error) {
-        mError = error;
-        setupView();
+    @IntDef({ACTIVE, INACTIVE, COMPLETED, ERROR})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface State {
     }
 }
