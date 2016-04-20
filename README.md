@@ -44,14 +44,22 @@ Custom attributes:
  * the accent color to use for the dots/bar progress
  * default value: R.attr.colorPrimary
 
-`StepperLayout`: Displays steps using `Stepper` views in either a horizontal or vertical fashion. Steppers have one of four states: `COMPLETED`, `ACTIVE`, `INACTIVE`, or `ERROR`. 
+`HorizontalStepperLayout`: Displays steps using `Stepper` views in either a horizontal or vertical fashion. Steppers have one of four states: `COMPLETED`, `ACTIVE`, `INACTIVE`, or `ERROR`. 
 Custom attributes:
-* stepperLayoutOrientation
- * flag for if the Stepper children should be laid out horizontally or verically
- * default value: HORIZONTAL
 * stepperLayoutMargin
  * the margin between each Stepper
  * default value: 56dp
+
+Also provided is the `Stepper` widget that should be the only child view used in a `HorizontalStepperLayout`. 
+Custom attributes:
+* stepperTitle
+* stepperSubtitle
+* stepperAccent
+ * the accent color to be used as the step number background
+ * default value: R.attr.colorPrimary
+* stepperState
+ * the initial state of the stepper (`ACTIVE`, `INACTIVE`, `COMPLETED`, or `ERROR`)
+ * default value: `ACTIVE`
 
 ### [Tabs](http://www.google.com/design/spec/components/tabs.html)
 
