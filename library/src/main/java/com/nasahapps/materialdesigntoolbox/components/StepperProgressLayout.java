@@ -479,4 +479,13 @@ public class StepperProgressLayout extends RelativeLayout {
     @Retention(RetentionPolicy.SOURCE)
     public @interface ProgressType {
     }
+
+    public interface OnStepperProgressListener {
+
+        void onStepSelected(int position);
+
+        void onStepDeselected(int position);
+
+        void onStepsFinished();
+    }
 }

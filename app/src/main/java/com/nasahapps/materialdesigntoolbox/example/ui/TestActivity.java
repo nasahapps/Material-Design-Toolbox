@@ -3,7 +3,6 @@ package com.nasahapps.materialdesigntoolbox.example.ui;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 
-import com.nasahapps.materialdesigntoolbox.components.OnStepperProgressListener;
 import com.nasahapps.materialdesigntoolbox.components.StepperProgressLayout;
 import com.nasahapps.materialdesigntoolbox.example.R;
 import com.nasahapps.materialdesigntoolbox.example.ui.adapter.MockViewPagerAdapter;
@@ -43,7 +42,7 @@ public class TestActivity extends BaseActivity {
 
             }
         });
-        mLayout.addOnStepperProgressListener(new OnStepperProgressListener() {
+        mLayout.addOnStepperProgressListener(new StepperProgressLayout.OnStepperProgressListener() {
             @Override
             public void onStepSelected(int position) {
                 mViewPager.setCurrentItem(position, true);
@@ -51,11 +50,6 @@ public class TestActivity extends BaseActivity {
 
             @Override
             public void onStepDeselected(int position) {
-
-            }
-
-            @Override
-            public void onStepCompleted(int position) {
 
             }
 

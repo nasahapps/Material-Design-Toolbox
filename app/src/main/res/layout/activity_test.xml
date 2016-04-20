@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.nasahapps.materialdesigntoolbox.components.HorizontalStepperLayout
-        android:id="@+id/layout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <com.nasahapps.materialdesigntoolbox.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#0000"
             app:stepperAccent="@color/nh_indigo_500"
             app:stepperState="active"
             app:stepperTitle="Select campaign settings"/>
@@ -20,6 +20,7 @@
         <com.nasahapps.materialdesigntoolbox.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#0000"
             app:stepperAccent="@color/nh_indigo_500"
             app:stepperSubtitle="Optional"
             app:stepperTitle="Create an ad group"/>
@@ -27,16 +28,10 @@
         <com.nasahapps.materialdesigntoolbox.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#0000"
             app:stepperAccent="@color/nh_indigo_500"
             app:stepperTitle="Create an ad"/>
 
-    </com.nasahapps.materialdesigntoolbox.components.HorizontalStepperLayout>
+    </RelativeLayout>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Next Step"/>
-
-</FrameLayout>
+</android.support.v4.widget.NestedScrollView>

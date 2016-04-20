@@ -5,7 +5,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.nasahapps.materialdesigntoolbox.components.OnStepperProgressListener;
 import com.nasahapps.materialdesigntoolbox.components.StepperProgressLayout;
 import com.nasahapps.materialdesigntoolbox.example.R;
 import com.nasahapps.materialdesigntoolbox.example.ui.adapter.MockViewPagerAdapter;
@@ -62,7 +61,7 @@ public class StepperProgressFragment extends ComponentFragment {
         });
         mLayout.setMaxProgress(MockViewPagerAdapter.MAX_COUNT);
         mLayout.setProgressType(getArguments().getInt(EXTRA_TYPE));
-        mLayout.addOnStepperProgressListener(new OnStepperProgressListener() {
+        mLayout.addOnStepperProgressListener(new StepperProgressLayout.OnStepperProgressListener() {
             @Override
             public void onStepSelected(int position) {
                 mViewPager.setCurrentItem(position, true);
@@ -70,11 +69,6 @@ public class StepperProgressFragment extends ComponentFragment {
 
             @Override
             public void onStepDeselected(int position) {
-
-            }
-
-            @Override
-            public void onStepCompleted(int position) {
 
             }
 
