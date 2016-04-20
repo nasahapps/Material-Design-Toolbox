@@ -19,4 +19,7 @@
     <color name="nh_white_38">#61ffffff</color>
     <color name="nh_white_50">#80ffffff</color>
     <color name="nh_white_70">#b3ffffff</color>
+
+    <color name="bottom_bar_inactive_tint">#8a000000</color>
+    <color name="bottom_bar_inactive_tint_dark">#b3ffffff</color>
 </resources>

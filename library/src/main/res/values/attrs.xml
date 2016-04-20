@@ -29,4 +29,9 @@
         </attr>
         <attr name="stepperProgressAccent" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="BottomNavigationBar">
+        <attr name="bottomNavAccentColor" format="color"/>
+        <attr name="bottomNavDarkTheme" format="boolean"/>
+    </declare-styleable>
 </resources>

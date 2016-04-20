@@ -6,6 +6,7 @@ import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
+import android.support.annotation.DimenRes;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 import android.view.Display;
@@ -22,6 +23,13 @@ public class Utils {
     public static int dpToPixel(Context c, int dp) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
                 c.getResources().getDisplayMetrics());
+    }
+
+    /**
+     * Convert pixels to DP
+     */
+    public static int pixelToDp(Context c, int px) {
+        return (int) (px / c.getResources().getDisplayMetrics().density);
     }
 
     /**
@@ -75,6 +83,12 @@ public class Utils {
         drawable = DrawableCompat.wrap(drawable.mutate());
         DrawableCompat.setTint(drawable, color);
         return drawable;
+    }
+
+    public static float getFloatResource(Context c, @DimenRes int res) {
+        TypedValue tv = new TypedValue();
+        c.getResources().getValue(res, tv, true);
+        return tv.getFloat();
     }
 
 }

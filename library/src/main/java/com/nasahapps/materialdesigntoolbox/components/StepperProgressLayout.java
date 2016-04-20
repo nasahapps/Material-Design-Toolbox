@@ -41,7 +41,7 @@ import java.util.List;
  * A {@link RelativeLayout} that conveys progress through numbered steps. It can also be used for
  * navigation.
  * <p/>
- * http://www.google.com/design/spec/components/steppers.html
+ * <a href="http://www.google.com/design/spec/components/steppers.html">http://www.google.com/design/spec/components/steppers.html</a>
  */
 public class StepperProgressLayout extends RelativeLayout {
 

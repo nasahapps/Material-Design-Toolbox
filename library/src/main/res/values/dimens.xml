@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="na_bottom_nav_elevation">8dp</dimen>
+
+    <dimen name="na_fixed_bottom_nav_tab_min_width">104dp</dimen>
+    <dimen name="na_fixed_bottom_nav_tab_max_width">168dp</dimen>
+    <dimen name="na_fixed_bottom_nav_height">56dp</dimen>
+    <dimen name="na_fixed_bottom_nav_icon_size">24dp</dimen>
+    <dimen name="na_fixed_bottom_nav_padding_top_active">6dp</dimen>
+    <dimen name="na_fixed_bottom_nav_padding_top_inactive">8dp</dimen>
+    <dimen name="na_fixed_bottom_nav_padding_bottom">10dp</dimen>
+    <dimen name="na_fixed_bottom_nav_padding_sides">12dp</dimen>
+    <dimen name="na_fixed_bottom_nav_text_size_active">14sp</dimen>
+    <dimen name="na_fixed_bottom_nav_text_size_inactive">12sp</dimen>
+
+    <dimen name="na_shifting_bottom_nav_tab_max_width_active">168dp</dimen>
+    <dimen name="na_shifting_bottom_nav_tab_min_width_active">96dp</dimen>
+    <dimen name="na_shifting_bottom_nav_tab_max_width_inactive">96dp</dimen>
+    <dimen name="na_shifting_bottom_nav_tab_min_width_inactive">64dp</dimen>
+    <dimen name="na_shifting_bottom_nav_height">56dp</dimen>
+    <dimen name="na_shifting_bottom_nav_icon_size">24dp</dimen>
+    <dimen name="na_shifting_bottom_nav_padding_top_active">6dp</dimen>
+    <dimen name="na_shifting_bottom_nav_padding_top_inactive">16dp</dimen>
+    <dimen name="na_shifting_bottom_nav_padding_bottom">10dp</dimen>
+    <dimen name="na_shifting_bottom_nav_text_size">14sp</dimen>
+
+    <item name="na_inactive_opacity" format="float" type="dimen">0.54</item>
+    <item name="na_inactive_opacity_dark" format="float" type="dimen">0.7</item>
+</resources>
