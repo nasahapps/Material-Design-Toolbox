@@ -34,4 +34,9 @@
         <attr name="bottomNavAccentColor" format="color"/>
         <attr name="bottomNavDarkTheme" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="BottomNavigationTab">
+        <attr name="bottomNavTabText" format="string"/>
+        <attr name="bottomNavTabIcon" format="reference"/>
+    </declare-styleable>
 </resources>
