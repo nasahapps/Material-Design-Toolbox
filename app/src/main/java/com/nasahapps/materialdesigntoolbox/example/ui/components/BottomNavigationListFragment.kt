@@ -7,20 +7,20 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
-
 import com.nasahapps.materialdesigntoolbox.example.R
 import com.nasahapps.materialdesigntoolbox.example.ui.main.MainActivity
 
 /**
  * Created by Hakeem on 4/13/16.
  */
-class ComponentListFragment : ListFragment() {
+class BottomNavigationListFragment : ListFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         listAdapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1,
-                arrayOf("Bottom Navigation", "Steppers", "Tooltips"))
+                arrayOf("Three Tabs", "Four Tabs", "Five Tabs", "Three Tabs Colored",
+                        "Four Tabs Colored", "Five Tabs Colored"))
     }
 
     override fun onResume() {
@@ -31,7 +31,7 @@ class ComponentListFragment : ListFragment() {
             it.setStatusBarColor(ContextCompat.getColor(context,
                     R.color.nh_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
-            it.setToolbarTitle("Components")
+            it.setToolbarTitle("Bottom Navigation")
         }
     }
 
@@ -39,11 +39,17 @@ class ComponentListFragment : ListFragment() {
         super.onListItemClick(l, v, position, id)
 
         (activity as? MainActivity)?.let {
-            when (position) {
-                0 -> it.startFragment(BottomNavigationListFragment())
-                1 -> it.startFragment(StepperListFragment())
-                2 -> it.startFragment(TooltipFragment())
+            val fragment = when (position) {
+                0 -> BottomNavigationFragment.newInstance(3)
+                1 -> BottomNavigationFragment.newInstance(4)
+                2 -> BottomNavigationFragment.newInstance(5)
+                3 -> BottomNavigationFragment.newInstance(3, true)
+                4 -> BottomNavigationFragment.newInstance(4, true)
+                5 -> BottomNavigationFragment.newInstance(5, true)
+                else -> BottomNavigationFragment.newInstance(3)
             }
+
+            it.startFragment(fragment)
         }
     }
 }

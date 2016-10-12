@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomNavigationBar">
+        <attr name="bottomNavigationActiveTint" format="color"/>
+        <attr name="bottomNavigationInactiveTint" format="color"/>
+        <attr name="bottomNavigationDarkTheme" format="boolean"/>
+        <attr name="bottomNavigationOrientation" format="enum">
+            <enum name="horizontal" value="0"/>
+            <enum name="vertical" value="1"/>
+        </attr>
+    </declare-styleable>
+</resources>

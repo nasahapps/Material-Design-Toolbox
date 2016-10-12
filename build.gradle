@@ -1,13 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.0.4'
+    ext.compile_sdk_version = 24
+    ext.build_tools_version = "24.0.3"
+    ext.min_sdk_version = 16 // 4.1 Jelly Bean
+    ext.target_sdk_version = 24 // 7.0 Nougat
+    ext.support_lib_version = "24.2.1"
+
     repositories {
         jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:2.2.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
 

@@ -5,8 +5,8 @@ import android.support.v4.view.ViewPager
 import android.view.View
 import com.nasahapps.materialdesigntoolbox.components.StepperProgressLayout
 import com.nasahapps.materialdesigntoolbox.example.R
-import com.nasahapps.materialdesigntoolbox.example.ui.adapter.MockViewPagerAdapter
 import com.nasahapps.materialdesigntoolbox.example.ui.main.MainActivity
+import com.nasahapps.materialdesigntoolbox.example.ui.mock.MockViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_stepper_progress.*
 
 /**

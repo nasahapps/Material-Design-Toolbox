@@ -6,9 +6,10 @@ The main purpose of this library is to provide components and helper methods in 
 
 As this library reaches closer to completion, it will be published on JCenter.  
 
-This library supports Android 4.0 (API 15) and up, however, not all components/methods will be supported pre-API 21.
+This library supports Android 4.1 (API 16) and up, however, not all components/methods will be supported pre-API 21.
 
 * [Components](#components)
+  * [Bottom Navigation](#bottom-navigation)
   * [Steppers](#steppers)
   * [Tabs](#tabs)
   * [Text Fields](#text-fields)
@@ -17,7 +18,89 @@ This library supports Android 4.0 (API 15) and up, however, not all components/m
 
 ## Components
 
-### [Steppers](http://www.google.com/design/spec/components/steppers.html)  
+### [Bottom Navigation](https://material.google.com/components/bottom-navigation.html)
+
+`BottomNavigationBar`: Displays three to five tabs for switching between top-level views.
+
+Dependency: ` compile 'com.nasahapps.mdt:bottom-nav:{latest-version}'`
+
+To use, add it to your XML layout:
+
+```xml
+<com.nasahapps.mdt.bottomnavigation.BottomNavigationBar
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:background="#fff"
+        app:bottomNavigationActiveTint="@color/resource"
+        app:bottomNavigationInactiveTint="@color/resource"
+        app:bottomNavigationDarkTheme="true|false"
+        app:bottomNavigationOrientation="horizontal|vertical"/>
+```
+
+Or create it programmatically:
+
+```java
+BottomNavigationBar bottomNav = new BottomNavigationBar(context);
+```
+
+XML attributes:
+
+|Name|Type|Values|Default|
+|:-----|:------|:------|:-----|
+bottomNavigationActiveTint | color | | R.attr.colorPrimary
+bottomNavigationInactiveTint | color | | R.attr.textColorSecondary
+bottomNavigationOrientation | enum | horizontal or vertical | horizontal
+bottomNavigationDarkTheme | boolean | | false
+
+You can create new tabs with their text and icon to display, then add them to the bottom nav:
+
+```java
+BottomNavigationBar.Tab tab = bottomNav.newTab("Title", drawable);
+bottomNav.addTab(tab);
+```
+
+If you try to add more than 5 tabs, an Exception will be thrown as that is against Material Design guidelines.
+
+Listen for tab clicks with an `OnTabSelectedListener`:
+
+```java
+void onTabSelected(int position);
+void onTabUnselected(int position);
+void onTabReselected(int position);
+```
+
+If your bottom nav has a non-white background and you want the default `inactiveTint` set correctly,
+it's best to set `bottomNavigationDarkTheme` to `true`.
+
+If you want the bottom nav background to change colors for each individual tab, you can set those colors
+with `setBackgroundColors(@ColorInt int...)` or `setBackgroundColorResources(@ColorRes int...)`.
+
+![](images/bottom_nav_tab_colors.gif)
+
+BottomNavigationBar adjusts appropriately to translucent navigation bars if `android:fitsSystemWindows` is set to `true`:
+
+![](images/bottom_nav_fits_system_windows.gif)
+
+Snackbars will automatically appear above the BottomNavigationBar, but only if the parent layout is a `FrameLayout`
+or a `RelativeLayout`:
+
+![](images/bottom_nav_snackbar.gif)
+
+BottomNavigationBar has a default Behavior to scroll down if laid out in a CoordinatorLayout:
+
+![](images/bottom_nav_scrolling.gif)
+
+Setting `bottomNavigationOrientation` to `vertical` will layout the BottomNavigationBar in a vertical fashion,
+meant for side navigation:
+
+![](images/bottom_nav_side_bar.png)
+
+[BottomNavigationBar Javadoc](library/bottomnav/javadoc/index.html)
+
+### [Steppers](http://www.google.com/design/spec/components/steppers.html)
 
 This library provides two stepper layouts:
 

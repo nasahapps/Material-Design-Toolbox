@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="nh_red_500">#f44336</color>
+
+    <color name="nh_pink_500">#e91e63</color>
+
+    <color name="nh_purple_500">#9c27b0</color>
+
+    <color name="nh_cyan_500">#00bcd4</color>
+    <color name="nh_cyan_700">#0097a7</color>
+
+    <color name="nh_indigo_500">#3f51b5</color>
+    <color name="nh_indigo_700">#303f9f</color>
+
+    <color name="nh_grey_400">#bdbdbd</color>
+    <color name="nh_grey_700">#616161</color>
+
+    <color name="nh_black_12">#1f000000</color>
+    <color name="nh_black_38">#61000000</color>
+    <color name="nh_black_54">#8a000000</color>
+    <color name="nh_black_87">#de000000</color>
+
+    <color name="nh_white_38">#61ffffff</color>
+    <color name="nh_white_50">#80ffffff</color>
+    <color name="nh_white_70">#b3ffffff</color>
+
+    <color name="bottom_bar_inactive_tint">#8a000000</color>
+    <color name="bottom_bar_inactive_tint_dark">#b3ffffff</color>
+</resources>
