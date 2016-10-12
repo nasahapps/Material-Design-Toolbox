@@ -65,7 +65,6 @@ public class Utils {
      * Retrieves a Drawable from an attribute, e.g. R.attr.selectableItemBackground, or null if
      * it doesn't exist
      */
-    @ColorInt
     public static Drawable getDrawableFromAttribute(Context c, @AttrRes int res) {
         try {
             TypedValue tv = new TypedValue();

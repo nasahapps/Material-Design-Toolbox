@@ -268,7 +268,7 @@ public class StepperProgressLayout extends RelativeLayout {
                         background = Utils.getTintedDrawable(background, mAccent);
                     }
                     // Set a tag saying that this dot is the currently selected one
-                    if (dot.getTag() != true) {
+                    if (!(Boolean) dot.getTag()) {
                         selectionChanged = true;
                     }
                     dot.setTag(true);
@@ -284,7 +284,7 @@ public class StepperProgressLayout extends RelativeLayout {
                                 R.color.nh_black_38));
                     }
                     // Unset the dot's tag for it's no longer selected
-                    if (dot.getTag() != false) {
+                    if ((Boolean) dot.getTag()) {
                         selectionChanged = true;
                     }
                     dot.setTag(false);
