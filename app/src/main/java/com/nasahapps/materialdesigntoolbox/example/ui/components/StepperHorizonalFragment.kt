@@ -2,7 +2,6 @@ package com.nasahapps.materialdesigntoolbox.example.ui.components
 
 import android.os.Bundle
 import android.view.View
-import butterknife.OnClick
 import com.nasahapps.materialdesigntoolbox.components.Stepper
 import com.nasahapps.materialdesigntoolbox.example.R
 import com.nasahapps.materialdesigntoolbox.example.ui.main.MainActivity
@@ -23,10 +22,11 @@ class StepperHorizonalFragment : ComponentFragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mMaxStep = layout.stepperCount
+
+        button?.setOnClickListener { nextStep() }
     }
 
-    @OnClick(R.id.button)
-    fun nextStep() {
+    private fun nextStep() {
         if (mCurrentStep >= mMaxStep) {
             // Reset back to step 1
             mCurrentStep = 0
