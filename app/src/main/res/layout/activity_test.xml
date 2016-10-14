@@ -1,22 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#fff"
-        android:elevation="4dp"
-        app:title="Bottom Navigation"/>
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
 
     <Button
         android:id="@+id/button"
@@ -24,16 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
-        android:text="Show Snackbar"
-        android:visibility="gone"/>
+        android:text="Show Dialog"/>
 
-    <com.nasahapps.mdt.bottomnavigation.BottomNavigationBar
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:background="#fff"
-        app:bottomNavigationActiveTint="@color/nh_indigo_500"/>
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:text="Show Share"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

@@ -10,6 +10,7 @@ This library supports Android 4.1 (API 16) and up, however, not all components/m
 
 * [Components](#components)
   * [Bottom Navigation](#bottom-navigation)
+  * [Bottom Sheets](#bottom-sheets)
   * [Steppers](#steppers)
   * [Tabs](#tabs)
   * [Text Fields](#text-fields)
@@ -99,6 +100,45 @@ meant for side navigation:
 ![](images/bottom_nav_side_bar.png)
 
 [BottomNavigationBar Javadoc](library/bottomnav/javadoc/index.html)
+
+### [Bottom Sheets](https://material.google.com/components/bottom-sheets.html)
+
+Dependency: `compile 'com.nasahapps.mdt:bottom-sheets:{latest-version}'`
+
+Bottom sheets are provided by the `design` module in the support library, by the use of `BottomSheetDialog`,
+`BottomSheetDialogFragment`, or with your own custom View in a CoordinatorLayout using a `BottomSheetBehavior`.
+
+The Material Design Toolbox, however, provides a utils class that will create [a single-choice list styled as a BottomSheetDialog](https://developer.android.com/guide/topics/ui/dialogs.html#AddingAList)
+in a similar fashion to how you can already create a single-choice Dialog.
+
+For example, the following code will create and show a BottomSheetDialog with a title and its items aligned in a grid.
+
+```java
+new BottomSheetUtils.DialogBuilder(context, useGrid)
+        .setTitle(title)
+        .setItems(items, onClickListener)
+        .show();
+```
+
+When initializing the `DialogBuilder`, you pass in a `Context` and whether you want the items to be laid
+out in a list or in a grid.
+
+The type of item the DialogBuilder accepts is a `BottomSheetItem`, which takes a `CharSequence` title and a `Drawable` icon.
+You can also pass in a menu resource instead:
+
+`builder.setItems(R.menu.bottom_sheet, listener)`
+
+The item click listener is very similar to the standard Dialog's OnClickListener:
+
+`void onClick(DialogInterface dialog, int position, int itemId);`
+
+In the `onClick` callback, if you passed in a menu resource instead of a list of items, you can use `itemId`
+to refer to the selected item's menu id you set in XML. Else, use `position` for the item's list position.
+
+If you want the icons to all be tinted a certain color, you can use `builder.setIconTint(colorInt)`. Also
+you can use `builder.create()` to build the Dialog but not show it yet in case you want to alter the
+Dialog any further.
+
 
 ### [Steppers](http://www.google.com/design/spec/components/steppers.html)
 

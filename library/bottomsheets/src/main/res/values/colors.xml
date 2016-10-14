@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bottom_sheet_text_color">@color/nh_black_87</color>
+    <color name="bottom_sheet_title_color">@color/nh_black_54</color>
+</resources>

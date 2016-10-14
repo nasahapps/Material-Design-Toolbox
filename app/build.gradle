@@ -29,6 +29,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.nasahapps.android:androidutils:0.0.19'
     compile project(':library:bottomnav')
+    compile project(':library:bottomsheets')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 

@@ -156,8 +156,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
 
                 mInactiveColor = ta.getColor(R.styleable.BottomNavigationBar_bottomNavigationInactiveTint, 0);
                 if (mInactiveColor == 0) {
-                    mInactiveColor = Utils.getColorFromAttribute(getContext(),
-                            mDarkTheme ? android.R.attr.textColorSecondaryInverse : android.R.attr.textColorSecondary);
+                    mInactiveColor = ContextCompat.getColor(getContext(), mDarkTheme ? R.color.nh_light_secondary_text_color : R.color.nh_dark_secondary_text_color);
                 }
 
                 int orientation = ta.getInt(R.styleable.BottomNavigationBar_bottomNavigationOrientation, LinearLayout.HORIZONTAL);
@@ -315,11 +314,10 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         mDarkTheme = darkTheme;
 
         // If no inactive tint was set, set it
-        int secondaryColor = Utils.getColorFromAttribute(getContext(), android.R.attr.textColorSecondary);
-        int secondaryInverseColor = Utils.getColorFromAttribute(getContext(), android.R.attr.textColorSecondaryInverse);
+        int secondaryColor = ContextCompat.getColor(getContext(), R.color.nh_dark_secondary_text_color);
+        int secondaryInverseColor = ContextCompat.getColor(getContext(), R.color.nh_light_secondary_text_color);
         if (mInactiveColor == secondaryColor || mInactiveColor == secondaryInverseColor) {
-            mInactiveColor = Utils.getColorFromAttribute(getContext(),
-                    mDarkTheme ? android.R.attr.textColorSecondaryInverse : android.R.attr.textColorSecondary);
+            mInactiveColor = mDarkTheme ? secondaryInverseColor : secondaryColor;
         }
 
         configure();

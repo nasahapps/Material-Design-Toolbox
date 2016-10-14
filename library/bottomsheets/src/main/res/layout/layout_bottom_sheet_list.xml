@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/bottomSheetLayout"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:paddingBottom="20dp"
+        android:paddingLeft="@dimen/bottom_sheet_list_padding"
+        android:paddingRight="@dimen/bottom_sheet_list_padding"
+        android:paddingTop="20dp"
+        android:textColor="@color/bottom_sheet_title_color"
+        android:textSize="@dimen/bottom_sheet_text_size"
+        tools:text="Share with..."/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/bottomSheetRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/bottom_sheet_list_bottom_padding"
+        tools:listitem="@layout/list_bottom_sheet_item"/>
+
+</LinearLayout>

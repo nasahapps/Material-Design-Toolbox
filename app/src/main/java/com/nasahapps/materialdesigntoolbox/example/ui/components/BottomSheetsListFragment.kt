@@ -1,5 +1,6 @@
 package com.nasahapps.materialdesigntoolbox.example.ui.components
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.ListFragment
@@ -7,20 +8,21 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
-
 import com.nasahapps.materialdesigntoolbox.example.R
 import com.nasahapps.materialdesigntoolbox.example.ui.main.MainActivity
+import com.nasahapps.mdt.bottomsheets.BottomSheetItem
+import com.nasahapps.mdt.bottomsheets.BottomSheetUtils
 
 /**
  * Created by Hakeem on 4/13/16.
  */
-class ComponentListFragment : ListFragment() {
+class BottomSheetsListFragment : ListFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         listAdapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1,
-                arrayOf("Bottom Navigation", "Bottom Sheets", "Steppers", "Tooltips"))
+                arrayOf("Simple List", "Simple List with Title", "Simple Grid", "Simple Grid with Title"))
     }
 
     override fun onResume() {
@@ -31,7 +33,7 @@ class ComponentListFragment : ListFragment() {
             it.setStatusBarColor(ContextCompat.getColor(context,
                     R.color.nh_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
-            it.setToolbarTitle("Components")
+            it.setToolbarTitle("Bottom Sheets")
         }
     }
 
@@ -39,11 +41,20 @@ class ComponentListFragment : ListFragment() {
         super.onListItemClick(l, v, position, id)
 
         (activity as? MainActivity)?.let {
+            val launcherIntent = Intent(Intent.ACTION_MAIN)
+            launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER)
+            val appList = activity.packageManager.queryIntentActivities(launcherIntent, 0)
+            val sheetItems = appList.map {
+                BottomSheetItem(it.loadLabel(activity.packageManager),
+                        it.loadIcon(activity.packageManager))
+            }
             when (position) {
-                0 -> it.startFragment(BottomNavigationListFragment())
-                1 -> it.startFragment(BottomSheetsListFragment())
-                2 -> it.startFragment(StepperListFragment())
-                3 -> it.startFragment(TooltipFragment())
+                0 -> BottomSheetUtils.DialogBuilder(activity, false).setItems(sheetItems, null).show()
+                1 -> BottomSheetUtils.DialogBuilder(activity, false).setTitle("Installed Apps").setItems(sheetItems, null).show()
+                2 -> BottomSheetUtils.DialogBuilder(activity, true).setItems(sheetItems, null).show()
+                3 -> BottomSheetUtils.DialogBuilder(activity, true).setTitle("Installed Apps").setItems(sheetItems, null).show()
+                else -> {
+                }
             }
         }
     }

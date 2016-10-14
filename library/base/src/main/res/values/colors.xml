@@ -20,9 +20,24 @@
     <color name="nh_black_54">#8a000000</color>
     <color name="nh_black_87">#de000000</color>
 
+    <color name="nh_white_12">#1fffffff</color>
     <color name="nh_white_38">#61ffffff</color>
     <color name="nh_white_50">#80ffffff</color>
     <color name="nh_white_70">#b3ffffff</color>
+
+    <color name="nh_dark_primary_text_color">@color/nh_black_87</color>
+    <color name="nh_dark_secondary_text_color">@color/nh_black_54</color>
+    <color name="nh_dark_disabled_text_color">@color/nh_black_38</color>
+    <color name="nh_dark_hint_text_color">@color/nh_black_38</color>
+    <color name="nh_dark_icon_text_color">@color/nh_black_38</color>
+    <color name="nh_dark_divider_color">@color/nh_black_12</color>
+
+    <color name="nh_light_primary_text_color">#fff</color>
+    <color name="nh_light_secondary_text_color">@color/nh_white_70</color>
+    <color name="nh_light_disabled_text_color">@color/nh_white_50</color>
+    <color name="nh_light_hint_text_color">@color/nh_white_50</color>
+    <color name="nh_light_icon_text_color">@color/nh_white_50</color>
+    <color name="nh_light_divider_color">@color/nh_white_12</color>
 
     <color name="bottom_bar_inactive_tint">#8a000000</color>
     <color name="bottom_bar_inactive_tint_dark">#b3ffffff</color>

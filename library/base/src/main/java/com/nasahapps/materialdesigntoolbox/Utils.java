@@ -2,6 +2,7 @@ package com.nasahapps.materialdesigntoolbox;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -52,6 +53,18 @@ public class Utils {
 
     public static int getScreenHeight(Context c) {
         return getScreenDimensions(c).y;
+    }
+
+    public static boolean isPortrait(Context c) {
+        return c.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
+    }
+
+    public static boolean isTablet(Context c) {
+        return c.getResources().getConfiguration().smallestScreenWidthDp >= 600;
+    }
+
+    public static boolean isLargeTablet(Context c) {
+        return c.getResources().getConfiguration().smallestScreenWidthDp >= 720;
     }
 
     /**

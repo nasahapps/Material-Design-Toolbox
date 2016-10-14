@@ -45,17 +45,14 @@ captures/
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
 .idea/libraries/
-.idea/workspace.xml
-.idea/tasks.xml
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/profiles_settings.xml
 .idea/encodings.xml
 .idea/misc.xml
 .idea/modules.xml
+.idea/dbnavigator.xml
 .idea/scopes/scope_settings.xml
-.idea/vcs.xml
-*.iml
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids

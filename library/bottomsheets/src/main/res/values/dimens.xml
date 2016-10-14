@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bottom_sheet_text_size">16sp</dimen>
+    <dimen name="bottom_sheet_title_size">16sp</dimen>
+    <dimen name="bottom_sheet_list_padding">16dp</dimen>
+    <dimen name="bottom_sheet_list_icon_size">24dp</dimen>
+    <dimen name="bottom_sheet_list_divider_margin_top">7dp</dimen>
+    <dimen name="bottom_sheet_list_divider_margin_bottom">8dp</dimen>
+    <dimen name="bottom_sheet_list_divider_height">1dp</dimen>
+    <dimen name="bottom_sheet_list_bottom_padding">8dp</dimen>
+    <dimen name="bottom_sheet_grid_left_right_bottom_padding">24dp</dimen>
+    <dimen name="bottom_sheet_grid_top_padding">16dp</dimen>
+    <dimen name="bottom_sheet_grid_icon_size">48dp</dimen>
+</resources>
