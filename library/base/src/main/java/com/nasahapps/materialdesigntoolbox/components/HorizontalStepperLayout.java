@@ -70,7 +70,7 @@ public class HorizontalStepperLayout extends HorizontalScrollView {
         }
         lp.addRule(RelativeLayout.CENTER_VERTICAL);
         mConnectorLine.setLayoutParams(lp);
-        mConnectorLine.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.nh_grey_400));
+        mConnectorLine.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.mdt_grey_400));
         rl.addView(mConnectorLine, 0);
 
         mStepperLayout = new LinearLayout(getContext());

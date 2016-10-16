@@ -242,7 +242,7 @@ public class StepperProgressLayout extends RelativeLayout {
         View v = new View(getContext());
         v.setBackgroundResource(R.drawable.stepper_circle_background);
         ViewCompat.setBackgroundTintList(v,
-                ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.nh_black_38)));
+                ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.mdt_black_38)));
         return v;
     }
 
@@ -278,10 +278,10 @@ public class StepperProgressLayout extends RelativeLayout {
                     // Remove tinted background
                     if (background instanceof GradientDrawable) {
                         ((GradientDrawable) background).setColor(ContextCompat.getColor(getContext(),
-                                R.color.nh_black_38));
+                                R.color.mdt_black_38));
                     } else {
                         background = Utils.getTintedDrawable(background, ContextCompat.getColor(getContext(),
-                                R.color.nh_black_38));
+                                R.color.mdt_black_38));
                     }
                     // Unset the dot's tag for it's no longer selected
                     if ((Boolean) dot.getTag()) {

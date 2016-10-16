@@ -92,7 +92,7 @@ public class Stepper extends LinearLayout {
 
         mStepperSubtitle = new AppCompatTextView(getContext());
         mStepperSubtitle.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f);
-        mStepperSubtitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_54));
+        mStepperSubtitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_black_54));
         ll.addView(mStepperSubtitle, new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT));
 
@@ -149,33 +149,33 @@ public class Stepper extends LinearLayout {
                     ViewCompat.setBackgroundTintList(mStepperCircleText, ColorStateList.valueOf(mAccent));
                 }
                 mStepperTitle.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-                mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_87));
+                mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_black_87));
             } else {
                 if (mStepperCircleText.getBackground() instanceof GradientDrawable) {
                     ((GradientDrawable) mStepperCircleText.getBackground()).setColor(ContextCompat.getColor(getContext(),
-                            R.color.nh_black_38));
+                            R.color.mdt_black_38));
                 } else {
                     ViewCompat.setBackgroundTintList(mStepperCircleText, ColorStateList.valueOf(ContextCompat.getColor(getContext(),
-                            R.color.nh_black_38)));
+                            R.color.mdt_black_38)));
                 }
                 mStepperTitle.setTypeface(Typeface.create("sans-serif", Typeface.NORMAL));
-                mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_38));
+                mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_black_38));
             }
-            mStepperSubtitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_54));
+            mStepperSubtitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_black_54));
 
             if (mState == COMPLETED || mState == ERROR) {
                 mStepperCircleText.setVisibility(GONE);
                 mStepperCircleCheck.setVisibility(VISIBLE);
                 if (mState == ERROR) {
                     mStepperCircleCheck.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(),
-                            R.drawable.ic_nh_report_problem), ContextCompat.getColor(getContext(), R.color.nh_red_500)));
-                    mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_red_500));
-                    mStepperSubtitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_red_500));
+                            R.drawable.ic_nh_report_problem), ContextCompat.getColor(getContext(), R.color.mdt_red_500)));
+                    mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_red_500));
+                    mStepperSubtitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_red_500));
                 } else {
                     mStepperCircleCheck.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(),
                             R.drawable.ic_nh_check_circle), mAccent));
                     mStepperTitle.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
-                    mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.nh_black_87));
+                    mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_black_87));
                 }
             } else {
                 mStepperCircleCheck.setVisibility(GONE);

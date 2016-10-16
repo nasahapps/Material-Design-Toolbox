@@ -13,21 +13,21 @@
         <com.nasahapps.materialdesigntoolbox.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperAccent="@color/mdt_indigo_500"
             app:stepperState="active"
             app:stepperTitle="Select campaign settings"/>
 
         <com.nasahapps.materialdesigntoolbox.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperAccent="@color/mdt_indigo_500"
             app:stepperSubtitle="Optional"
             app:stepperTitle="Create an ad group"/>
 
         <com.nasahapps.materialdesigntoolbox.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:stepperAccent="@color/nh_indigo_500"
+            app:stepperAccent="@color/mdt_indigo_500"
             app:stepperTitle="Create an ad"/>
 
     </com.nasahapps.materialdesigntoolbox.components.HorizontalStepperLayout>

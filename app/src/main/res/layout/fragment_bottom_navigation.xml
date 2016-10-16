@@ -16,6 +16,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="#fff"
-        app:bottomNavigationActiveTint="@color/nh_indigo_500"/>
+        app:bottomNavigationActiveTint="@color/mdt_indigo_500"/>
 
 </RelativeLayout>

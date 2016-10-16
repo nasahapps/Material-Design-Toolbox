@@ -28,9 +28,9 @@ class StepperListFragment : ListFragment() {
         super.onResume()
         (activity as? MainActivity)?.let {
             it.setToolbarColor(ContextCompat.getColor(context,
-                    R.color.nh_indigo_500))
+                    R.color.mdt_indigo_500))
             it.setStatusBarColor(ContextCompat.getColor(context,
-                    R.color.nh_indigo_700))
+                    R.color.mdt_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
             it.setToolbarTitle("Steppers")
         }

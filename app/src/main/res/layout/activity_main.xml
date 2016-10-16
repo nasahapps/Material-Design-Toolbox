@@ -8,7 +8,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/nh_cyan_500"/>
+        android:background="@color/mdt_cyan_500"/>
 
     <FrameLayout
         android:id="@+id/container"

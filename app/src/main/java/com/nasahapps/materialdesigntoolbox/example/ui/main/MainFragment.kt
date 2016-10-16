@@ -24,9 +24,9 @@ class MainFragment : ListFragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).setToolbarColor(ContextCompat.getColor(context, R.color.nh_cyan_500))
-        (activity as MainActivity).setStatusBarColor(ContextCompat.getColor(context, R.color.nh_cyan_700))
-        (activity as MainActivity).setToolbarTitleTextColor(ContextCompat.getColor(context, R.color.nh_black_87))
+        (activity as MainActivity).setToolbarColor(ContextCompat.getColor(context, R.color.mdt_cyan_500))
+        (activity as MainActivity).setStatusBarColor(ContextCompat.getColor(context, R.color.mdt_cyan_700))
+        (activity as MainActivity).setToolbarTitleTextColor(ContextCompat.getColor(context, R.color.mdt_black_87))
         (activity as MainActivity).setToolbarTitle(getString(R.string.app_name))
     }
 

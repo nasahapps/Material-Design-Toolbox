@@ -32,8 +32,8 @@ class BottomNavigationFragment : ComponentFragment() {
     val TITLES = arrayOf("Recents", "Favorites", "Nearby", "Music", "Movies")
     val ICONS = intArrayOf(R.drawable.ic_na_test_history, R.drawable.ic_na_test_favorite,
             R.drawable.ic_na_test_location, R.drawable.ic_na_test_music, R.drawable.ic_na_test_movie)
-    val COLORS = intArrayOf(R.color.nh_cyan_500, R.color.nh_purple_500, R.color.nh_red_500,
-            R.color.nh_indigo_500, R.color.nh_pink_500)
+    val COLORS = intArrayOf(R.color.mdt_cyan_500, R.color.mdt_purple_500, R.color.mdt_red_500,
+            R.color.mdt_indigo_500, R.color.mdt_pink_500)
 
     override fun getLayoutId(): Int {
         return R.layout.fragment_bottom_navigation

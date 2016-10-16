@@ -102,7 +102,7 @@ public class Tooltip extends AppCompatTextView {
         setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         setPadding(dp16, dp6, dp16, dp6);
         setSingleLine();
-        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.nh_grey_700));
+        setBackgroundColor(ContextCompat.getColor(getContext(), R.color.mdt_grey_700));
         setTextColor(Color.WHITE);
         setGravity(Gravity.CENTER);
 
