@@ -30,8 +30,8 @@ class BottomNavigationFragment : ComponentFragment() {
     }
 
     val TITLES = arrayOf("Recents", "Favorites", "Nearby", "Music", "Movies")
-    val ICONS = intArrayOf(R.drawable.ic_na_test_history, R.drawable.ic_na_test_favorite,
-            R.drawable.ic_na_test_location, R.drawable.ic_na_test_music, R.drawable.ic_na_test_movie)
+    val ICONS = intArrayOf(R.drawable.ic_history, R.drawable.ic_favorite,
+            R.drawable.ic_location, R.drawable.ic_music, R.drawable.ic_movie)
     val COLORS = intArrayOf(R.color.mdt_cyan_500, R.color.mdt_purple_500, R.color.mdt_red_500,
             R.color.mdt_indigo_500, R.color.mdt_pink_500)
 

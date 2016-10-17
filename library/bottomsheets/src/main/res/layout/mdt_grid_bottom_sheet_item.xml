@@ -10,19 +10,18 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="@dimen/bottom_sheet_grid_icon_size"
-        android:layout_height="@dimen/bottom_sheet_grid_icon_size"
-        tools:src="@drawable/ic_na_test_favorite"/>
+        android:layout_width="@dimen/mdt_bottom_sheet_grid_icon_size"
+        android:layout_height="@dimen/mdt_bottom_sheet_grid_icon_size"/>
 
     <TextView
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/bottom_sheet_grid_left_right_bottom_padding"
+        android:layout_marginBottom="@dimen/mdt_bottom_sheet_grid_left_right_bottom_padding"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:textSize="@dimen/bottom_sheet_text_size"
+        android:textSize="@dimen/mdt_bottom_sheet_text_size"
         tools:text="Favorite"/>
 
 </LinearLayout>

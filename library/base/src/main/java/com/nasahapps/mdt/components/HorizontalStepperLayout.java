@@ -62,11 +62,11 @@ public class HorizontalStepperLayout extends HorizontalScrollView {
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
                 Utils.dpToPixel(getContext(), 1));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            lp.addRule(RelativeLayout.ALIGN_END, R.id.nh_stepper_layout);
-            lp.addRule(RelativeLayout.ALIGN_START, R.id.nh_stepper_layout);
+            lp.addRule(RelativeLayout.ALIGN_END, R.id.mdt_stepper_layout);
+            lp.addRule(RelativeLayout.ALIGN_START, R.id.mdt_stepper_layout);
         } else {
-            lp.addRule(RelativeLayout.ALIGN_RIGHT, R.id.nh_stepper_layout);
-            lp.addRule(RelativeLayout.ALIGN_LEFT, R.id.nh_stepper_layout);
+            lp.addRule(RelativeLayout.ALIGN_RIGHT, R.id.mdt_stepper_layout);
+            lp.addRule(RelativeLayout.ALIGN_LEFT, R.id.mdt_stepper_layout);
         }
         lp.addRule(RelativeLayout.CENTER_VERTICAL);
         mConnectorLine.setLayoutParams(lp);
@@ -74,7 +74,7 @@ public class HorizontalStepperLayout extends HorizontalScrollView {
         rl.addView(mConnectorLine, 0);
 
         mStepperLayout = new LinearLayout(getContext());
-        mStepperLayout.setId(R.id.nh_stepper_layout);
+        mStepperLayout.setId(R.id.mdt_stepper_layout);
         mStepperLayout.setOrientation(LinearLayout.HORIZONTAL);
         rl.addView(mStepperLayout, 1,
                 new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="nh_stepper_layout" type="id"/>
-    <item name="nh_stepper_progress_text" type="id"/>
-    <item name="nh_stepper_progress_bottom_bar" type="id"/>
-    <item name="nh_stepper_progress_container" type="id"/>
+    <item name="mdt_stepper_layout" type="id"/>
+    <item name="mdt_stepper_progress_text" type="id"/>
+    <item name="mdt_stepper_progress_bottom_bar" type="id"/>
+    <item name="mdt_stepper_progress_container" type="id"/>
 </resources>

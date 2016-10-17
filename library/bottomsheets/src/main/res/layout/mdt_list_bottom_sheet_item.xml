@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="?attr/selectableItemBackground"
+              android:gravity="center_vertical"
+              android:orientation="horizontal"
+              android:paddingLeft="@dimen/mdt_bottom_sheet_list_padding"
+              android:paddingRight="@dimen/mdt_bottom_sheet_list_padding">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/mdt_bottom_sheet_list_icon_size"
+        android:layout_height="@dimen/mdt_bottom_sheet_list_icon_size"
+        android:layout_marginEnd="@dimen/mdt_bottom_sheet_list_padding"
+        android:layout_marginRight="@dimen/mdt_bottom_sheet_list_padding"/>
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/mdt_bottom_sheet_list_padding"
+        android:layout_marginLeft="@dimen/mdt_bottom_sheet_list_padding"
+        android:layout_marginStart="@dimen/mdt_bottom_sheet_list_padding"
+        android:layout_marginTop="@dimen/mdt_bottom_sheet_list_padding"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/mdt_bottom_sheet_text_color"
+        android:textSize="@dimen/mdt_bottom_sheet_text_size"
+        tools:text="Favorite"/>
+
+</LinearLayout>

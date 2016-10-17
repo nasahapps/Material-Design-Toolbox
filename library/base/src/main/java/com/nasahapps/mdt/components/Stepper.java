@@ -68,7 +68,7 @@ public class Stepper extends LinearLayout {
         addView(fl, new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         // Create mStepperCircleText and mStepperCircleCheck and add it to this FrameLayout
         mStepperCircleText = new AppCompatTextView(getContext());
-        mStepperCircleText.setBackgroundResource(R.drawable.stepper_circle_background);
+        mStepperCircleText.setBackgroundResource(R.drawable.mdt_stepper_circle_background);
         mStepperCircleText.setGravity(Gravity.CENTER);
         mStepperCircleText.setTextColor(Color.WHITE);
         mStepperCircleText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12f);
@@ -168,12 +168,12 @@ public class Stepper extends LinearLayout {
                 mStepperCircleCheck.setVisibility(VISIBLE);
                 if (mState == ERROR) {
                     mStepperCircleCheck.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(),
-                            R.drawable.ic_nh_report_problem), ContextCompat.getColor(getContext(), R.color.mdt_red_500)));
+                            R.drawable.ic_mdt_report_problem), ContextCompat.getColor(getContext(), R.color.mdt_red_500)));
                     mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_red_500));
                     mStepperSubtitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_red_500));
                 } else {
                     mStepperCircleCheck.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(),
-                            R.drawable.ic_nh_check_circle), mAccent));
+                            R.drawable.ic_mdt_check_circle), mAccent));
                     mStepperTitle.setTypeface(Typeface.create("sans-serif-medium", Typeface.NORMAL));
                     mStepperTitle.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_black_87));
                 }

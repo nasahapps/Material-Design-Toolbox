@@ -13,11 +13,11 @@
         android:layout_height="wrap_content"
         android:background="#fff"
         android:paddingBottom="20dp"
-        android:paddingLeft="@dimen/bottom_sheet_list_padding"
-        android:paddingRight="@dimen/bottom_sheet_list_padding"
+        android:paddingLeft="@dimen/mdt_bottom_sheet_list_padding"
+        android:paddingRight="@dimen/mdt_bottom_sheet_list_padding"
         android:paddingTop="20dp"
-        android:textColor="@color/bottom_sheet_title_color"
-        android:textSize="@dimen/bottom_sheet_text_size"
+        android:textColor="@color/mdt_bottom_sheet_title_color"
+        android:textSize="@dimen/mdt_bottom_sheet_text_size"
         tools:text="Share with..."/>
 
     <android.support.v7.widget.RecyclerView
@@ -26,7 +26,7 @@
         android:layout_height="match_parent"
         android:clipChildren="false"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/bottom_sheet_list_bottom_padding"
-        tools:listitem="@layout/list_bottom_sheet_item"/>
+        android:paddingBottom="@dimen/mdt_bottom_sheet_list_bottom_padding"
+        tools:listitem="@layout/mdt_list_bottom_sheet_item"/>
 
 </LinearLayout>

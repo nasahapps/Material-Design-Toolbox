@@ -33,7 +33,7 @@ public class BottomSheetDialogBuilder {
 
     public BottomSheetDialogBuilder(Context c, boolean isGrid) {
         mDialog = new BottomSheetDialog(c);
-        View view = LayoutInflater.from(c).inflate(R.layout.layout_bottom_sheet_list, null);
+        View view = LayoutInflater.from(c).inflate(R.layout.mdt_layout_bottom_sheet_list, null);
         mDialog.setContentView(view);
 
         mIsGrid = isGrid;
@@ -62,7 +62,7 @@ public class BottomSheetDialogBuilder {
 
         // Add top padding if grid
         if (isGrid) {
-            recyclerView.setPadding(recyclerView.getPaddingLeft(), c.getResources().getDimensionPixelSize(R.dimen.bottom_sheet_grid_top_padding),
+            recyclerView.setPadding(recyclerView.getPaddingLeft(), c.getResources().getDimensionPixelSize(R.dimen.mdt_bottom_sheet_grid_top_padding),
                     recyclerView.getPaddingRight(), recyclerView.getPaddingBottom());
         }
 
