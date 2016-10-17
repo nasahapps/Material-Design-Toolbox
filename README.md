@@ -151,7 +151,7 @@ By default, a Button is untinted.
 
 To have a tinted Button (default color: `colorAccent`), in XML you can set the Button's style:
 
-`style=@style/Widget.AppCompat.Button.Colored`
+`style="@style/Widget.AppCompat.Button.Colored"`
 
 and this will automatically tint your button's color to your theme's `colorAccent`.
 
