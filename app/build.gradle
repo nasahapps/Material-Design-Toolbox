@@ -7,7 +7,7 @@ android {
     buildToolsVersion "24.0.3"
 
     defaultConfig {
-        applicationId "com.nasahapps.materialdesigntoolbox.example"
+        applicationId "com.nasahapps.mdt.example"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1

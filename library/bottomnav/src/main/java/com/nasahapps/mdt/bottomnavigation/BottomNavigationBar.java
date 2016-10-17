@@ -42,8 +42,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
-import com.nasahapps.materialdesigntoolbox.Utils;
-import com.nasahapps.materialdesigntoolbox.behavior.ScrollDownBehavior;
+import com.nasahapps.mdt.Utils;
+import com.nasahapps.mdt.behavior.ScrollDownBehavior;
 
 import java.util.ArrayList;
 import java.util.List;

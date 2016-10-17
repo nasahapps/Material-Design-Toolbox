@@ -116,16 +116,16 @@ in a similar fashion to how you can already create a single-choice Dialog.
 For example, the following code will create and show a BottomSheetDialog with a title and its items aligned in a grid.
 
 ```java
-new BottomSheetUtils.DialogBuilder(context, useGrid)
+new BottomSheetDialogBuilder(context, useGrid)
         .setTitle(title)
         .setItems(items, onClickListener)
         .show();
 ```
 
-When initializing the `DialogBuilder`, you pass in a `Context` and whether you want the items to be laid
+When initializing the `BottomSheetDialogBuilder`, you pass in a `Context` and whether you want the items to be laid
 out in a list or in a grid.
 
-The type of item the DialogBuilder accepts is a `BottomSheetItem`, which takes a `CharSequence` title and a `Drawable` icon.
+The type of item the BottomSheetDialogBuilder accepts is a `BottomSheetItem`, which takes a `CharSequence` title and a `Drawable` icon.
 You can also pass in a menu resource instead:
 
 `builder.setItems(R.menu.bottom_sheet, listener)`

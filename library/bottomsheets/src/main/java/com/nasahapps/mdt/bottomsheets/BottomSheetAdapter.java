@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nasahapps.materialdesigntoolbox.Utils;
+import com.nasahapps.mdt.Utils;
 
 import java.util.List;
 

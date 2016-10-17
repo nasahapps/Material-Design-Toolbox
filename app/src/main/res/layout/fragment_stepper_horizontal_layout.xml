@@ -5,32 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.nasahapps.materialdesigntoolbox.components.HorizontalStepperLayout
+    <com.nasahapps.mdt.components.HorizontalStepperLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.nasahapps.materialdesigntoolbox.components.Stepper
+        <com.nasahapps.mdt.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:stepperAccent="@color/mdt_indigo_500"
             app:stepperState="active"
             app:stepperTitle="Select campaign settings"/>
 
-        <com.nasahapps.materialdesigntoolbox.components.Stepper
+        <com.nasahapps.mdt.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:stepperAccent="@color/mdt_indigo_500"
             app:stepperSubtitle="Optional"
             app:stepperTitle="Create an ad group"/>
 
-        <com.nasahapps.materialdesigntoolbox.components.Stepper
+        <com.nasahapps.mdt.components.Stepper
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:stepperAccent="@color/mdt_indigo_500"
             app:stepperTitle="Create an ad"/>
 
-    </com.nasahapps.materialdesigntoolbox.components.HorizontalStepperLayout>
+    </com.nasahapps.mdt.components.HorizontalStepperLayout>
 
     <Button
         android:id="@+id/button"
