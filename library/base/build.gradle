@@ -1,4 +1,8 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.nasahapps'
+project.archivesBaseName = 'mdt-base'
 
 android {
     compileSdkVersion compile_sdk_version
