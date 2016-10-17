@@ -63,6 +63,12 @@ public class BottomSheetUtils {
             recyclerView.setLayoutManager(new GridLayoutManager(c, columns));
             recyclerView.addOnScrollListener(new OnBottomSheetScrollListener());
 
+            // Add top padding if grid
+            if (isGrid) {
+                recyclerView.setPadding(recyclerView.getPaddingLeft(), c.getResources().getDimensionPixelSize(R.dimen.bottom_sheet_grid_top_padding),
+                        recyclerView.getPaddingRight(), recyclerView.getPaddingBottom());
+            }
+
             // Adjust side padding for tablets
             int sidePadding = Utils.isTablet(c) ? Utils.getScreenWidth(c) / 6 : 0;
             View dialogViewParent = (View) mDialog.findViewById(R.id.bottomSheetLayout).getParent().getParent();

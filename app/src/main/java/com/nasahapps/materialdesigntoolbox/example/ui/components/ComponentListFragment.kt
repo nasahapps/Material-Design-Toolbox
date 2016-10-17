@@ -20,7 +20,7 @@ class ComponentListFragment : ListFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         listAdapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1,
-                arrayOf("Bottom Navigation", "Bottom Sheets", "Steppers", "Tooltips"))
+                arrayOf("Bottom Navigation", "Bottom Sheets", "Buttons", "Steppers", "Tooltips"))
     }
 
     override fun onResume() {
@@ -42,8 +42,9 @@ class ComponentListFragment : ListFragment() {
             when (position) {
                 0 -> it.startFragment(BottomNavigationListFragment())
                 1 -> it.startFragment(BottomSheetsListFragment())
-                2 -> it.startFragment(StepperListFragment())
-                3 -> it.startFragment(TooltipFragment())
+                2 -> it.startFragment(ButtonFragment())
+                3 -> it.startFragment(StepperListFragment())
+                4 -> it.startFragment(TooltipFragment())
             }
         }
     }

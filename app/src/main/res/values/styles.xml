@@ -10,4 +10,8 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="CustomButton" parent="@style/ThemeOverlay.AppCompat">
+        <item name="colorAccent">@color/mdt_red_500</item>
+    </style>
+
 </resources>

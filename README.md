@@ -11,6 +11,7 @@ This library supports Android 4.1 (API 16) and up, however, not all components/m
 * [Components](#components)
   * [Bottom Navigation](#bottom-navigation)
   * [Bottom Sheets](#bottom-sheets)
+  * [Buttons](#buttons)
   * [Steppers](#steppers)
   * [Tabs](#tabs)
   * [Text Fields](#text-fields)
@@ -105,8 +106,9 @@ meant for side navigation:
 
 Dependency: `compile 'com.nasahapps.mdt:bottom-sheets:{latest-version}'`
 
-Bottom sheets are provided by the `design` module in the support library, by the use of `BottomSheetDialog`,
-`BottomSheetDialogFragment`, or with your own custom View in a CoordinatorLayout using a `BottomSheetBehavior`.
+Bottom sheets are provided by the `design` module in the support library, by the use of [BottomSheetDialog](https://developer.android.com/reference/android/support/design/widget/BottomSheetDialog.html),
+[BottomSheetDialogFragment](https://developer.android.com/reference/android/support/design/widget/BottomSheetDialogFragment.html),
+or with your own custom View in a CoordinatorLayout using a [BottomSheetBehavior](https://developer.android.com/reference/android/support/design/widget/BottomSheetBehavior.html).
 
 The Material Design Toolbox, however, provides a utils class that will create [a single-choice list styled as a BottomSheetDialog](https://developer.android.com/guide/topics/ui/dialogs.html#AddingAList)
 in a similar fashion to how you can already create a single-choice Dialog.
@@ -139,6 +141,64 @@ If you want the icons to all be tinted a certain color, you can use `builder.set
 you can use `builder.create()` to build the Dialog but not show it yet in case you want to alter the
 Dialog any further.
 
+### [Buttons](https://material.google.com/components/buttons.html)
+
+[Buttons](https://developer.android.com/reference/android/widget/Button.html) are a native view widget in the Android SDK.
+
+By default, a Button is untinted.
+
+![](images/button_untinted.png)
+
+To have a tinted Button (default color: `colorAccent`), in XML you can set the Button's style:
+
+`style=@style/Widget.AppCompat.Button.Colored`
+
+and this will automatically tint your button's color to your theme's `colorAccent`.
+
+![](images/button_tinted_default.png)
+
+If you want a color other than `colorAccent` you also must include a custom theme to the Button. For example:
+
+```xml
+<style name="CustomButton" parent="@style/ThemeOverlay.AppCompat">
+    <item name="colorAccent">#f00</item>
+</style>
+
+<Button
+    style="@style/Widget.AppCompat.Button.Colored"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Button"
+    android:theme="@style/CustomButton"/>
+```
+
+This results in the following:
+
+![](images/button_tinted_custom.png)
+
+To have a disabled button, in XML set `android:enabled="false"`, or in Java, `button.setEnabled(false)`
+
+![](images/button_disabled.png)
+
+For a flat-styled button, use `style="@style/Widget.AppCompat.Button.Borderless"` for plain black/white text,
+ or `style="@style/Widget.AppCompat.Button.Borderless.Colored"` for the text color to be `colorAccent`
+
+![](images/button_flat.png)
+
+For a rounded button, use the [FloatingActionButton](https://developer.android.com/reference/android/support/design/widget/FloatingActionButton.html)
+which is part of the `design` module of the support library.
+
+![](images/button_fab.png)
+
+It automatically themes to your `colorAccent` value. To change this, in XML set `app:backgroundTint="color"`
+or in java, `fab.setBackgroundTintList(colorStateList)`.
+
+If you want a mini FAB, in XML set `app:fabSize="mini"` or in java, `fab.setSize(SIZE_MINI)`
+
+![](images/button_fab_mini.png)
+
+The Material Design guidelines also define a "dropdown" button, which is natively just a [Spinner](https://developer.android.com/reference/android/widget/Spinner.html)
+in the Android SDK.
 
 ### [Steppers](http://www.google.com/design/spec/components/steppers.html)
 
