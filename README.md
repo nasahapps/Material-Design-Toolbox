@@ -4,8 +4,6 @@
 
 The main purpose of this library is to provide components and helper methods in implementing [Material Design concepts](http://www.google.com/design/spec/material-design/introduction.html) with little to no effort. This library in particular focuses on components that are not yet included in Google's support libraries, with most widgets adhering very closely to the guidelines Google has set. Links to already-existing components will be provided.
 
-As this library reaches closer to completion, it will be published on JCenter.  
-
 This library supports Android 4.1 (API 16) and up, however, not all components/methods will be supported pre-API 21.
 
 * [Components](#components)
