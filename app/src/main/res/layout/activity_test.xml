@@ -26,6 +26,6 @@
         android:layout_height="56dp"
         android:layout_gravity="bottom"
         android:background="@color/mdt_indigo_500"
-        android:visibility="gone"/>
+        android:visibility="invisible"/>
 
 </FrameLayout>
