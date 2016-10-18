@@ -173,4 +173,22 @@ public class Utils {
         return calc < 128;
     }
 
+    /**
+     * Get the overall parent view of this activity, since there's no getView() method like Fragments have
+     *
+     * @param a Activity
+     * @return the topmost parent view
+     */
+    @Nullable
+    public static View getActivityView(Activity a) {
+        if (a != null) {
+            View content = a.findViewById(android.R.id.content);
+            if (content != null && content instanceof ViewGroup && ((ViewGroup) content).getChildCount() > 0) {
+                return ((ViewGroup) content).getChildAt(0);
+            } else return content;
+        }
+
+        return null;
+    }
+
 }
