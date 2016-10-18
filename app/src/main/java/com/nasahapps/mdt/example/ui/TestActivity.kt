@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_test.*
 class TestActivity : BaseActivity() {
 
     lateinit var mHelper: FabAnimationHelper
+    var mAnimated = false
 
     override fun getLayoutId(): Int {
         return R.layout.activity_test
@@ -18,7 +19,12 @@ class TestActivity : BaseActivity() {
         mHelper = FabAnimationHelper(fab)
 
         button?.setOnClickListener {
-            mHelper.animate(bottomView)
+            if (mAnimated) {
+                mHelper.animateFromView(bottomView)
+            } else {
+                mHelper.animateToView(bottomView)
+            }
+            mAnimated = !mAnimated
         }
     }
 

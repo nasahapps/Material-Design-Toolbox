@@ -254,7 +254,7 @@ public class StepperProgressLayout extends RelativeLayout {
             int dp12 = Utils.dpToPixel(getContext(), 12);
             for (int i = 0; i < mStepDotsLayout.getChildCount(); i++) {
                 final View dot = mStepDotsLayout.getChildAt(i);
-                // flag for seeing which dots are actually changing and animate if needed
+                // flag for seeing which dots are actually changing and animateToView if needed
                 boolean selectionChanged = false;
                 int finalSize;
                 Drawable background = ContextCompat.getDrawable(getContext(), R.drawable.mdt_stepper_circle_background);

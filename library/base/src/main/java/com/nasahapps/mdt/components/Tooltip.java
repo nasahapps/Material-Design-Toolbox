@@ -186,7 +186,7 @@ public class Tooltip extends AppCompatTextView {
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        // Then animate it back out
+                        // Then animateToView it back out
                         long duration = mDuration == LENGTH_LONG ? 3500 : 2000;
                         AlphaAnimation fadeOut = new AlphaAnimation(0.9f, 0f);
                         fadeOut.setStartOffset(duration);
