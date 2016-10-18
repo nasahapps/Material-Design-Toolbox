@@ -35,9 +35,9 @@ public class FabAnimationHelper {
     private int[] mOriginalCoordinates;
     private float mOriginalElevation;
     private long mCustomDuration;
-    private ValueAnimator mTranslationAnimator, mBackgroundTintAnimator;
+    private ValueAnimator mTranslationAnimator, mBackgroundTintAnimator, mImageAlphaAnimator;
     private Animator mCircularRevealAnimator;
-    private int mOriginalColor;
+    private int mOriginalColor, mOriginalImageAlpha;
 
     public FabAnimationHelper(FloatingActionButton fab) {
         this(fab, DEFAULT_DURATION);
@@ -93,6 +93,9 @@ public class FabAnimationHelper {
             if (mBackgroundTintAnimator != null && mBackgroundTintAnimator.isStarted()) {
                 mBackgroundTintAnimator.end();
             }
+            if (mImageAlphaAnimator != null && mImageAlphaAnimator.isStarted()) {
+                mImageAlphaAnimator.end();
+            }
 
             final WeakReference<View> viewWeakReference = new WeakReference<>(view);
             final FloatingActionButton fab = mFab.get();
@@ -102,8 +105,9 @@ public class FabAnimationHelper {
                 animateCircularReveal(true, viewWeakReference);
             } else {
                 animateFabElevation(ViewCompat.getElevation(view));
-                animateFabTranslation(false, viewWeakReference);
-                animateFabBackgroundTint(false, viewWeakReference);
+                animateFabTranslation(false, viewWeakReference, 0);
+                animateFabBackgroundTint(false, viewWeakReference, 0);
+                animateFabImageAlpha(false, 0);
             }
         }
     }
@@ -124,6 +128,8 @@ public class FabAnimationHelper {
                         if (backgroundTintList != null) {
                             mOriginalColor = backgroundTintList.getDefaultColor();
                         }
+
+                        mOriginalImageAlpha = fab.getImageAlpha();
                     }
                 }
             });
@@ -134,10 +140,6 @@ public class FabAnimationHelper {
         if (mFab.get() != null) {
             mFab.get().setCompatElevation(elevation);
         }
-    }
-
-    private void animateFabTranslation(boolean reversed, WeakReference<View> viewRef) {
-        animateFabTranslation(reversed, viewRef, 0);
     }
 
     private void animateFabTranslation(boolean reversed, final WeakReference<View> viewRef, long delay) {
@@ -236,26 +238,17 @@ public class FabAnimationHelper {
                 long delay = (long) (mCircularRevealAnimator.getDuration() * 0.8f);
                 animateFabTranslation(true, viewRef, delay);
                 animateFabBackgroundTint(true, viewRef, delay);
+                animateFabImageAlpha(true, delay);
             }
         }
-    }
-
-    private void animateFabBackgroundTint(boolean reversed, WeakReference<View> viewRef) {
-        animateFabBackgroundTint(reversed, viewRef, 0);
     }
 
     private void animateFabBackgroundTint(boolean reversed, WeakReference<View> viewRef, long delay) {
         if (mFab.get() != null && viewRef.get() != null) {
             Drawable backgroundDrawable = viewRef.get().getBackground();
             if (backgroundDrawable instanceof ColorDrawable) {
-                int startColor, endColor;
-                if (!reversed) {
-                    startColor = mOriginalColor;
-                    endColor = ((ColorDrawable) backgroundDrawable).getColor();
-                } else {
-                    startColor = ((ColorDrawable) backgroundDrawable).getColor();
-                    endColor = mOriginalColor;
-                }
+                int startColor = reversed ? ((ColorDrawable) backgroundDrawable).getColor() : mOriginalColor;
+                final int endColor = reversed ? mOriginalColor : ((ColorDrawable) backgroundDrawable).getColor();
 
                 mBackgroundTintAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, endColor);
                 if (mCustomDuration != 0) {
@@ -273,6 +266,11 @@ public class FabAnimationHelper {
                 mBackgroundTintAnimator.addListener(new AnimatorListenerAdapter() {
                     @Override
                     public void onAnimationEnd(Animator animation) {
+                        if (mFab.get() != null) {
+                            // Force the end color in case this animation was ended early
+                            mFab.get().setBackgroundTintList(ColorStateList.valueOf(endColor));
+                        }
+
                         mBackgroundTintAnimator.removeAllUpdateListeners();
                         mBackgroundTintAnimator.removeAllListeners();
                     }
@@ -280,6 +278,40 @@ public class FabAnimationHelper {
                 mBackgroundTintAnimator.setStartDelay(delay);
                 mBackgroundTintAnimator.start();
             }
+        }
+    }
+
+    private void animateFabImageAlpha(boolean reversed, long delay) {
+        if (mFab.get() != null) {
+            int startValue = reversed ? 0 : mOriginalImageAlpha;
+            final int endValue = reversed ? mOriginalImageAlpha : 0;
+            mImageAlphaAnimator = ValueAnimator.ofInt(startValue, endValue);
+            mImageAlphaAnimator.setInterpolator(INTERPOLATOR);
+            if (mCustomDuration != 0) {
+                mImageAlphaAnimator.setDuration(mCustomDuration);
+            }
+            mImageAlphaAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    if (mFab.get() != null) {
+                        mFab.get().setImageAlpha((int) animation.getAnimatedValue());
+                    }
+                }
+            });
+            mImageAlphaAnimator.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    if (mFab.get() != null) {
+                        // Force the end image alpha in case this animation was ended early
+                        mFab.get().setImageAlpha(endValue);
+                    }
+
+                    mBackgroundTintAnimator.removeAllUpdateListeners();
+                    mBackgroundTintAnimator.removeAllListeners();
+                }
+            });
+            mImageAlphaAnimator.setStartDelay(delay);
+            mImageAlphaAnimator.start();
         }
     }
 

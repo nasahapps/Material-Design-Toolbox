@@ -19,13 +19,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
+        android:src="@drawable/ic_add"
+        android:tint="#fff"
         app:backgroundTint="@color/mdt_indigo_500"/>
 
     <View
         android:id="@+id/bottomView"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_gravity="center"
         android:background="@color/mdt_red_500"
         android:elevation="30dp"
         android:visibility="invisible"
