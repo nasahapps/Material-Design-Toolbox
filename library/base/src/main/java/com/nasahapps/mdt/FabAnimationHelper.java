@@ -2,11 +2,15 @@ package com.nasahapps.mdt;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
+import android.content.res.ColorStateList;
 import android.graphics.Path;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewCompat;
@@ -31,8 +35,9 @@ public class FabAnimationHelper {
     private int[] mOriginalCoordinates;
     private float mOriginalElevation;
     private long mCustomDuration;
-    private ValueAnimator mTranslationAnimator;
+    private ValueAnimator mTranslationAnimator, mBackgroundTintAnimator;
     private Animator mCircularRevealAnimator;
+    private int mOriginalColor;
 
     public FabAnimationHelper(FloatingActionButton fab) {
         this(fab, DEFAULT_DURATION);
@@ -85,6 +90,9 @@ public class FabAnimationHelper {
             if (mCircularRevealAnimator != null && mCircularRevealAnimator.isStarted()) {
                 mCircularRevealAnimator.end();
             }
+            if (mBackgroundTintAnimator != null && mBackgroundTintAnimator.isStarted()) {
+                mBackgroundTintAnimator.end();
+            }
 
             final WeakReference<View> viewWeakReference = new WeakReference<>(view);
             final FloatingActionButton fab = mFab.get();
@@ -95,6 +103,7 @@ public class FabAnimationHelper {
             } else {
                 animateFabElevation(ViewCompat.getElevation(view));
                 animateFabTranslation(false, viewWeakReference);
+                animateFabBackgroundTint(false, viewWeakReference);
             }
         }
     }
@@ -105,9 +114,16 @@ public class FabAnimationHelper {
                 @Override
                 public void run() {
                     if (mFab.get() != null) {
+                        FloatingActionButton fab = mFab.get();
                         mOriginalCoordinates = new int[2];
-                        Utils.getAbsoluteCoordinates(mFab.get(), mOriginalCoordinates);
-                        mOriginalElevation = mFab.get().getCompatElevation();
+                        Utils.getAbsoluteCoordinates(fab, mOriginalCoordinates);
+
+                        mOriginalElevation = fab.getCompatElevation();
+
+                        ColorStateList backgroundTintList = fab.getBackgroundTintList();
+                        if (backgroundTintList != null) {
+                            mOriginalColor = backgroundTintList.getDefaultColor();
+                        }
                     }
                 }
             });
@@ -217,7 +233,52 @@ public class FabAnimationHelper {
                 });
                 mCircularRevealAnimator.start();
 
-                animateFabTranslation(true, viewRef, (long) (mCircularRevealAnimator.getDuration() * 0.8f));
+                long delay = (long) (mCircularRevealAnimator.getDuration() * 0.8f);
+                animateFabTranslation(true, viewRef, delay);
+                animateFabBackgroundTint(true, viewRef, delay);
+            }
+        }
+    }
+
+    private void animateFabBackgroundTint(boolean reversed, WeakReference<View> viewRef) {
+        animateFabBackgroundTint(reversed, viewRef, 0);
+    }
+
+    private void animateFabBackgroundTint(boolean reversed, WeakReference<View> viewRef, long delay) {
+        if (mFab.get() != null && viewRef.get() != null) {
+            Drawable backgroundDrawable = viewRef.get().getBackground();
+            if (backgroundDrawable instanceof ColorDrawable) {
+                int startColor, endColor;
+                if (!reversed) {
+                    startColor = mOriginalColor;
+                    endColor = ((ColorDrawable) backgroundDrawable).getColor();
+                } else {
+                    startColor = ((ColorDrawable) backgroundDrawable).getColor();
+                    endColor = mOriginalColor;
+                }
+
+                mBackgroundTintAnimator = ValueAnimator.ofObject(new ArgbEvaluator(), startColor, endColor);
+                if (mCustomDuration != 0) {
+                    mBackgroundTintAnimator.setDuration(mCustomDuration);
+                }
+                mBackgroundTintAnimator.setInterpolator(INTERPOLATOR);
+                mBackgroundTintAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        if (mFab.get() != null) {
+                            mFab.get().setBackgroundTintList(ColorStateList.valueOf((int) animation.getAnimatedValue()));
+                        }
+                    }
+                });
+                mBackgroundTintAnimator.addListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        mBackgroundTintAnimator.removeAllUpdateListeners();
+                        mBackgroundTintAnimator.removeAllListeners();
+                    }
+                });
+                mBackgroundTintAnimator.setStartDelay(delay);
+                mBackgroundTintAnimator.start();
             }
         }
     }
