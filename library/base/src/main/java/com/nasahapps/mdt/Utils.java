@@ -11,10 +11,12 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DimenRes;
+import android.support.annotation.Nullable;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 
 /**
@@ -153,6 +155,24 @@ public class Utils {
         getAbsoluteCoordinates(v, array);
         array[0] += v.getWidth() / 2;
         array[1] += v.getHeight() / 2;
+    }
+
+    /**
+     * Get the overall parent view of this activity, since there's no getView() method like Fragments have
+     *
+     * @param a Activity
+     * @return the topmost parent view
+     */
+    @Nullable
+    public static View getActivityView(Activity a) {
+        if (a != null) {
+            View content = a.findViewById(android.R.id.content);
+            if (content != null && content instanceof ViewGroup && ((ViewGroup) content).getChildCount() > 0) {
+                return ((ViewGroup) content).getChildAt(0);
+            } else return content;
+        }
+
+        return null;
     }
 
     public static boolean shouldUseWhiteText(@ColorInt int color) {

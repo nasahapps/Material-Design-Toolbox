@@ -1,8 +1,8 @@
 package com.nasahapps.mdt;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.TimeInterpolator;
-import android.animation.ValueAnimator;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
@@ -34,31 +34,48 @@ public class MaterialAnimationUtils {
         final int[] originalCoords = new int[2];
         Utils.getAbsoluteCoordinates(originalView, originalCoords);
         calculateTranslationForCenterRepositioning(originalView, newView, transArray);
+        originalView.animate().z(0f).setDuration(DURATION).setInterpolator(INTERPOLATOR);
         originalView.animate().translationX(transArray[0]).setDuration(DURATION).setInterpolator(INTERPOLATOR);
         originalView.animate().translationY(transArray[1]).setDuration(DURATION).setInterpolator(INTERPOLATOR)
-                .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-
-                    private boolean mCircularRevealShown;
-
+                .setListener(new AnimatorListenerAdapter() {
                     @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        float value = (float) animation.getAnimatedValue();
-                        if (value > 0.6f && !mCircularRevealShown) {
-                            mCircularRevealShown = true;
-                            newView.setVisibility(View.VISIBLE);
-                            // Have the "center" be where the old view currently is
+                    public void onAnimationEnd(Animator animation) {
+                        newView.setVisibility(View.VISIBLE);
+                        // Have the "center" be where the old view currently is
 //                            int centerX = (int)(originalView.getTranslationX() + (transArray[0] * value));
 //                            int centerY = (int)(originalView.getTranslationY() + (transArray[1] * value));
-                            int centerX = newView.getWidth() / 2;
-                            int centerY = newView.getHeight() / 2;
-                            Animator animator = ViewAnimationUtils.createCircularReveal(newView,
-                                    centerX, centerY, originalView.getWidth(), newView.getWidth() * 1.3f);
-                            animator.setInterpolator(INTERPOLATOR);
-                            animator.setDuration(DURATION);
-                            animator.start();
-                        }
+                        int centerX = newView.getWidth() / 2;
+                        int centerY = newView.getHeight() / 2;
+                        Animator animator = ViewAnimationUtils.createCircularReveal(newView,
+                                centerX, centerY, originalView.getWidth(), newView.getWidth() * 1.3f);
+                        animator.setInterpolator(INTERPOLATOR);
+                        animator.setDuration(DURATION);
+                        animator.start();
                     }
                 });
+//                .setUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+//
+//                    private boolean mCircularRevealShown;
+//
+//                    @Override
+//                    public void onAnimationUpdate(ValueAnimator animation) {
+//                        float value = (float) animation.getAnimatedValue();
+//                        if (value > 0.6f && !mCircularRevealShown) {
+//                            mCircularRevealShown = true;
+//                            newView.setVisibility(View.VISIBLE);
+//                            // Have the "center" be where the old view currently is
+////                            int centerX = (int)(originalView.getTranslationX() + (transArray[0] * value));
+////                            int centerY = (int)(originalView.getTranslationY() + (transArray[1] * value));
+//                            int centerX = newView.getWidth() / 2;
+//                            int centerY = newView.getHeight() / 2;
+//                            Animator animator = ViewAnimationUtils.createCircularReveal(newView,
+//                                    centerX, centerY, originalView.getWidth(), newView.getWidth() * 1.3f);
+//                            animator.setInterpolator(INTERPOLATOR);
+//                            animator.setDuration(DURATION);
+//                            animator.start();
+//                        }
+//                    }
+//                });
     }
 
     private static void calculateTranslationForCenterRepositioning(View originalView, View newView, float[] array) {
