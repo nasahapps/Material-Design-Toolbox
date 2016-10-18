@@ -9,6 +9,7 @@ import android.annotation.TargetApi;
 import android.graphics.Path;
 import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.transition.ArcMotion;
 import android.view.View;
@@ -53,8 +54,8 @@ public class FabAnimationHelper {
         Utils.getAbsoluteCoordinates(originalView, originalCoords);
         Utils.getAbsoluteCoordinates(newView, newCoords);
 
-        int centerX = (newView.getWidth() / 2) - (originalView.getWidth() / 2);
-        int centerY = (newCoords[1] + newView.getHeight() / 2) - (originalView.getHeight() / 2);
+        int centerX = newCoords[0] + (newView.getWidth() / 2) - (originalView.getWidth() / 2);
+        int centerY = newCoords[1] + (newView.getHeight() / 2) - (originalView.getHeight() / 2);
 
         array[0] = centerX - originalCoords[0];
         array[1] = centerY - originalCoords[1];
@@ -92,7 +93,7 @@ public class FabAnimationHelper {
             if (reversed) {
                 animateCircularReveal(true, viewWeakReference);
             } else {
-                animateFabElevation(false);
+                animateFabElevation(ViewCompat.getElevation(view));
                 animateFabTranslation(false, viewWeakReference);
             }
         }
@@ -113,9 +114,9 @@ public class FabAnimationHelper {
         }
     }
 
-    private void animateFabElevation(boolean reversed) {
+    private void animateFabElevation(float elevation) {
         if (mFab.get() != null) {
-            mFab.get().setCompatElevation(reversed ? mOriginalElevation : 0f);
+            mFab.get().setCompatElevation(elevation);
         }
     }
 
@@ -153,7 +154,7 @@ public class FabAnimationHelper {
                     mTranslationAnimator.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
-                            animateFabElevation(true);
+                            animateFabElevation(mOriginalElevation);
                             mTranslationAnimator.removeAllListeners();
                         }
                     });

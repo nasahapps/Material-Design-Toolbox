@@ -2,6 +2,7 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,7 +10,7 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="top|center_horizontal"
         android:text="Animate"/>
 
     <android.support.design.widget.FloatingActionButton
@@ -22,10 +23,12 @@
 
     <View
         android:id="@+id/bottomView"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_gravity="bottom"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_gravity="center"
         android:background="@color/mdt_indigo_500"
-        android:visibility="invisible"/>
+        android:elevation="30dp"
+        android:visibility="invisible"
+        tools:visibility="visible"/>
 
 </FrameLayout>
