@@ -22,7 +22,7 @@ This library supports Android 4.1 (API 16) and up, however, not all components/m
 
 `BottomNavigationBar`: Displays three to five tabs for switching between top-level views.
 
-Dependency: ` compile 'com.nasahapps.mdt:bottom-nav:{latest-version}'`
+Dependency: ` compile 'com.github.nasahapps.Material-Design-Toolbox:bottomnav:{latest-version}'`
 
 To use, add it to your XML layout:
 
@@ -102,7 +102,7 @@ meant for side navigation:
 
 ### [Bottom Sheets](https://material.google.com/components/bottom-sheets.html)
 
-Dependency: `compile 'com.nasahapps.mdt:bottom-sheets:{latest-version}'`
+Dependency: `compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:{latest-version}'`
 
 Bottom sheets are provided by the `design` module in the support library, by the use of [BottomSheetDialog](https://developer.android.com/reference/android/support/design/widget/BottomSheetDialog.html),
 [BottomSheetDialogFragment](https://developer.android.com/reference/android/support/design/widget/BottomSheetDialogFragment.html),
