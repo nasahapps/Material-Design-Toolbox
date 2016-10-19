@@ -20,6 +20,10 @@ class TestActivity : BaseActivity() {
         button?.setOnClickListener {
             mHelper.animate(bottomView)
         }
+
+        fab?.setOnClickListener {
+
+        }
     }
 
 }

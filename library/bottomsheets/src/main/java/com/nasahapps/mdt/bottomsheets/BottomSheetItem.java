@@ -2,33 +2,23 @@ package com.nasahapps.mdt.bottomsheets;
 
 import android.graphics.drawable.Drawable;
 
+import com.nasahapps.mdt.TitleIconItem;
+
 /**
  * Created by hhasan on 10/14/16.
  */
 
-public class BottomSheetItem {
+public class BottomSheetItem extends TitleIconItem {
 
-    private CharSequence text;
-    private Drawable icon;
     private int menuId;
 
     public BottomSheetItem(CharSequence text, Drawable icon) {
-        this.text = text;
-        this.icon = icon;
+        super(text, icon);
     }
 
     BottomSheetItem(CharSequence text, Drawable icon, int menuId) {
-        this.icon = icon;
+        super(text, icon);
         this.menuId = menuId;
-        this.text = text;
-    }
-
-    public CharSequence getText() {
-        return text;
-    }
-
-    public Drawable getIcon() {
-        return icon;
     }
 
     public int getMenuId() {
