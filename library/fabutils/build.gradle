@@ -2,7 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.github.nasahapps'
-project.archivesBaseName = 'bottomsheets'
+project.archivesBaseName = 'fabutils'
 
 android {
     compileSdkVersion compile_sdk_version

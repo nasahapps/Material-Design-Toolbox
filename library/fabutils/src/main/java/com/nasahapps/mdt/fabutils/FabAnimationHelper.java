@@ -1,4 +1,4 @@
-package com.nasahapps.mdt;
+package com.nasahapps.mdt.fabutils;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -10,6 +10,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+
+import com.nasahapps.mdt.Utils;
 
 import java.lang.ref.WeakReference;
 

@@ -1,1 +1,1 @@
-include ':app', ':library:base', ':library:bottomsheets'
+include ':app', ':library:base', ':library:bottomsheets', ':library:fabutils'

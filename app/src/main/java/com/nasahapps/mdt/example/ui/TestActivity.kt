@@ -1,8 +1,8 @@
 package com.nasahapps.mdt.example.ui
 
 import android.os.Bundle
-import com.nasahapps.mdt.FabAnimationHelper
 import com.nasahapps.mdt.example.R
+import com.nasahapps.mdt.fabutils.FabAnimationHelper
 import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : BaseActivity() {
