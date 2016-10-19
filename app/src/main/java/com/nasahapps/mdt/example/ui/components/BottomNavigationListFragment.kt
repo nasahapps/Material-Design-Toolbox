@@ -32,6 +32,7 @@ class BottomNavigationListFragment : ListFragment() {
                     R.color.mdt_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
             it.setToolbarTitle("Bottom Navigation")
+            it.setToolbarVisible(true)
         }
     }
 

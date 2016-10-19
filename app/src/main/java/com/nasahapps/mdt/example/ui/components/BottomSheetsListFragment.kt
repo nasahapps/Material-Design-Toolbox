@@ -34,6 +34,7 @@ class BottomSheetsListFragment : ListFragment() {
                     R.color.mdt_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
             it.setToolbarTitle("Bottom Sheets")
+            it.setToolbarVisible(true)
         }
     }
 

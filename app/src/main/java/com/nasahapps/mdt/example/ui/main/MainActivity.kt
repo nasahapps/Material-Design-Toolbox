@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.ColorInt
 import android.support.v4.app.Fragment
+import android.view.View
 import com.nasahapps.mdt.example.R
 import com.nasahapps.mdt.example.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -46,5 +47,9 @@ class MainActivity : BaseActivity() {
 
     fun setToolbarTitle(text: CharSequence) {
         toolbar?.title = text
+    }
+
+    fun setToolbarVisible(visible: Boolean) {
+        toolbar?.visibility = if (visible) View.VISIBLE else View.GONE
     }
 }

@@ -32,6 +32,7 @@ class ComponentListFragment : ListFragment() {
                     R.color.mdt_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
             it.setToolbarTitle("Components")
+            it.setToolbarVisible(true)
         }
     }
 

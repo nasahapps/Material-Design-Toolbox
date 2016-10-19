@@ -17,6 +17,7 @@ abstract class ComponentFragment : BaseFragment() {
             it.setToolbarColor(getColorInt(R.color.mdt_indigo_500))
             it.setStatusBarColor(getColorInt(R.color.mdt_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
+            it.setToolbarVisible(true)
         }
     }
 }

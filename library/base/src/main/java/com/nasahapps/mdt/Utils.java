@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
@@ -152,6 +153,11 @@ public class Utils {
         getAbsoluteCoordinates(v, array);
         array[0] += v.getWidth() / 2;
         array[1] += v.getHeight() / 2;
+    }
+
+    public static boolean shouldUseWhiteText(@ColorInt int color) {
+        int calc = ((Color.red(color) * 299) + (Color.green(color) * 587) + (Color.blue(114))) / 1000;
+        return calc < 128;
     }
 
 }

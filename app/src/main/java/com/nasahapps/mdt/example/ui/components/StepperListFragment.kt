@@ -33,6 +33,7 @@ class StepperListFragment : ListFragment() {
                     R.color.mdt_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
             it.setToolbarTitle("Steppers")
+            it.setToolbarVisible(true)
         }
     }
 
