@@ -48,6 +48,14 @@ class ListsListFragment : ListFragment() {
                 1 -> ListListFragment.newInstance(ListListFragment.Type.SINGLE_ITEM_ICON)
                 2 -> ListListFragment.newInstance(ListListFragment.Type.SINGLE_ITEM_AVATAR)
                 3 -> ListListFragment.newInstance(ListListFragment.Type.SINGLE_ITEM_AVATAR_ICON)
+                4 -> ListListFragment.newInstance(ListListFragment.Type.TWO_ITEM_TEXT)
+                5 -> ListListFragment.newInstance(ListListFragment.Type.TWO_ITEM_ICON)
+                6 -> ListListFragment.newInstance(ListListFragment.Type.TWO_ITEM_AVATAR)
+                7 -> ListListFragment.newInstance(ListListFragment.Type.TWO_ITEM_AVATAR_ICON)
+                8 -> ListListFragment.newInstance(ListListFragment.Type.THREE_ITEM_TEXT)
+                9 -> ListListFragment.newInstance(ListListFragment.Type.THREE_ITEM_ICON)
+                10 -> ListListFragment.newInstance(ListListFragment.Type.THREE_ITEM_AVATAR)
+                11 -> ListListFragment.newInstance(ListListFragment.Type.THREE_ITEM_AVATAR_ICON)
                 else -> ListListFragment.newInstance(ListListFragment.Type.SINGLE_ITEM_TEXT)
             }
 

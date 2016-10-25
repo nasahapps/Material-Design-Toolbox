@@ -3,9 +3,11 @@ package com.nasahapps.mdt.example.ui.components
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.nasahapps.mdt.adapter.MultiLineAdapter
 import com.nasahapps.mdt.adapter.SingleLineAdapter
 import com.nasahapps.mdt.example.R
 import com.nasahapps.mdt.example.ui.main.MainActivity
@@ -72,6 +74,64 @@ class ListListFragment : RecyclerViewFragment() {
                 }
                 adapter = SingleLineAdapter(list)
             }
+            Type.TWO_ITEM_TEXT -> {
+                val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
+                for (i in 0..100) {
+                    list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum)))
+                }
+                adapter = MultiLineAdapter(list, 2)
+            }
+            Type.TWO_ITEM_ICON -> {
+                val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
+                for (i in 0..100) {
+                    list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.ic_call)))
+                }
+                adapter = MultiLineAdapter(list, 2)
+            }
+            Type.TWO_ITEM_AVATAR -> {
+                val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
+                for (i in 0..100) {
+                    list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.avatar), true))
+                }
+                adapter = MultiLineAdapter(list, 2)
+            }
+            Type.TWO_ITEM_AVATAR_ICON -> {
+                val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
+                for (i in 0..100) {
+                    list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.avatar),
+                            ContextCompat.getDrawable(activity, R.drawable.ic_call)))
+                }
+                adapter = MultiLineAdapter(list, 2)
+            }
+            Type.THREE_ITEM_TEXT -> {
+                val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
+                for (i in 0..100) {
+                    list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum)))
+                }
+                adapter = MultiLineAdapter(list, 3)
+            }
+            Type.THREE_ITEM_ICON -> {
+                val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
+                for (i in 0..100) {
+                    list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.ic_call)))
+                }
+                adapter = MultiLineAdapter(list, 3)
+            }
+            Type.THREE_ITEM_AVATAR -> {
+                val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
+                for (i in 0..100) {
+                    list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.avatar), true))
+                }
+                adapter = MultiLineAdapter(list, 3)
+            }
+            Type.THREE_ITEM_AVATAR_ICON -> {
+                val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
+                for (i in 0..100) {
+                    list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.avatar),
+                            ContextCompat.getDrawable(activity, R.drawable.ic_call)))
+                }
+                adapter = MultiLineAdapter(list, 3)
+            }
             else -> {
                 val list = emptyList<SingleLineAdapter.SingleLineItem>().toMutableList()
                 for (i in 0..100) {
@@ -80,6 +140,8 @@ class ListListFragment : RecyclerViewFragment() {
                 adapter = SingleLineAdapter(list)
             }
         }
+
+        recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayoutManager.VERTICAL))
     }
 
     override fun onResume() {

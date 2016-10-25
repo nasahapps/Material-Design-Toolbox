@@ -20,12 +20,14 @@ import java.util.List;
  * Created by Hakeem on 10/24/16.
  */
 
-public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.ViewHolder> {
+public class MultiLineAdapter extends RecyclerView.Adapter<MultiLineAdapter.ViewHolder> {
 
-    private List<SingleLineItem> mList;
+    private List<MultiLineItem> mList;
+    private int mNumOfLines;
 
-    public SingleLineAdapter(List<SingleLineItem> list) {
+    public MultiLineAdapter(List<MultiLineItem> list, int numOfLines) {
         mList = list;
+        mNumOfLines = numOfLines;
     }
 
     @Override
@@ -35,15 +37,18 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.mdt_list_single_line, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.mdt_list_multi_line, parent, false);
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        SingleLineItem item = mList.get(position);
+        MultiLineItem item = mList.get(position);
 
-        holder.textView.setText(item.text);
+        holder.primaryTextView.setText(item.text);
+        holder.secondaryTextView.setText(item.secondaryText);
+        holder.secondaryTextView.setMaxLines(mNumOfLines - 1);
+
         if (item.hasAvatar) {
             holder.avatar.setVisibility(View.VISIBLE);
             holder.startIcon.setVisibility(View.GONE);
@@ -75,72 +80,45 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
         }
     }
 
-    public static class SingleLineItem {
-        protected String text;
-        protected Drawable startDrawable;
-        protected Drawable endDrawable;
-        protected boolean hasAvatar;
+    public static class MultiLineItem extends SingleLineAdapter.SingleLineItem {
+        private String secondaryText;
 
-        public SingleLineItem(String text) {
-            this(text, null);
+        public MultiLineItem(String primaryText, String secondaryText) {
+            this(primaryText, secondaryText, null);
         }
 
-        public SingleLineItem(String text, Drawable startDrawable) {
-            this(text, startDrawable, false);
+        public MultiLineItem(String primaryText, String secondaryText, Drawable startDrawable) {
+            this(primaryText, secondaryText, startDrawable, false);
         }
 
-        public SingleLineItem(String text, Drawable startDrawable, boolean hasAvatar) {
-            this.text = text;
-            this.startDrawable = startDrawable;
-            this.hasAvatar = hasAvatar;
+        public MultiLineItem(String primaryText, String secondaryText, Drawable startDrawable, boolean hasAvatar) {
+            super(primaryText, startDrawable, hasAvatar);
+            this.secondaryText = secondaryText;
         }
 
-        public SingleLineItem(String text, Drawable startDrawable, Drawable endDrawable) {
-            this(text, startDrawable, true);
+        public MultiLineItem(String primaryText, String secondaryText, Drawable startDrawable, Drawable endDrawable) {
+            this(primaryText, secondaryText, startDrawable, true);
             this.endDrawable = endDrawable;
         }
 
-        public Drawable getEndDrawable() {
-            return endDrawable;
+        public String getSecondaryText() {
+            return secondaryText;
         }
 
-        public void setEndDrawable(Drawable endDrawable) {
-            this.endDrawable = endDrawable;
-        }
-
-        public boolean isHasAvatar() {
-            return hasAvatar;
-        }
-
-        public void setHasAvatar(boolean hasAvatar) {
-            this.hasAvatar = hasAvatar;
-        }
-
-        public Drawable getStartDrawable() {
-            return startDrawable;
-        }
-
-        public void setStartDrawable(Drawable startDrawable) {
-            this.startDrawable = startDrawable;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public void setText(String text) {
-            this.text = text;
+        public void setSecondaryText(String secondaryText) {
+            this.secondaryText = secondaryText;
         }
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        TextView textView;
+        TextView primaryTextView, secondaryTextView;
         ImageView startIcon, avatar, endIcon;
 
         ViewHolder(View v) {
             super(v);
-            textView = (TextView) v.findViewById(R.id.text);
+            primaryTextView = (TextView) v.findViewById(R.id.primaryText);
+            secondaryTextView = (TextView) v.findViewById(R.id.secondaryText);
             startIcon = (ImageView) v.findViewById(R.id.startIcon);
             avatar = (ImageView) v.findViewById(R.id.avatar);
             endIcon = (ImageView) v.findViewById(R.id.endIcon);
