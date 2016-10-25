@@ -238,6 +238,10 @@ will always be icon-sized (24x24dp).
 Use `MultiLineAdapter` to generate multi-lined lists with more than one line of text. If more than three
 lines of text are needed, the Material Design guidelines recommend using [Cards](https://material.google.com/components/cards.html) instead.
 
+![](https://material-design.storage.googleapis.com/publish/material_v_9/0B6Okdz75tqQsSHRDUllnV1kxSFE/components_lists_keylines_three8.png)
+
+For example:
+
 ```java
 List<MultiLineItem> items = new ArrayList<>();
 items.add(new MultiLineItem("Primary text", "Secondary text")); // Adds a MultiLineItem with just text
