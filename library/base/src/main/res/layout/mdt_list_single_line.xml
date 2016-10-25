@@ -32,7 +32,7 @@
     </FrameLayout>
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/primaryText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"

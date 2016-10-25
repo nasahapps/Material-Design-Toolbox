@@ -1,22 +1,21 @@
 package com.nasahapps.mdt.example.ui.components
 
-import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.nasahapps.mdt.adapter.MultiLineAdapter
+import com.nasahapps.mdt.adapter.OnItemClickListener
 import com.nasahapps.mdt.adapter.SingleLineAdapter
-import com.nasahapps.mdt.app.RecyclerViewFragment
 import com.nasahapps.mdt.example.R
 import com.nasahapps.mdt.example.ui.main.MainActivity
+import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
  * Created by Hakeem on 4/13/16.
  */
-class ListListFragment : RecyclerViewFragment() {
+class ListListFragment : ComponentFragment(), OnItemClickListener {
 
     enum class Type {
         SINGLE_ITEM_TEXT,
@@ -45,26 +44,26 @@ class ListListFragment : RecyclerViewFragment() {
         }
     }
 
-    override fun getLayoutManager(): RecyclerView.LayoutManager = LinearLayoutManager(activity)
+    override fun getLayoutId() = R.layout.fragment_list
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val type = arguments.getSerializable(EXTRA_TYPE) as Type
-        when (type) {
+        val adapter = when (type) {
             Type.SINGLE_ITEM_ICON -> {
                 val list = emptyList<SingleLineAdapter.SingleLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(SingleLineAdapter.SingleLineItem("Item $i", ContextCompat.getDrawable(activity, R.drawable.ic_call)))
                 }
-                adapter = SingleLineAdapter(list)
+                SingleLineAdapter(list, this)
             }
             Type.SINGLE_ITEM_AVATAR -> {
                 val list = emptyList<SingleLineAdapter.SingleLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(SingleLineAdapter.SingleLineItem("Item $i", ContextCompat.getDrawable(activity, R.drawable.avatar), true))
                 }
-                adapter = SingleLineAdapter(list)
+                SingleLineAdapter(list, this)
             }
             Type.SINGLE_ITEM_AVATAR_ICON -> {
                 val list = emptyList<SingleLineAdapter.SingleLineItem>().toMutableList()
@@ -72,28 +71,28 @@ class ListListFragment : RecyclerViewFragment() {
                     list.add(SingleLineAdapter.SingleLineItem("Item $i", ContextCompat.getDrawable(activity, R.drawable.avatar),
                             ContextCompat.getDrawable(activity, R.drawable.ic_call)))
                 }
-                adapter = SingleLineAdapter(list)
+                SingleLineAdapter(list, this)
             }
             Type.TWO_ITEM_TEXT -> {
                 val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum)))
                 }
-                adapter = MultiLineAdapter(list, 2)
+                MultiLineAdapter(list, 2, this)
             }
             Type.TWO_ITEM_ICON -> {
                 val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.ic_call)))
                 }
-                adapter = MultiLineAdapter(list, 2)
+                MultiLineAdapter(list, 2, this)
             }
             Type.TWO_ITEM_AVATAR -> {
                 val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.avatar), true))
                 }
-                adapter = MultiLineAdapter(list, 2)
+                MultiLineAdapter(list, 2, this)
             }
             Type.TWO_ITEM_AVATAR_ICON -> {
                 val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
@@ -101,28 +100,28 @@ class ListListFragment : RecyclerViewFragment() {
                     list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.avatar),
                             ContextCompat.getDrawable(activity, R.drawable.ic_call)))
                 }
-                adapter = MultiLineAdapter(list, 2)
+                MultiLineAdapter(list, 2, this)
             }
             Type.THREE_ITEM_TEXT -> {
                 val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum)))
                 }
-                adapter = MultiLineAdapter(list, 3)
+                MultiLineAdapter(list, 3, this)
             }
             Type.THREE_ITEM_ICON -> {
                 val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.ic_call)))
                 }
-                adapter = MultiLineAdapter(list, 3)
+                MultiLineAdapter(list, 3, this)
             }
             Type.THREE_ITEM_AVATAR -> {
                 val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.avatar), true))
                 }
-                adapter = MultiLineAdapter(list, 3)
+                MultiLineAdapter(list, 3, this)
             }
             Type.THREE_ITEM_AVATAR_ICON -> {
                 val list = emptyList<MultiLineAdapter.MultiLineItem>().toMutableList()
@@ -130,27 +129,25 @@ class ListListFragment : RecyclerViewFragment() {
                     list.add(MultiLineAdapter.MultiLineItem("Item $i", getString(R.string.lorem_ipsum), ContextCompat.getDrawable(activity, R.drawable.avatar),
                             ContextCompat.getDrawable(activity, R.drawable.ic_call)))
                 }
-                adapter = MultiLineAdapter(list, 3)
+                MultiLineAdapter(list, 3, this)
             }
             else -> {
                 val list = emptyList<SingleLineAdapter.SingleLineItem>().toMutableList()
                 for (i in 0..100) {
                     list.add(SingleLineAdapter.SingleLineItem("Item $i"))
                 }
-                adapter = SingleLineAdapter(list)
+                SingleLineAdapter(list, this)
             }
         }
 
+        recyclerView?.layoutManager = LinearLayoutManager(activity)
+        recyclerView?.adapter = adapter
         recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayoutManager.VERTICAL))
-        setProgressVisible(false)
     }
 
     override fun onResume() {
         super.onResume()
         (activity as? MainActivity)?.let {
-            it.setToolbarColor(ContextCompat.getColor(activity, R.color.mdt_indigo_500))
-            it.setStatusBarColor(ContextCompat.getColor(activity, R.color.mdt_indigo_700))
-            it.setToolbarTitleTextColor(Color.WHITE)
             val title = when (arguments.getSerializable(EXTRA_TYPE) as Type) {
                 Type.SINGLE_ITEM_TEXT -> "Single Item - Text Only"
                 Type.SINGLE_ITEM_ICON -> "Single Item - Text with Icon"
@@ -167,7 +164,10 @@ class ListListFragment : RecyclerViewFragment() {
                 else -> "Lists"
             }
             (activity as MainActivity).setToolbarTitle(title)
-            it.setToolbarVisible(true)
         }
+    }
+
+    override fun onItemClick(v: View?, position: Int) {
+
     }
 }

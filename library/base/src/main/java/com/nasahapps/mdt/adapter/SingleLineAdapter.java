@@ -23,9 +23,11 @@ import java.util.List;
 public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.ViewHolder> {
 
     private List<SingleLineItem> mList;
+    private OnItemClickListener mListener;
 
-    public SingleLineAdapter(List<SingleLineItem> list) {
+    public SingleLineAdapter(List<SingleLineItem> list, OnItemClickListener listener) {
         mList = list;
+        mListener = listener;
     }
 
     @Override
@@ -43,7 +45,7 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
     public void onBindViewHolder(ViewHolder holder, int position) {
         SingleLineItem item = mList.get(position);
 
-        holder.textView.setText(item.text);
+        holder.textView.setText(item.primaryText);
         if (item.hasAvatar) {
             holder.avatar.setVisibility(View.VISIBLE);
             holder.startIcon.setVisibility(View.GONE);
@@ -76,27 +78,40 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
     }
 
     public static class SingleLineItem {
-        protected String text;
+        protected String primaryText;
         protected Drawable startDrawable;
         protected Drawable endDrawable;
         protected boolean hasAvatar;
 
-        public SingleLineItem(String text) {
-            this(text, null);
+        /**
+         * Creates a SingleLineItem with just text
+         */
+        public SingleLineItem(String primaryText) {
+            this(primaryText, null);
         }
 
-        public SingleLineItem(String text, Drawable startDrawable) {
-            this(text, startDrawable, false);
+        /**
+         * Creates a SingleLineItem with text and an icon that is start/left-aligned
+         */
+        public SingleLineItem(String primaryText, Drawable startDrawable) {
+            this(primaryText, startDrawable, false);
         }
 
-        public SingleLineItem(String text, Drawable startDrawable, boolean hasAvatar) {
-            this.text = text;
+        /**
+         * Creates a SingleLineItem with text and an avatar-sized image that is start/left-aligned
+         */
+        public SingleLineItem(String primaryText, Drawable startDrawable, boolean hasAvatar) {
+            this.primaryText = primaryText;
             this.startDrawable = startDrawable;
             this.hasAvatar = hasAvatar;
         }
 
-        public SingleLineItem(String text, Drawable startDrawable, Drawable endDrawable) {
-            this(text, startDrawable, true);
+        /**
+         * Creates a SingleLineItem with text, a start/left-aligned avatar-sized image, and a
+         * end/right-aligned icon.
+         */
+        public SingleLineItem(String primaryText, Drawable avatar, Drawable endDrawable) {
+            this(primaryText, avatar, true);
             this.endDrawable = endDrawable;
         }
 
@@ -124,12 +139,12 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
             this.startDrawable = startDrawable;
         }
 
-        public String getText() {
-            return text;
+        public String getPrimaryText() {
+            return primaryText;
         }
 
-        public void setText(String text) {
-            this.text = text;
+        public void setPrimaryText(String primaryText) {
+            this.primaryText = primaryText;
         }
     }
 
@@ -144,6 +159,15 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
             startIcon = (ImageView) v.findViewById(R.id.startIcon);
             avatar = (ImageView) v.findViewById(R.id.avatar);
             endIcon = (ImageView) v.findViewById(R.id.endIcon);
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null) {
+                        mListener.onItemClick(view, getAdapterPosition());
+                    }
+                }
+            });
         }
 
     }

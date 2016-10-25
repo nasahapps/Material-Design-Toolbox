@@ -1,5 +1,8 @@
 # Material Design Toolbox
 
+Latest version: [![Release](https://jitpack.io/v/nasahapps/Material-Design-Toolbox.svg)](https://jitpack.io/#nasahapps/Material-Design-Toolbox)
+Or `master-SNAPSHOT`, which will always compile the latest on the master branch.
+
 *_This library is still a work in progress._*
 
 The main purpose of this library is to provide components and helper methods in implementing [Material Design concepts](http://www.google.com/design/spec/material-design/introduction.html) with little to no effort. This library in particular focuses on components that are not yet included in Google's support libraries, with most widgets adhering very closely to the guidelines Google has set. Links to already-existing components will be provided.
@@ -10,9 +13,10 @@ This library supports Android 4.1 (API 16) and up, however, not all components/m
   * [Bottom Navigation](#bottom-navigation)
   * [Bottom Sheets](#bottom-sheets)
   * [Buttons](#buttons)
+  * [Lists](#lists)
   * [Steppers](#steppers)
   * [Tabs](#tabs)
-  * [Text Fields](#text-fields)
+  * [Text Fields](#primaryText-fields)
   * [Toolbars](#toolbars)
   * [Tooltips](#tooltips)
 
@@ -55,7 +59,7 @@ bottomNavigationInactiveTint | color | | R.attr.textColorSecondary
 bottomNavigationOrientation | enum | horizontal or vertical | horizontal
 bottomNavigationDarkTheme | boolean | | false
 
-You can create new tabs with their text and icon to display, then add them to the bottom nav:
+You can create new tabs with their primaryText and icon to display, then add them to the bottom nav:
 
 ```java
 BottomNavigationBar.Tab tab = bottomNav.newTab("Title", drawable);
@@ -166,7 +170,7 @@ If you want a color other than `colorAccent` you also must include a custom them
     style="@style/Widget.AppCompat.Button.Colored"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="Button"
+    android:primaryText="Button"
     android:theme="@style/CustomButton"/>
 ```
 
@@ -178,8 +182,8 @@ To have a disabled button, in XML set `android:enabled="false"`, or in Java, `bu
 
 ![](images/button_disabled.png)
 
-For a flat-styled button, use `style="@style/Widget.AppCompat.Button.Borderless"` for plain black/white text,
- or `style="@style/Widget.AppCompat.Button.Borderless.Colored"` for the text color to be `colorAccent`
+For a flat-styled button, use `style="@style/Widget.AppCompat.Button.Borderless"` for plain black/white primaryText,
+ or `style="@style/Widget.AppCompat.Button.Borderless.Colored"` for the primaryText color to be `colorAccent`
 
 ![](images/button_flat.png)
 
@@ -198,11 +202,16 @@ If you want a mini FAB, in XML set `app:fabSize="mini"` or in java, `fab.setSize
 The Material Design guidelines also define a "dropdown" button, which is natively just a [Spinner](https://developer.android.com/reference/android/widget/Spinner.html)
 in the Android SDK.
 
-### [Steppers](http://www.google.com/design/spec/components/steppers.html)
+### [Lists](https://material.google.com/components/lists.html)
+
+Lists in Android are best done by the use of [RecyclerViews](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html),
+a view widget that is part of the `recyclerview-v7` module of the support library.
+
+### [Steppers](https://material.google.com/components/steppers.html)
 
 This library provides two stepper layouts:
 
-`StepperProgressLayout`: Displays step progress using plain text (e.g. Step 4 of 6), dots, or with a tinted ProgressBar. The `StepperProgressLayout` provides "Back" and "Next" buttons for going forwards/backwards between steps, with the "Next" button turning into a "Finish" button on the last step. Also, it is a `ViewGroup`, so any views you add to it will automatically be placed accordingly. (TODO: add pictures)  
+`StepperProgressLayout`: Displays step progress using plain primaryText (e.g. Step 4 of 6), dots, or with a tinted ProgressBar. The `StepperProgressLayout` provides "Back" and "Next" buttons for going forwards/backwards between steps, with the "Next" button turning into a "Finish" button on the last step. Also, it is a `ViewGroup`, so any views you add to it will automatically be placed accordingly. (TODO: add pictures)
 
 Custom attributes: 
 * stepperMaxProgress 
@@ -216,7 +225,7 @@ Custom attributes:
 * stepperNextButtonText
  * default value: "Next"
 * stepperFinishButtonText
- * the text to be displayed on the "Next" button when on the last step
+ * the primaryText to be displayed on the "Next" button when on the last step
  * default value: "Finish"
 * stepperProgressType
  * the type of progress to be shown, one of TYPE_TEXT, TYPE_DOTS, or TYPE_BAR
@@ -242,24 +251,24 @@ Custom attributes:
  * the initial state of the stepper (`ACTIVE`, `INACTIVE`, `COMPLETED`, or `ERROR`)
  * default value: `ACTIVE`
 
-### [Tabs](http://www.google.com/design/spec/components/tabs.html)
+### [Tabs](https://material.google.com/components/tabs.html)
 
 The [`TabLayout`](https://developer.android.com/reference/android/support/design/widget/TabLayout.html) widget is part of the `design` support library.
 
-### [Text Fields](http://www.google.com/design/spec/components/text-fields.html)
+### [Text Fields](https://material.google.com/components/primaryText-fields.html)
 
 The [`TextInputLayout`](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html) widget is part of the `design` support library. It is suggested to use a `TextInputEditText` instead of a regular `EditText` in this layout.
 
-### [Toolbars](http://www.google.com/design/spec/components/toolbars.html)  
+### [Toolbars](https://material.google.com/components/toolbars.html)
 
 The [`Toolbar`](https://developer.android.com/reference/android/support/v7/widget/Toolbar.html) widget is part of the `appcompat-v7` support library.
 
-### [Tooltips](http://www.google.com/design/spec/components/tooltips.html)  
+### [Tooltips](https://material.google.com/components/tooltips.html)
 
 Tooltips (extends `TextView`) are similar to [`Toasts`](https://developer.android.com/reference/android/widget/Toast.html), both in appearance and in function. Creating a `Tooltip` is very similar to creating a `Toast` or `Snackbar`:
 
 ```java
-Tooltip.makeTooltip(context, "Tooltip text", Tooltip.LENGTH_SHORT, anchorView).show();
+Tooltip.makeTooltip(context, "Tooltip primaryText", Tooltip.LENGTH_SHORT, anchorView).show();
 ```  
 
-The arguments passed in are a `Context`, string text (or a string resource), a duration of how long you want the `Tooltip` to appear (`LENGTH_SHORT` or `LENGTH_LONG`), and a `View` to anchor the `Tooltip` on. By default, the `Tooltip` will appear below the anchor, unless the anchor is low enough on the screen, then the `Tooltip` will instead appear above the anchor.
+The arguments passed in are a `Context`, string primaryText (or a string resource), a duration of how long you want the `Tooltip` to appear (`LENGTH_SHORT` or `LENGTH_LONG`), and a `View` to anchor the `Tooltip` on. By default, the `Tooltip` will appear below the anchor, unless the anchor is low enough on the screen, then the `Tooltip` will instead appear above the anchor.
