@@ -7,20 +7,24 @@ import android.support.v4.content.ContextCompat
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
-
 import com.nasahapps.mdt.example.R
 import com.nasahapps.mdt.example.ui.main.MainActivity
 
 /**
  * Created by Hakeem on 4/13/16.
  */
-class ComponentListFragment : ListFragment() {
+class ListsListFragment : ListFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         listAdapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1,
-                arrayOf("Bottom Navigation", "Bottom Sheets", "Buttons", "Lists", "Steppers", "Tooltips"))
+                arrayOf("Single Line - Text Only", "Single Line - Text with Icon", "Single Line - Text with Avatar",
+                        "Single Line - Text with Icon and Avatar", "Two Line - Text Only",
+                        "Two Line - Text with Icon", "Two Line - Text with Avatar",
+                        "Two Line - Text with Icon and Avatar", "Three Line - Text Only",
+                        "Three Line - Text with Icon", "Three Line - Text with Avatar",
+                        "Three Line - Text with Icon and Avatar"))
     }
 
     override fun onResume() {
@@ -31,7 +35,7 @@ class ComponentListFragment : ListFragment() {
             it.setStatusBarColor(ContextCompat.getColor(context,
                     R.color.mdt_indigo_700))
             it.setToolbarTitleTextColor(Color.WHITE)
-            it.setToolbarTitle("Components")
+            it.setToolbarTitle("Lists")
             it.setToolbarVisible(true)
         }
     }
@@ -40,14 +44,14 @@ class ComponentListFragment : ListFragment() {
         super.onListItemClick(l, v, position, id)
 
         (activity as? MainActivity)?.let {
-            when (position) {
-                0 -> it.startFragment(BottomNavigationListFragment())
-                1 -> it.startFragment(BottomSheetsListFragment())
-                2 -> it.startFragment(ButtonFragment())
-                3 -> it.startFragment(ListsListFragment())
-                4 -> it.startFragment(StepperListFragment())
-                5 -> it.startFragment(TooltipFragment())
+            val fragment = when (position) {
+                1 -> ListListFragment.newInstance(ListListFragment.Type.SINGLE_ITEM_ICON)
+                2 -> ListListFragment.newInstance(ListListFragment.Type.SINGLE_ITEM_AVATAR)
+                3 -> ListListFragment.newInstance(ListListFragment.Type.SINGLE_ITEM_AVATAR_ICON)
+                else -> ListListFragment.newInstance(ListListFragment.Type.SINGLE_ITEM_TEXT)
             }
+
+            it.startFragment(fragment)
         }
     }
 }
