@@ -61,6 +61,10 @@ public class MultiLineAdapter extends RecyclerView.Adapter<MultiLineAdapter.View
         mNumOfLines = numOfLines;
     }
 
+    public void setListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.mdt_list_multi_line, parent, false);

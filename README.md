@@ -207,6 +207,58 @@ in the Android SDK.
 Lists in Android are best done by the use of [RecyclerViews](https://developer.android.com/reference/android/support/v7/widget/RecyclerView.html),
 a view widget that is part of the `recyclerview-v7` module of the support library.
 
+This library provides some helper classes for quickly implementing simple lists. The dependency is
+
+`compile 'com.github.nasahapps.Material-Design-Toolbox:base:{latest-version}'`
+
+You can use `SingleLineAdapter` to generate single-lined lists with one line of text and an optional
+icon/avatar.
+
+![](https://material-design.storage.googleapis.com/publish/material_v_9/0B6Okdz75tqQsNlAwTVZUcXB1M0U/components_lists_keylines_single9.png)
+
+For example:
+
+```java
+List<SingleLineItem> items = new ArrayList<>();
+items.add(new SingleLineItem("Primary text")); // Adds a SingleLineItem with just text
+items.add(new SingleLineItem("Primary text", context.getDrawable(R.drawable.icon)); // Adds a SingleLineItem with text and a left-aligned icon
+items.add(new SingleLineItem("Primary text", context.getDrawable(R.drawable.avatar), true); // Adds a SingleLineItem with text and a left-aligned avatar
+items.add(new SingleLineItem("Primary text", context.getDrawable(R.drawable.avatar), context.getDrawable(R.drawable.icon)); // Adds a SingleLineItem with text, a left-aligned avatar, and a right-aligned icon
+
+SingleLineAdapter adapter = new SingleLineAdapter(items, listener);
+recyclerView.setLayoutManager(new LinearLayoutManager(context));
+recyclerView.setAdapter(adapter);
+```
+
+Notice for the third `SingleLineItem` constructor the boolean parameter. This is to determine whether
+the left-aligned icon should be icon-sized (24x24dp) or avatar-sized (40x40dp). The right-aligned icon
+will always be icon-sized (24x24dp).
+
+Use `MultiLineAdapter` to generate multi-lined lists with more than one line of text. If more than three
+lines of text are needed, the Material Design guidelines recommend using [Cards](https://material.google.com/components/cards.html) instead.
+
+```java
+List<MultiLineItem> items = new ArrayList<>();
+items.add(new MultiLineItem("Primary text", "Secondary text")); // Adds a MultiLineItem with just text
+items.add(new MultiLineItem("Primary text", "Secondary text", context.getDrawable(R.drawable.icon)); // Adds a MultiLineItem with text and a left-aligned icon
+items.add(new MultiLineItem("Primary text", "Secondary text", context.getDrawable(R.drawable.avatar), true); // Adds a MultiLineItem with text and a left-aligned avatar
+items.add(new MultiLineItem("Primary text", "Secondary text", context.getDrawable(R.drawable.avatar), context.getDrawable(R.drawable.icon)); // Adds a MultiLineItem with text, a left-aligned avatar, and a right-aligned icon
+
+MultiLineAdapter adapter = new MultiLineAdapter(items, 3, listener); // Initializes a MultiLineAdapter with the given items and set to 3 lines.
+recyclerView.setLayoutManager(new LinearLayoutManager(context));
+recyclerView.setAdapter(adapter);
+```
+
+The second parameter when creating a `MultiLineAdapter` tells the adapter how many lines of text should be
+shown before truncating it. This value can be changed with `adapter.setNumberOfLines(int)`.
+
+The `base` module also provides a reusable `OnItemClickListener` that is passed in to either `SingleLineAdapter`
+or `MultiLineAdapter`, or can be used by your own Adapter implementation. It provides the following methods:
+
+`void onItemClick(View view, int position)`
+
+which gives the clicked item view and its adapter position.
+
 ### [Steppers](https://material.google.com/components/steppers.html)
 
 This library provides two stepper layouts:

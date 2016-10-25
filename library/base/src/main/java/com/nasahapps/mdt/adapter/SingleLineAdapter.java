@@ -30,6 +30,10 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
         mListener = listener;
     }
 
+    public void setListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     @Override
     public int getItemCount() {
         return mList.size();
