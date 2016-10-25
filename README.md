@@ -1,6 +1,7 @@
 # Material Design Toolbox
 
 Latest version: [![Release](https://jitpack.io/v/nasahapps/Material-Design-Toolbox.svg)](https://jitpack.io/#nasahapps/Material-Design-Toolbox)
+
 Or `master-SNAPSHOT`, which will always compile the latest on the master branch.
 
 *_This library is still a work in progress._*
