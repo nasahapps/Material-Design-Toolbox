@@ -1,4 +1,4 @@
-package com.nasahapps.mdt.fragment;
+package com.nasahapps.mdt.app;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.nasahapps.mdt.R;
 
@@ -18,6 +19,7 @@ import com.nasahapps.mdt.R;
 public abstract class RecyclerViewFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
+    private ProgressBar mProgressBar;
 
     @Nullable
     @Override
@@ -26,6 +28,11 @@ public abstract class RecyclerViewFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.list);
         mRecyclerView.setLayoutManager(getLayoutManager());
+
+        mProgressBar = (ProgressBar) v.findViewById(R.id.progress);
+        if (savedInstanceState == null) {
+            setProgressVisible(true);
+        }
 
         return v;
     }
@@ -48,6 +55,14 @@ public abstract class RecyclerViewFragment extends Fragment {
         if (mRecyclerView != null) {
             mRecyclerView.setAdapter(adapter);
         }
+    }
+
+    public void setProgressVisible(boolean visible) {
+        mProgressBar.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    public void setRecyclerViewVisible(boolean visible) {
+        mRecyclerView.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
     }
 
     @NonNull

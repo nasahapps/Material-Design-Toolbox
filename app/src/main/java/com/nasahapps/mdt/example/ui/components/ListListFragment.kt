@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.nasahapps.mdt.adapter.MultiLineAdapter
 import com.nasahapps.mdt.adapter.SingleLineAdapter
+import com.nasahapps.mdt.app.RecyclerViewFragment
 import com.nasahapps.mdt.example.R
 import com.nasahapps.mdt.example.ui.main.MainActivity
-import com.nasahapps.mdt.fragment.RecyclerViewFragment
 
 /**
  * Created by Hakeem on 4/13/16.
@@ -142,6 +142,7 @@ class ListListFragment : RecyclerViewFragment() {
         }
 
         recyclerView?.addItemDecoration(DividerItemDecoration(activity, LinearLayoutManager.VERTICAL))
+        setProgressVisible(false)
     }
 
     override fun onResume() {
