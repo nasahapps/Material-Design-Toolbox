@@ -3,11 +3,9 @@ package com.nasahapps.mdt.app;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -17,28 +15,26 @@ import com.nasahapps.mdt.R;
  * Created by Hakeem on 10/24/16.
  */
 
-public abstract class RecyclerViewFragment extends Fragment {
+public abstract class RecyclerViewActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
     private TextView mEmptyText;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.mdt_recycler_view_layout, container, false);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.mdt_recycler_view_layout);
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.list);
+        mRecyclerView = (RecyclerView) findViewById(R.id.list);
         mRecyclerView.setLayoutManager(getLayoutManager());
 
-        mProgressBar = (ProgressBar) v.findViewById(R.id.progress);
+        mProgressBar = (ProgressBar) findViewById(R.id.progress);
         if (savedInstanceState == null) {
             setProgressVisible(true);
         }
 
-        mEmptyText = (TextView) v.findViewById(R.id.emptyText);
-
-        return v;
+        mEmptyText = (TextView) findViewById(R.id.emptyText);
     }
 
     /**
@@ -102,7 +98,7 @@ public abstract class RecyclerViewFragment extends Fragment {
     }
 
     /**
-     * Returns the {@link android.support.v7.widget.RecyclerView.LayoutManager} to be used by
+     * Returns the {@link RecyclerView.LayoutManager} to be used by
      * the attached RecyclerView. This must be set in order for the RecyclerView to properly lay
      * out its children
      */
