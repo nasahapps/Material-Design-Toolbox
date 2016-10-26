@@ -18,7 +18,7 @@
         android:paddingTop="20dp"
         android:textColor="@color/mdt_bottom_sheet_title_color"
         android:textSize="@dimen/mdt_bottom_sheet_text_size"
-        tools:primaryText="Share with..."/>
+        tools:text="Share with..."/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bottomSheetRecyclerView"

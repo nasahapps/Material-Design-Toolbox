@@ -17,7 +17,7 @@ This library supports Android 4.1 (API 16) and up, however, not all components/m
   * [Lists](#lists)
   * [Steppers](#steppers)
   * [Tabs](#tabs)
-  * [Text Fields](#primaryText-fields)
+  * [Text Fields](#text-fields)
   * [Toolbars](#toolbars)
   * [Tooltips](#tooltips)
 
@@ -60,7 +60,7 @@ bottomNavigationInactiveTint | color | | R.attr.textColorSecondary
 bottomNavigationOrientation | enum | horizontal or vertical | horizontal
 bottomNavigationDarkTheme | boolean | | false
 
-You can create new tabs with their primaryText and icon to display, then add them to the bottom nav:
+You can create new tabs with their text and icon to display, then add them to the bottom nav:
 
 ```java
 BottomNavigationBar.Tab tab = bottomNav.newTab("Title", drawable);
@@ -171,7 +171,7 @@ If you want a color other than `colorAccent` you also must include a custom them
     style="@style/Widget.AppCompat.Button.Colored"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:primaryText="Button"
+    android:text="Button"
     android:theme="@style/CustomButton"/>
 ```
 
@@ -183,8 +183,8 @@ To have a disabled button, in XML set `android:enabled="false"`, or in Java, `bu
 
 ![](images/button_disabled.png)
 
-For a flat-styled button, use `style="@style/Widget.AppCompat.Button.Borderless"` for plain black/white primaryText,
- or `style="@style/Widget.AppCompat.Button.Borderless.Colored"` for the primaryText color to be `colorAccent`
+For a flat-styled button, use `style="@style/Widget.AppCompat.Button.Borderless"` for plain black/white text,
+ or `style="@style/Widget.AppCompat.Button.Borderless.Colored"` for the text color to be `colorAccent`
 
 ![](images/button_flat.png)
 
@@ -268,7 +268,7 @@ which gives the clicked item view and its adapter position.
 
 This library provides two stepper layouts:
 
-`StepperProgressLayout`: Displays step progress using plain primaryText (e.g. Step 4 of 6), dots, or with a tinted ProgressBar. The `StepperProgressLayout` provides "Back" and "Next" buttons for going forwards/backwards between steps, with the "Next" button turning into a "Finish" button on the last step. Also, it is a `ViewGroup`, so any views you add to it will automatically be placed accordingly. (TODO: add pictures)
+`StepperProgressLayout`: Displays step progress using plain text (e.g. Step 4 of 6), dots, or with a tinted ProgressBar. The `StepperProgressLayout` provides "Back" and "Next" buttons for going forwards/backwards between steps, with the "Next" button turning into a "Finish" button on the last step. Also, it is a `ViewGroup`, so any views you add to it will automatically be placed accordingly. (TODO: add pictures)
 
 Custom attributes: 
 * stepperMaxProgress 
@@ -282,7 +282,7 @@ Custom attributes:
 * stepperNextButtonText
  * default value: "Next"
 * stepperFinishButtonText
- * the primaryText to be displayed on the "Next" button when on the last step
+ * the text to be displayed on the "Next" button when on the last step
  * default value: "Finish"
 * stepperProgressType
  * the type of progress to be shown, one of TYPE_TEXT, TYPE_DOTS, or TYPE_BAR
@@ -312,7 +312,7 @@ Custom attributes:
 
 The [`TabLayout`](https://developer.android.com/reference/android/support/design/widget/TabLayout.html) widget is part of the `design` support library.
 
-### [Text Fields](https://material.google.com/components/primaryText-fields.html)
+### [Text Fields](https://material.google.com/components/text-fields.html)
 
 The [`TextInputLayout`](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html) widget is part of the `design` support library. It is suggested to use a `TextInputEditText` instead of a regular `EditText` in this layout.
 
@@ -325,7 +325,7 @@ The [`Toolbar`](https://developer.android.com/reference/android/support/v7/widge
 Tooltips (extends `TextView`) are similar to [`Toasts`](https://developer.android.com/reference/android/widget/Toast.html), both in appearance and in function. Creating a `Tooltip` is very similar to creating a `Toast` or `Snackbar`:
 
 ```java
-Tooltip.makeTooltip(context, "Tooltip primaryText", Tooltip.LENGTH_SHORT, anchorView).show();
+Tooltip.makeTooltip(context, "Tooltip text", Tooltip.LENGTH_SHORT, anchorView).show();
 ```  
 
-The arguments passed in are a `Context`, string primaryText (or a string resource), a duration of how long you want the `Tooltip` to appear (`LENGTH_SHORT` or `LENGTH_LONG`), and a `View` to anchor the `Tooltip` on. By default, the `Tooltip` will appear below the anchor, unless the anchor is low enough on the screen, then the `Tooltip` will instead appear above the anchor.
+The arguments passed in are a `Context`, string text (or a string resource), a duration of how long you want the `Tooltip` to appear (`LENGTH_SHORT` or `LENGTH_LONG`), and a `View` to anchor the `Tooltip` on. By default, the `Tooltip` will appear below the anchor, unless the anchor is low enough on the screen, then the `Tooltip` will instead appear above the anchor.

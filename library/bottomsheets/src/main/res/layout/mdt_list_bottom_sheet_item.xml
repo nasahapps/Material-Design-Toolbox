@@ -17,7 +17,7 @@
         android:layout_marginRight="@dimen/mdt_bottom_sheet_list_padding"/>
 
     <TextView
-        android:id="@+id/primaryText"
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/mdt_bottom_sheet_list_padding"
@@ -28,6 +28,6 @@
         android:maxLines="1"
         android:textColor="@color/mdt_bottom_sheet_text_color"
         android:textSize="@dimen/mdt_bottom_sheet_text_size"
-        tools:primaryText="Favorite"/>
+        tools:text="Favorite"/>
 
 </LinearLayout>

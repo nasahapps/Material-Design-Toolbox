@@ -338,7 +338,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
     }
 
     /**
-     * Creates a new tab with the given primaryText and icon
+     * Creates a new tab with the given text and icon
      *
      * @return the newly created tab
      */
@@ -663,7 +663,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
                 setPadding(0, 0, 0, 0);
             }
 
-            // Set primaryText size
+            // Set text size
             if (mTabStyle != TabStyle.VERTICAL) {
                 float beforeTextSize = mText.getTextSize();
                 float afterTextSize;
@@ -676,7 +676,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
                 animateTextSize(beforeTextSize, afterTextSize);
             }
 
-            // Set icon/primaryText color
+            // Set icon/text color
             int beforeColor = mText.getCurrentTextColor();
             int afterColor = mIsActive ? mActiveColor : mInactiveColor;
             animateIconColor(beforeColor, afterColor);
@@ -692,7 +692,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
                 TransitionManager.beginDelayedTransition(this, set);
             }
 
-            // Hide the primaryText if SHIFTING and not active, or if VERTICAL
+            // Hide the text if SHIFTING and not active, or if VERTICAL
             if (mTabStyle == TabStyle.VERTICAL || (mTabStyle == TabStyle.SHIFTING && !mIsActive)) {
                 mText.setVisibility(GONE);
             } else {
@@ -798,14 +798,14 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         }
 
         /**
-         * Sets this tab's primaryText
+         * Sets this tab's text
          */
         public void setText(CharSequence text) {
             mText.setText(text);
         }
 
         /**
-         * Sets this tab's primaryText
+         * Sets this tab's text
          */
         public void setText(@StringRes int res) {
             mText.setText(res);

@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:primaryText="Animate"/>
+        android:text="Animate"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

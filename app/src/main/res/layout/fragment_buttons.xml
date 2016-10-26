@@ -16,68 +16,68 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:primaryText="Untinted Button"/>
+            android:text="Untinted Button"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:primaryText="Button"/>
+            android:text="Button"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:primaryText="Tinted Button"/>
+            android:text="Tinted Button"/>
 
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:primaryText="Button"/>
+            android:text="Button"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:primaryText="Custom Color Button"/>
+            android:text="Custom Color Button"/>
 
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:primaryText="Button"
+            android:text="Button"
             android:theme="@style/CustomButton"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:primaryText="Disabled Button"/>
+            android:text="Disabled Button"/>
 
         <Button
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:enabled="false"
-            android:primaryText="Button"/>
+            android:text="Button"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:primaryText="Flat Button"/>
+            android:text="Flat Button"/>
 
         <Button
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:primaryText="Button"/>
+            android:text="Button"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:primaryText="Floating Action Button"/>
+            android:text="Floating Action Button"/>
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -90,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:primaryText="Floating Action Button (Mini)"/>
+            android:text="Floating Action Button (Mini)"/>
 
         <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:primaryText="Dropdown Button (Spinner)"/>
+            android:text="Dropdown Button (Spinner)"/>
 
         <Spinner
             android:id="@+id/spinner"

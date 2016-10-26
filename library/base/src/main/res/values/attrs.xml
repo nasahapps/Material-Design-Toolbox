@@ -23,7 +23,7 @@
         <attr name="stepperNextButtonText" format="string"/>
         <attr name="steeperFinishButtonText" format="string"/>
         <attr name="stepperProgressType" format="enum">
-            <enum name="primaryText" value="0"/>
+            <enum name="text" value="0"/>
             <enum name="dots" value="1"/>
             <enum name="bar" value="2"/>
         </attr>
