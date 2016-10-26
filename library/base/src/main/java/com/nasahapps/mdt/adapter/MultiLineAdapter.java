@@ -115,26 +115,26 @@ public class MultiLineAdapter extends RecyclerView.Adapter<MultiLineAdapter.View
     }
 
     public static class MultiLineItem extends SingleLineAdapter.SingleLineItem {
-        private String secondaryText;
+        private CharSequence secondaryText;
 
         /**
          * Creates a MultiLineItem with just primary and secondary text
          */
-        public MultiLineItem(String primaryText, String secondaryText) {
+        public MultiLineItem(CharSequence primaryText, CharSequence secondaryText) {
             this(primaryText, secondaryText, null);
         }
 
         /**
          * Creates a MultiLineItem with text and an avatar-sized image that is start/left-aligned
          */
-        public MultiLineItem(String primaryText, String secondaryText, Drawable startDrawable) {
+        public MultiLineItem(CharSequence primaryText, CharSequence secondaryText, Drawable startDrawable) {
             this(primaryText, secondaryText, startDrawable, false);
         }
 
         /**
          * Creates a MultiLineItem with text and an avatar-sized image that is start/left-aligned
          */
-        public MultiLineItem(String primaryText, String secondaryText, Drawable startDrawable, boolean hasAvatar) {
+        public MultiLineItem(CharSequence primaryText, CharSequence secondaryText, Drawable startDrawable, boolean hasAvatar) {
             super(primaryText, startDrawable, hasAvatar);
             this.secondaryText = secondaryText;
         }
@@ -143,16 +143,16 @@ public class MultiLineAdapter extends RecyclerView.Adapter<MultiLineAdapter.View
          * Creates a MultiLineItem with text, a start/left-aligned avatar-sized image, and a
          * end/right-aligned icon.
          */
-        public MultiLineItem(String primaryText, String secondaryText, Drawable startDrawable, Drawable endDrawable) {
+        public MultiLineItem(CharSequence primaryText, CharSequence secondaryText, Drawable startDrawable, Drawable endDrawable) {
             this(primaryText, secondaryText, startDrawable, true);
             this.endDrawable = endDrawable;
         }
 
-        public String getSecondaryText() {
+        public CharSequence getSecondaryText() {
             return secondaryText;
         }
 
-        public void setSecondaryText(String secondaryText) {
+        public void setSecondaryText(CharSequence secondaryText) {
             this.secondaryText = secondaryText;
         }
     }

@@ -82,7 +82,7 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
     }
 
     public static class SingleLineItem {
-        protected String primaryText;
+        protected CharSequence primaryText;
         protected Drawable startDrawable;
         protected Drawable endDrawable;
         protected boolean hasAvatar;
@@ -90,21 +90,21 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
         /**
          * Creates a SingleLineItem with just text
          */
-        public SingleLineItem(String primaryText) {
+        public SingleLineItem(CharSequence primaryText) {
             this(primaryText, null);
         }
 
         /**
          * Creates a SingleLineItem with text and an icon that is start/left-aligned
          */
-        public SingleLineItem(String primaryText, Drawable startDrawable) {
+        public SingleLineItem(CharSequence primaryText, Drawable startDrawable) {
             this(primaryText, startDrawable, false);
         }
 
         /**
          * Creates a SingleLineItem with text and an avatar-sized image that is start/left-aligned
          */
-        public SingleLineItem(String primaryText, Drawable startDrawable, boolean hasAvatar) {
+        public SingleLineItem(CharSequence primaryText, Drawable startDrawable, boolean hasAvatar) {
             this.primaryText = primaryText;
             this.startDrawable = startDrawable;
             this.hasAvatar = hasAvatar;
@@ -114,7 +114,7 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
          * Creates a SingleLineItem with text, a start/left-aligned avatar-sized image, and a
          * end/right-aligned icon.
          */
-        public SingleLineItem(String primaryText, Drawable avatar, Drawable endDrawable) {
+        public SingleLineItem(CharSequence primaryText, Drawable avatar, Drawable endDrawable) {
             this(primaryText, avatar, true);
             this.endDrawable = endDrawable;
         }
@@ -143,11 +143,11 @@ public class SingleLineAdapter extends RecyclerView.Adapter<SingleLineAdapter.Vi
             this.startDrawable = startDrawable;
         }
 
-        public String getPrimaryText() {
+        public CharSequence getPrimaryText() {
             return primaryText;
         }
 
-        public void setPrimaryText(String primaryText) {
+        public void setPrimaryText(CharSequence primaryText) {
             this.primaryText = primaryText;
         }
     }
