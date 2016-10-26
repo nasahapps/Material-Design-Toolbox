@@ -20,7 +20,7 @@ class StyleListFragment : ListFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         listAdapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1,
-                arrayOf("Color"))
+                arrayOf("Color", "Typography"))
     }
 
     override fun onResume() {
@@ -42,6 +42,7 @@ class StyleListFragment : ListFragment() {
         (activity as? MainActivity)?.let {
             when (position) {
                 0 -> it.startFragment(ColorViewPagerFragment())
+                1 -> it.startFragment(TypographyFragment())
             }
         }
     }
