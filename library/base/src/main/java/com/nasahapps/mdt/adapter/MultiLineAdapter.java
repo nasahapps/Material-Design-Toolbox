@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.nasahapps.mdt.R;
 import com.nasahapps.mdt.Utils;
+import com.nasahapps.mdt.listener.OnItemClickListener;
 
 import java.util.List;
 

@@ -6,10 +6,10 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.nasahapps.mdt.adapter.MultiLineAdapter
-import com.nasahapps.mdt.adapter.OnItemClickListener
 import com.nasahapps.mdt.adapter.SingleLineAdapter
 import com.nasahapps.mdt.example.R
 import com.nasahapps.mdt.example.ui.main.MainActivity
+import com.nasahapps.mdt.listener.OnItemClickListener
 import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
