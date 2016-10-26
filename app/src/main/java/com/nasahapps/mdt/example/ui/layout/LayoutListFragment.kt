@@ -1,4 +1,4 @@
-package com.nasahapps.mdt.example.ui.main
+package com.nasahapps.mdt.example.ui.style
 
 import android.graphics.Color
 import android.os.Bundle
@@ -9,29 +9,29 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 
 import com.nasahapps.mdt.example.R
-import com.nasahapps.mdt.example.ui.components.ComponentListFragment
-import com.nasahapps.mdt.example.ui.style.LayoutListFragment
-import com.nasahapps.mdt.example.ui.style.StyleListFragment
+import com.nasahapps.mdt.example.ui.main.MainActivity
 
 /**
  * Created by Hakeem on 4/13/16.
  */
-class MainFragment : ListFragment() {
+class LayoutListFragment : ListFragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         listAdapter = ArrayAdapter(activity, android.R.layout.simple_list_item_1,
-                arrayOf("Style", "Layout", "Components"))
+                arrayOf("Structure"))
     }
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).let {
-            it.setToolbarColor(ContextCompat.getColor(context, R.color.mdt_cyan_500))
-            it.setStatusBarColor(ContextCompat.getColor(context, R.color.mdt_cyan_700))
+        (activity as? MainActivity)?.let {
+            it.setToolbarColor(ContextCompat.getColor(context,
+                    R.color.mdt_pink_800))
+            it.setStatusBarColor(ContextCompat.getColor(context,
+                    R.color.mdt_pink_900))
             it.setToolbarTitleTextColor(Color.WHITE)
-            it.setToolbarTitle(getString(R.string.app_name))
+            it.setToolbarTitle("Layout")
             it.setToolbarVisible(true)
         }
     }
@@ -39,11 +39,9 @@ class MainFragment : ListFragment() {
     override fun onListItemClick(l: ListView?, v: View?, position: Int, id: Long) {
         super.onListItemClick(l, v, position, id)
 
-        (activity as MainActivity).let {
+        (activity as? MainActivity)?.let {
             when (position) {
-                0 -> it.startFragment(StyleListFragment())
-                1 -> it.startFragment(LayoutListFragment())
-                2 -> it.startFragment(ComponentListFragment())
+                0 -> it.startFragment(StructureListFragment())
             }
         }
     }

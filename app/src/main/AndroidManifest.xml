@@ -16,6 +16,13 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.layout.ToolbarFullWidthDefaultHeightActivity"
+            android:theme="@style/AppTheme.Blue"/>
+        <activity
+            android:name=".ui.layout.ToolbarFullWidthExtendedHeightActivity"
+            android:theme="@style/AppTheme.Blue"/>
+        <activity android:name=".ui.layout.ToolbarDifferentWidthsActivity"/>
+        <activity
             android:name=".ui.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
