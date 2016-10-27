@@ -226,7 +226,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         }
 
         if (mSelectedTabPosition < mBackgroundColorList.length) {
-            int beforeColor = getBackground() != null ? ((ColorDrawable) getBackground()).getColor() : Color.WHITE;
+            int beforeColor = mBackgroundLayer2.getBackground() != null ? ((ColorDrawable) mBackgroundLayer2.getBackground()).getColor() : Color.WHITE;
             int afterColor = mBackgroundColorList[mSelectedTabPosition];
             animateBackgroundColor(beforeColor, afterColor);
         }
