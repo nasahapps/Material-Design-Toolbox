@@ -10,7 +10,16 @@
         <item name="android:windowTranslucentStatus">true</item>
     </style>
 
+    <style name="AppTheme.ActionBar" parent="Theme.AppCompat.Light"/>
+
+    <style name="AppTheme.DarkActionBar" parent="Theme.AppCompat.Light.DarkActionBar"/>
+
     <style name="AppTheme.Blue">
+        <item name="colorPrimary">@color/mdt_blue_500</item>
+        <item name="colorPrimaryDark">@color/mdt_blue_700</item>
+    </style>
+
+    <style name="AppTheme.DarkActionBar.Blue">
         <item name="colorPrimary">@color/mdt_blue_500</item>
         <item name="colorPrimaryDark">@color/mdt_blue_700</item>
     </style>

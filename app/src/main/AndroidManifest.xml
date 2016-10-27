@@ -23,6 +23,27 @@
             android:theme="@style/AppTheme.Blue"/>
         <activity android:name=".ui.layout.ToolbarDifferentWidthsActivity"/>
         <activity
+            android:name=".ui.layout.ToolbarFlexibleCardActivity"
+            android:theme="@style/AppTheme.Blue"/>
+        <activity
+            android:name=".ui.layout.ToolbarFloatingActivity"
+            android:theme="@style/AppTheme.Blue"/>
+        <activity
+            android:name=".ui.layout.AppBarLightActivity"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity
+            android:name=".ui.layout.AppBarDarkActivity"
+            android:theme="@style/AppTheme.DarkActionBar"/>
+        <activity
+            android:name=".ui.layout.AppBarTransparentActivity"
+            android:theme="@style/AppTheme.ActionBar"/>
+        <activity
+            android:name=".ui.layout.AppBarColoredActivity"
+            android:theme="@style/AppTheme.DarkActionBar.Blue"/>
+        <activity
+            android:name=".ui.layout.AppBarMenuActivity"
+            android:theme="@style/AppTheme.Blue"/>
+        <activity
             android:name=".ui.TestActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

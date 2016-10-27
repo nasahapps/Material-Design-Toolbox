@@ -10,9 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 
 import com.nasahapps.mdt.example.R
-import com.nasahapps.mdt.example.ui.layout.ToolbarDifferentWidthsActivity
-import com.nasahapps.mdt.example.ui.layout.ToolbarFullWidthDefaultHeightActivity
-import com.nasahapps.mdt.example.ui.layout.ToolbarFullWidthExtendedHeightActivity
+import com.nasahapps.mdt.example.ui.layout.*
 import com.nasahapps.mdt.example.ui.main.MainActivity
 
 /**
@@ -27,17 +25,12 @@ class StructureListFragment : ListFragment() {
                 arrayOf("Toolbar - full width, default height",
                         "Toolbar - full width, extended height",
                         "Toolbar - different widths (landscape recommended)",
-                        "Toolbar - flexible/card",
+                        "Toolbar - flexible/card (landscape recommended)",
                         "Toolbar - floating",
-                        "Toolbar - detached",
-                        "Toolbar - bottom-aligned",
-                        "Toolbar - bottom shelf",
                         "App bar - light",
                         "App bar - dark",
                         "App bar - colored",
                         "App bar - transparent",
-                        "App bar - single color",
-                        "App bar - distinct color",
                         "App bar with menu",
                         "System bars - lean back",
                         "System bars - immersive",
@@ -73,6 +66,13 @@ class StructureListFragment : ListFragment() {
                 0 -> startActivity(Intent(activity, ToolbarFullWidthDefaultHeightActivity::class.java))
                 1 -> startActivity(Intent(activity, ToolbarFullWidthExtendedHeightActivity::class.java))
                 2 -> startActivity(Intent(activity, ToolbarDifferentWidthsActivity::class.java))
+                3 -> startActivity(Intent(activity, ToolbarFlexibleCardActivity::class.java))
+                4 -> startActivity(Intent(activity, ToolbarFloatingActivity::class.java))
+                5 -> startActivity(Intent(activity, AppBarLightActivity::class.java))
+                6 -> startActivity(Intent(activity, AppBarDarkActivity::class.java))
+                7 -> startActivity(Intent(activity, AppBarColoredActivity::class.java))
+                8 -> startActivity(Intent(activity, AppBarTransparentActivity::class.java))
+                9 -> startActivity(Intent(activity, AppBarMenuActivity::class.java))
             }
         }
     }
