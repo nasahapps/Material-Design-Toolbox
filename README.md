@@ -244,19 +244,19 @@ Custom attributes:
  * the initial state of the stepper (`ACTIVE`, `INACTIVE`, `COMPLETED`, or `ERROR`)
  * default value: `ACTIVE`
 
-### [Tabs](http://www.google.com/design/spec/components/tabs.html)
+### [Tabs](https://material.google.com/components/tabs.html)
 
 The [`TabLayout`](https://developer.android.com/reference/android/support/design/widget/TabLayout.html) widget is part of the `design` support library.
 
-### [Text Fields](http://www.google.com/design/spec/components/text-fields.html)
+### [Text Fields](https://material.google.com/components/text-fields.html)
 
 The [`TextInputLayout`](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html) widget is part of the `design` support library. It is suggested to use a `TextInputEditText` instead of a regular `EditText` in this layout.
 
-### [Toolbars](http://www.google.com/design/spec/components/toolbars.html)  
+### [Toolbars](https://material.google.com/components/toolbars.html)  
 
 The [`Toolbar`](https://developer.android.com/reference/android/support/v7/widget/Toolbar.html) widget is part of the `appcompat-v7` support library.
 
-### [Tooltips](http://www.google.com/design/spec/components/tooltips.html)  
+### [Tooltips](https://material.google.com/components/tooltips.html)  
 
 Tooltips (extends `TextView`) are similar to [`Toasts`](https://developer.android.com/reference/android/widget/Toast.html), both in appearance and in function. Creating a `Tooltip` is very similar to creating a `Toast` or `Snackbar`:
 
