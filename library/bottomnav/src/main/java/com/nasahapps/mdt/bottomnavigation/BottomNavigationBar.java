@@ -607,7 +607,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
             selectedTabPosition = in.readInt();
             activeColor = in.readInt();
             inactiveColor = in.readInt();
-            in.readIntArray(backgroundColorList);
+            backgroundColorList = in.createIntArray();
         }
 
         @Override
