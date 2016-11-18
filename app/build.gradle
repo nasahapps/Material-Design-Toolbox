@@ -27,6 +27,7 @@ android {
 dependencies {
     compile project(':library:bottomnav')
     compile project(':library:bottomsheets')
+    compile project(':library:chips')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 

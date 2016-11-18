@@ -24,5 +24,4 @@ android {
 
 dependencies {
     compile project(':library:base')
-    compile "com.android.support:design:$support_lib_version"
 }
