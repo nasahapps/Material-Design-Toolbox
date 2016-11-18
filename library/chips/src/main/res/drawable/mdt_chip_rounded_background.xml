@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="rectangle">
+    <corners android:radius="@dimen/mdt_chip_corner_radius"/>
+    <solid android:color="@color/mdt_default_chip_background_color"/>
+</shape>

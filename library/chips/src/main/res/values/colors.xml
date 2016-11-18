@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mdt_default_chip_background_color">@color/mdt_grey_300</color>
+</resources>

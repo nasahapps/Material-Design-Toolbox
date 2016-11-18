@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="mdt_chip_text_size">13sp</dimen>
+    <dimen name="mdt_chip_padding_left_right">12dp</dimen>
+    <dimen name="mdt_chip_padding_top_bottom">8dp</dimen>
+    <dimen name="mdt_chip_avatar_image_size">32dp</dimen>
+    <dimen name="mdt_chip_corner_radius">16dp</dimen>
+    <dimen name="mdt_chip_cancel_icon_size">24dp</dimen>
+    <dimen name="mdt_chip_cancel_margin_left_right">4dp</dimen>
 </resources>
