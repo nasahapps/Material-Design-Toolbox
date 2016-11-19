@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Chip">
+        <attr name="chipText" format="string"/>
+        <attr name="chipContactImage" format="reference"/>
+        <attr name="chipShowClose" format="boolean"/>
+        <attr name="chipShowContactImage" format="boolean"/>
+    </declare-styleable>
+</resources>
