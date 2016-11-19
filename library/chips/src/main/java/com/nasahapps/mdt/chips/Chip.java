@@ -124,7 +124,7 @@ public class Chip extends LinearLayout {
         }
 
         if (mCancelIcon.getVisibility() == VISIBLE) {
-            textEndPadding = getResources().getDimensionPixelSize(R.dimen.mdt_chip_padding_left_right_smaller);
+            textEndPadding = 0;
         } else {
             textEndPadding = getResources().getDimensionPixelSize(R.dimen.mdt_chip_padding_left_right);
         }
