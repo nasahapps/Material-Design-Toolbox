@@ -8,4 +8,5 @@
     <dimen name="mdt_chip_corner_radius">16dp</dimen>
     <dimen name="mdt_chip_cancel_icon_size">24dp</dimen>
     <dimen name="mdt_chip_cancel_margin_left_right">4dp</dimen>
+    <dimen name="mdt_chip_open_layout_elevation">8dp</dimen>
 </resources>

@@ -14,8 +14,12 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DimenRes;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
@@ -184,6 +188,25 @@ public class Utils {
             drawable.draw(canvas);
             return bitmap;
         }
+    }
+
+    @Nullable
+    public static RoundedBitmapDrawable getRoundedDrawable(Context c, @DrawableRes int res) {
+        return getRoundedDrawable(c, ContextCompat.getDrawable(c, res));
+    }
+
+    @Nullable
+    public static RoundedBitmapDrawable getRoundedDrawable(Context c, @Nullable Drawable drawable) {
+        if (drawable != null) {
+            Bitmap bitmap = convertDrawableToBitmap(drawable);
+            if (bitmap != null) {
+                RoundedBitmapDrawable roundedDrawable = RoundedBitmapDrawableFactory.create(c.getResources(), bitmap);
+                roundedDrawable.setCircular(true);
+                return roundedDrawable;
+            }
+        }
+
+        return null;
     }
 
 }
