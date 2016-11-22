@@ -11,7 +11,6 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MarginLayoutParamsCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
@@ -129,22 +128,23 @@ public class Chip extends LinearLayout implements View.OnClickListener {
     private void showContactInfoPopup() {
         int dp16 = Utils.dpToPixel(getContext(), 16);
         int dp40 = Utils.dpToPixel(getContext(), 40);
+        int colorControlHighlight = Utils.getColorFromAttribute(getContext(), R.attr.colorControlHighlight);
+        int topMostTextColor = Utils.shouldUseWhiteText(colorControlHighlight) ? Color.WHITE : Color.BLACK;
 
         LinearLayout openParentLayout = new LinearLayout(getContext());
         openParentLayout.setOrientation(VERTICAL);
-        openParentLayout.setGravity(Gravity.CENTER_VERTICAL);
 
         // Create the top-most item
         LinearLayout topItem = new LinearLayout(getContext());
         topItem.setOrientation(HORIZONTAL);
+        topItem.setGravity(Gravity.CENTER_VERTICAL);
         topItem.setPadding(dp16, dp16, dp16, dp16);
-        topItem.setBackgroundColor(Utils.getColorFromAttribute(getContext(), R.attr.colorAccent));
+        topItem.setBackgroundColor(colorControlHighlight);
         openParentLayout.addView(topItem);
 
         // Adding the top-most avatar
         ImageView topAvatar = new AppCompatImageView(getContext());
         LayoutParams topAvatarLp = new LayoutParams(dp40, dp40);
-        MarginLayoutParamsCompat.setMarginEnd(topAvatarLp, dp16);
         topAvatar.setLayoutParams(topAvatarLp);
         topAvatar.setImageDrawable(Utils.getRoundedDrawable(getContext(), R.drawable.mdt_test_avatar));
         topItem.addView(topAvatar);
@@ -152,18 +152,27 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         // Adding the top-most name/email
         LinearLayout topTextLayout = new LinearLayout(getContext());
         topTextLayout.setOrientation(VERTICAL);
+        LayoutParams topTextLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        topTextLp.setMargins(dp16, 0, dp16, 0);
+        topTextLayout.setLayoutParams(topTextLp);
         topItem.addView(topTextLayout);
 
         TextView topName = new AppCompatTextView(getContext());
-        topName.setTextColor(Color.WHITE);
+        topName.setTextColor(topMostTextColor);
         topName.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 16));
         topName.setText("Contact Name");
         topTextLayout.addView(topName);
         TextView topEmail = new AppCompatTextView(getContext());
-        topEmail.setTextColor(Color.WHITE);
+        topEmail.setTextColor(topMostTextColor);
         topEmail.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 14));
         topEmail.setText("primaryemail@email.com");
         topTextLayout.addView(topEmail);
+
+        // Adding the close icon to the top-most item
+        ImageView topClose = new AppCompatImageView(getContext());
+        topClose.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_mdt_chip_cancel),
+                topMostTextColor));
+        topItem.addView(topClose);
 
         PopupWindow popupWindow = new PopupWindow(openParentLayout);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

@@ -164,7 +164,9 @@ public class Utils {
     }
 
     public static boolean shouldUseWhiteText(@ColorInt int color) {
-        int calc = ((Color.red(color) * 299) + (Color.green(color) * 587) + (Color.blue(114))) / 1000;
+        // Use a color with the alpha value already mixed in
+        int actualColor = moveAlphaToRGB(color);
+        int calc = ((Color.red(actualColor) * 299) + (Color.green(actualColor) * 587) + (Color.blue(actualColor) * 114)) / 1000;
         return calc < 128;
     }
 
@@ -207,6 +209,42 @@ public class Utils {
         }
 
         return null;
+    }
+
+    /**
+     * Given a hexadecimal number, reverse it, i.e. 0x1f -> 0xf1
+     */
+    public static int reverseHexadecimal(int hex) {
+        // For now, just restrict this to 8-bit ints
+        if (hex > 0xff) {
+            return hex;
+        }
+
+        // Get the last 4 bits
+        int lastFour = hex >>> 4;
+        // Then the first 4 bits
+        int firstFour = (hex & 0xf) << 4;
+        // Then return the combination
+        return lastFour | firstFour;
+    }
+
+    /**
+     * For a color hexadecimal, take its alpha value and transfer it to the RGB values, i.e. 0x1f000000 -> 0xfff1f1f1
+     */
+    public static int moveAlphaToRGB(int color) {
+        // if alpha == 0xff, no need to do anything here
+        int alpha = color >>> 24;
+        if (alpha == 0xff) {
+            return color;
+        }
+
+        // Flip the alpha
+        int flippedAlpha = reverseHexadecimal(alpha);
+        int newRed = ((color >> 16) & 0xff) | flippedAlpha;
+        int newGreen = ((color >> 8) & 0xff) | flippedAlpha;
+        int newBlue = (color & 0xff) | flippedAlpha;
+
+        return (newRed << 16) | (newGreen << 8) | newBlue;
     }
 
 }
