@@ -126,53 +126,11 @@ public class Chip extends LinearLayout implements View.OnClickListener {
 
     @TargetApi(Build.VERSION_CODES.M)
     private void showContactInfoPopup() {
-        int dp16 = Utils.dpToPixel(getContext(), 16);
-        int dp40 = Utils.dpToPixel(getContext(), 40);
-        int colorControlHighlight = Utils.getColorFromAttribute(getContext(), R.attr.colorControlHighlight);
-        int topMostTextColor = Utils.shouldUseWhiteText(colorControlHighlight) ? Color.WHITE : Color.BLACK;
-
         LinearLayout openParentLayout = new LinearLayout(getContext());
         openParentLayout.setOrientation(VERTICAL);
-
-        // Create the top-most item
-        LinearLayout topItem = new LinearLayout(getContext());
-        topItem.setOrientation(HORIZONTAL);
-        topItem.setGravity(Gravity.CENTER_VERTICAL);
-        topItem.setPadding(dp16, dp16, dp16, dp16);
-        topItem.setBackgroundColor(colorControlHighlight);
-        openParentLayout.addView(topItem);
-
-        // Adding the top-most avatar
-        ImageView topAvatar = new AppCompatImageView(getContext());
-        LayoutParams topAvatarLp = new LayoutParams(dp40, dp40);
-        topAvatar.setLayoutParams(topAvatarLp);
-        topAvatar.setImageDrawable(Utils.getRoundedDrawable(getContext(), R.drawable.mdt_test_avatar));
-        topItem.addView(topAvatar);
-
-        // Adding the top-most name/email
-        LinearLayout topTextLayout = new LinearLayout(getContext());
-        topTextLayout.setOrientation(VERTICAL);
-        LayoutParams topTextLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        topTextLp.setMargins(dp16, 0, dp16, 0);
-        topTextLayout.setLayoutParams(topTextLp);
-        topItem.addView(topTextLayout);
-
-        TextView topName = new AppCompatTextView(getContext());
-        topName.setTextColor(topMostTextColor);
-        topName.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 16));
-        topName.setText("Contact Name");
-        topTextLayout.addView(topName);
-        TextView topEmail = new AppCompatTextView(getContext());
-        topEmail.setTextColor(topMostTextColor);
-        topEmail.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 14));
-        topEmail.setText("primaryemail@email.com");
-        topTextLayout.addView(topEmail);
-
-        // Adding the close icon to the top-most item
-        ImageView topClose = new AppCompatImageView(getContext());
-        topClose.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_mdt_chip_cancel),
-                topMostTextColor));
-        topItem.addView(topClose);
+        openParentLayout.addView(createUnfocusedContactChip(true));
+        openParentLayout.addView(createUnfocusedContactChip(false));
+        openParentLayout.addView(createUnfocusedContactChip(false));
 
         PopupWindow popupWindow = new PopupWindow(openParentLayout);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -190,8 +148,74 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         popupWindow.showAsDropDown(this);
     }
 
-    private LinearLayout createUnfocusedContactChip() {
-        return null;
+    private LinearLayout createUnfocusedContactChip(boolean isTopMost) {
+        int dp16 = Utils.dpToPixel(getContext(), 16);
+        int dp40 = Utils.dpToPixel(getContext(), 40);
+
+        int colorControlHighlight = Utils.getColorFromAttribute(getContext(), R.attr.colorControlHighlight);
+        int primaryTextColor, secondaryTextColor;
+        if (Utils.shouldUseWhiteText(colorControlHighlight) && isTopMost) {
+            primaryTextColor = Color.WHITE;
+            secondaryTextColor = ContextCompat.getColor(getContext(), R.color.mdt_white_70);
+        } else {
+            primaryTextColor = Color.BLACK;
+            secondaryTextColor = ContextCompat.getColor(getContext(), R.color.mdt_black_87);
+        }
+
+        LinearLayout layout = new LinearLayout(getContext());
+        // Create the top-most item
+        layout.setOrientation(HORIZONTAL);
+        layout.setGravity(Gravity.CENTER_VERTICAL);
+        int layoutTopBottomPadding = isTopMost ? dp16 : (dp16 / 2);
+        layout.setPadding(dp16, layoutTopBottomPadding, dp16, layoutTopBottomPadding);
+        if (isTopMost) {
+            layout.setBackgroundColor(colorControlHighlight);
+        }
+
+        // Adding the avatar
+        ImageView avatar = new AppCompatImageView(getContext());
+        LayoutParams avatarLp = new LayoutParams(dp40, dp40);
+        avatar.setLayoutParams(avatarLp);
+        avatar.setImageDrawable(Utils.getRoundedDrawable(getContext(), R.drawable.mdt_test_avatar));
+        layout.addView(avatar);
+
+        // Adding the name/email (or email if not top-most)
+        if (isTopMost) {
+            LinearLayout textLayout = new LinearLayout(getContext());
+            textLayout.setOrientation(VERTICAL);
+            LayoutParams textLayoutLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            textLayoutLp.setMargins(dp16, 0, dp16, 0);
+            textLayout.setLayoutParams(textLayoutLp);
+            layout.addView(textLayout);
+
+            TextView name = new AppCompatTextView(getContext());
+            name.setTextColor(primaryTextColor);
+            name.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 16));
+            name.setText("Contact Name");
+            textLayout.addView(name);
+            TextView email = new AppCompatTextView(getContext());
+            email.setTextColor(secondaryTextColor);
+            email.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 14));
+            email.setText("primaryemail@email.com");
+            textLayout.addView(email);
+
+            // Adding the close icon to the top-most item
+            ImageView closeIcon = new AppCompatImageView(getContext());
+            closeIcon.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_mdt_chip_cancel),
+                    primaryTextColor));
+            layout.addView(closeIcon);
+        } else {
+            TextView email = new AppCompatTextView(getContext());
+            email.setTextColor(secondaryTextColor);
+            email.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 14));
+            email.setText("primaryemail@email.com");
+            LayoutParams emailLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            emailLp.setMargins(dp16, 0, dp16, 0);
+            email.setLayoutParams(emailLp);
+            layout.addView(email);
+        }
+
+        return layout;
     }
 
     @Override
