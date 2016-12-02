@@ -273,16 +273,16 @@
     <color name="mdt_blue_grey_800">#37474f</color>
     <color name="mdt_blue_grey_900">#263238</color>
 
-    <color name="mdt_black_12">#2C2C2C</color>
-    <color name="mdt_black_38">#1E2021</color>
-    <color name="mdt_black_54">#161718</color>
-    <color name="mdt_black_87">#060707</color>
+    <color name="mdt_black_12">#1f000000</color>
+    <color name="mdt_black_38">#61000000</color>
+    <color name="mdt_black_54">#8a000000</color>
+    <color name="mdt_black_87">#de000000</color>
     <color name="mdt_black_100">#000</color>
 
-    <color name="mdt_white_12">#494B4D</color>
-    <color name="mdt_white_38">#7E8081</color>
-    <color name="mdt_white_50">#98999A</color>
-    <color name="mdt_white_70">#C2C2C3</color>
+    <color name="mdt_white_12">#1fffffff</color>
+    <color name="mdt_white_38">#61ffffff</color>
+    <color name="mdt_white_50">#80ffffff</color>
+    <color name="mdt_white_70">#b3ffffff</color>
     <color name="mdt_white_100">#fff</color>
 
     <color name="mdt_dark_primary_text_color">@color/mdt_black_87</color>
