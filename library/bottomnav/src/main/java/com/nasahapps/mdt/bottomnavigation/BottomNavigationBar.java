@@ -25,7 +25,6 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.animation.FastOutSlowInInterpolator;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.transition.ChangeBounds;
 import android.transition.Fade;
 import android.transition.TransitionManager;
@@ -51,13 +50,13 @@ import java.util.Random;
 
 /**
  * Bottom navigation bars make it easy to explore and switch between top-level views in a single tap.</br>
- *
+ * <p>
  * Tapping on a bottom navigation icon should take you directly to the associated view or refreshes
  * the currently active view.</br>
- *
+ * <p>
  * Bottom navigation is primarily for use on mobile, though for tablets, it is possible to use this class
  * for side navigation.</br>
- *
+ * <p>
  * <a href="https://material.google.com/components/bottom-navigation.html">https://material.google.com/components/bottom-navigation.html</a>
  */
 
@@ -102,7 +101,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         mInactiveColor = ss.inactiveColor;
         mBackgroundColorList = ss.backgroundColorList;
 
-        configure();
+        configure(false);
     }
 
     private void init(AttributeSet attrs) {
@@ -183,7 +182,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         addView(mTabLayout, tabLp);
     }
 
-    private void configure() {
+    private void configure(boolean animate) {
         int tabHeight, activeTabWidth, inactiveTabWidth;
         if (getTabLayoutOrientation() == LinearLayout.HORIZONTAL) {
             if (getTabCount() <= 3) {
@@ -226,9 +225,14 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         }
 
         if (mSelectedTabPosition < mBackgroundColorList.length) {
-            int beforeColor = mBackgroundLayer2.getBackground() != null ? ((ColorDrawable) mBackgroundLayer2.getBackground()).getColor() : Color.WHITE;
-            int afterColor = mBackgroundColorList[mSelectedTabPosition];
-            animateBackgroundColor(beforeColor, afterColor);
+            if (animate) {
+                int beforeColor = mBackgroundLayer2.getBackground() != null ? ((ColorDrawable) mBackgroundLayer2.getBackground()).getColor() : Color.WHITE;
+                int afterColor = mBackgroundColorList[mSelectedTabPosition];
+                animateBackgroundColor(beforeColor, afterColor);
+            } else {
+                mBackgroundLayer1.setBackgroundColor(mBackgroundColorList[mSelectedTabPosition]);
+                mBackgroundLayer2.setBackgroundColor(mBackgroundColorList[mSelectedTabPosition]);
+            }
         }
 
         invalidate();
@@ -320,7 +324,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
             mInactiveColor = mDarkTheme ? secondaryInverseColor : secondaryColor;
         }
 
-        configure();
+        configure(false);
     }
 
     /**
@@ -351,6 +355,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
 
     /**
      * Adds the given tab to this layout
+     *
      * @throws RuntimeException if the total number of tabs exceeds 5
      */
     public void addTab(Tab tab) {
@@ -360,7 +365,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         }
 
         mTabLayout.addView(tab);
-        configure();
+        configure(false);
     }
 
     /**
@@ -378,7 +383,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         mActiveColor = activeColor;
         // And set the active color for each tab
         for (int i = 0; i < getTabCount(); i++) {
-            getTabAt(i).configure();
+            getTabAt(i).configure(false);
         }
     }
 
@@ -392,13 +397,14 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
 
     /**
      * Sets the color tint for unselected tabs
+     *
      * @param inactiveColor
      */
     public void setInactiveColor(@ColorInt int inactiveColor) {
         mInactiveColor = inactiveColor;
         // And set the inactive color for each tab
         for (int i = 0; i < getTabCount(); i++) {
-            getTabAt(i).configure();
+            getTabAt(i).configure(false);
         }
     }
 
@@ -426,7 +432,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
      */
     public void setBackgroundColors(@ColorInt int... colors) {
         mBackgroundColorList = colors;
-        configure();
+        configure(false);
     }
 
     /**
@@ -438,7 +444,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
         for (int i = 0; i < colors.length; i++) {
             mBackgroundColorList[i] = ContextCompat.getColor(getContext(), colors[i]);
         }
-        configure();
+        configure(false);
     }
 
     private void setAllTabsInactive() {
@@ -473,10 +479,9 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
 
         setAllTabsInactive();
         getTabAt(selectedTabPosition).setActive(true);
-        configure();
+        configure(true);
     }
 
-    @LinearLayoutCompat.OrientationMode
     private int getTabLayoutOrientation() {
         return mTabLayout.getOrientation();
     }
@@ -565,18 +570,21 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
     public interface OnTabSelectedListener {
         /**
          * Called when a previously unselected tab is selected
+         *
          * @param position the position of the selected tab
          */
         void onTabSelected(int position);
 
         /**
          * Called when the previously selected tab is unselected
+         *
          * @param position the position of the unselected tab
          */
         void onTabUnselected(int position);
 
         /**
          * Called when the previously selected tab is reselected
+         *
          * @param position the position of the reselected tab
          */
         void onTabReselected(int position);
@@ -651,10 +659,10 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
             mText.setTextColor(mInactiveColor);
             addView(mText, new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-            configure();
+            configure(false);
         }
 
-        private void configure() {
+        private void configure(boolean animate) {
             // Set padding
             if (mTabStyle == TabStyle.FIXED) {
                 setPadding(getResources().getDimensionPixelSize(R.dimen.bottom_nav_tab_fixed_left_right_padding), 0,
@@ -673,15 +681,31 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
                 } else {
                     afterTextSize = getResources().getDimensionPixelSize(R.dimen.bottom_nav_tab_shifting_text_size);
                 }
-                animateTextSize(beforeTextSize, afterTextSize);
+                if (animate) {
+                    animateTextSize(beforeTextSize, afterTextSize);
+                } else {
+                    mText.setTextSize(TypedValue.COMPLEX_UNIT_PX, afterTextSize);
+                }
             }
 
             // Set icon/text color
             int beforeColor = mText.getCurrentTextColor();
             int afterColor = mIsActive ? mActiveColor : mInactiveColor;
-            animateIconColor(beforeColor, afterColor);
+            if (animate) {
+                animateIconColor(beforeColor, afterColor);
+            } else {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    mIcon.setImageTintList(ColorStateList.valueOf(afterColor));
+                } else if (mIcon.getDrawable() != null) {
+                    mIcon.setImageDrawable(Utils.getTintedDrawableCompat(mIcon.getDrawable(), afterColor));
+                }
+            }
             if (mTabStyle != TabStyle.VERTICAL) {
-                animateTextColor(beforeColor, afterColor);
+                if (animate) {
+                    animateTextColor(beforeColor, afterColor);
+                } else {
+                    mText.setTextColor(afterColor);
+                }
             }
 
             // Originally tried to use the support transitions library, had too many UI bugs
@@ -754,11 +778,12 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
          */
         public void setActive(boolean active) {
             mIsActive = active;
-            configure();
+            configure(true);
         }
 
         /**
          * Gets the {@link TabStyle} of this tab
+         *
          * @return one of {@link TabStyle#FIXED}, {@link TabStyle#SHIFTING}, or {@link TabStyle#VERTICAL}
          */
         public TabStyle getTabStyle() {
@@ -770,7 +795,7 @@ public class BottomNavigationBar extends RelativeLayout implements View.OnClickL
          */
         public void setTabStyle(TabStyle tabStyle) {
             mTabStyle = tabStyle;
-            configure();
+            configure(false);
         }
 
         /**
