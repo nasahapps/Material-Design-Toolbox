@@ -2,11 +2,13 @@ package com.nasahapps.mdt.chips;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -19,6 +21,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -32,7 +35,7 @@ import com.nasahapps.mdt.Utils;
 
 public class Chip extends LinearLayout implements View.OnClickListener {
 
-    private AppCompatTextView mText;
+    private AppCompatTextView mText, mInitialIcon;
     private AppCompatImageView mAvatarImage, mCancelIcon;
 
     public Chip(Context context) {
@@ -49,11 +52,24 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         setGravity(Gravity.CENTER_VERTICAL);
         setBackground(ContextCompat.getDrawable(getContext(), R.drawable.mdt_chip_rounded_background));
 
+        FrameLayout iconLayout = new FrameLayout(getContext());
+        addView(iconLayout, new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
         mAvatarImage = new AppCompatImageView(getContext());
-        LayoutParams avatarLp = new LayoutParams(getResources().getDimensionPixelSize(R.dimen.mdt_chip_avatar_image_size),
+        FrameLayout.LayoutParams avatarLp = new FrameLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.mdt_chip_avatar_image_size),
                 getResources().getDimensionPixelSize(R.dimen.mdt_chip_avatar_image_size));
         mAvatarImage.setVisibility(GONE);
-        addView(mAvatarImage, avatarLp);
+        iconLayout.addView(mAvatarImage, avatarLp);
+
+        mInitialIcon = new AppCompatTextView(getContext());
+        mInitialIcon.setVisibility(GONE);
+        mInitialIcon.setTextColor(Color.WHITE);
+        mInitialIcon.setGravity(Gravity.CENTER);
+        mInitialIcon.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f);
+        mInitialIcon.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.mdt_chip_initial_background));
+        mInitialIcon.setSupportBackgroundTintList(ColorStateList.valueOf(Utils.getColorFromAttribute(getContext(), R.attr.colorAccent)));
+        iconLayout.addView(mInitialIcon, new FrameLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.mdt_chip_avatar_image_size),
+                getResources().getDimensionPixelSize(R.dimen.mdt_chip_avatar_image_size)));
 
         mText = new AppCompatTextView(getContext());
         mText.setTextColor(ContextCompat.getColor(getContext(), R.color.mdt_black_87));
@@ -83,13 +99,29 @@ public class Chip extends LinearLayout implements View.OnClickListener {
                 mText.setText(ta.getString(R.styleable.Chip_chipText));
                 mCancelIcon.setVisibility(ta.getBoolean(R.styleable.Chip_chipShowClose, false) ? VISIBLE : GONE);
                 boolean showContactImage = ta.getBoolean(R.styleable.Chip_chipShowContactImage, false);
+                boolean showInitial = ta.getBoolean(R.styleable.Chip_chipShowInitial, false);
                 mAvatarImage.setVisibility(showContactImage ? VISIBLE : GONE);
                 if (showContactImage) {
                     // If there is an image to show, show it. Else show just the first letter of the contact name
                     int imageResource = ta.getResourceId(R.styleable.Chip_chipContactImage, 0);
                     if (imageResource != 0) {
                         setRoundedImage(imageResource);
+                        mInitialIcon.setVisibility(GONE);
                     }
+                } else if (showInitial && !TextUtils.isEmpty(mText.getText())) {
+                    // Use the first letter of the text as an initial, use that as the left icon
+                    CharSequence initial = mText.getText().subSequence(0, 1);
+                    mInitialIcon.setText(initial);
+                    int initialBackgroundColor = ta.getColor(R.styleable.Chip_chipInitialBackgroundColor, 0);
+                    if (initialBackgroundColor != 0) {
+                        mInitialIcon.setSupportBackgroundTintList(ColorStateList.valueOf(initialBackgroundColor));
+                    }
+                    int initialTextColor = ta.getColor(R.styleable.Chip_chipInitialTextColor, 0);
+                    if (initialTextColor != 0) {
+                        mInitialIcon.setTextColor(initialTextColor);
+                    }
+                    mInitialIcon.setVisibility(VISIBLE);
+                    mAvatarImage.setVisibility(GONE);
                 }
             } finally {
                 ta.recycle();
@@ -97,11 +129,6 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         }
 
         setOnClickListener(this);
-
-        if (isInEditMode()) {
-            mText.setText("Example Chip");
-            setRoundedImage(R.drawable.mdt_test_avatar);
-        }
 
         adjustTextPadding();
     }
@@ -190,12 +217,12 @@ public class Chip extends LinearLayout implements View.OnClickListener {
 
             TextView name = new AppCompatTextView(getContext());
             name.setTextColor(primaryTextColor);
-            name.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 16));
+            name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f);
             name.setText("Contact Name");
             textLayout.addView(name);
             TextView email = new AppCompatTextView(getContext());
             email.setTextColor(secondaryTextColor);
-            email.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 14));
+            email.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f);
             email.setText("primaryemail@email.com");
             textLayout.addView(email);
 
@@ -207,7 +234,7 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         } else {
             TextView email = new AppCompatTextView(getContext());
             email.setTextColor(secondaryTextColor);
-            email.setTextSize(TypedValue.COMPLEX_UNIT_PX, Utils.dpToPixel(getContext(), 14));
+            email.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f);
             email.setText("primaryemail@email.com");
             LayoutParams emailLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             emailLp.setMargins(dp16, 0, dp16, 0);
@@ -235,6 +262,10 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         mText.setText(text);
     }
 
+    public CharSequence getText() {
+        return mText.getText();
+    }
+
     public void setText(@StringRes int res) {
         mText.setText(res);
     }
@@ -254,9 +285,42 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         setRoundedImage(res);
     }
 
+    public Drawable getAvatarImage() {
+        return mAvatarImage.getDrawable();
+    }
+
     public void setAvatarImage(Drawable drawable) {
         setAvatarImageVisible(drawable != null);
         setRoundedImage(drawable);
+    }
+
+    public CharSequence getInitialText() {
+        return mInitialIcon.getText();
+    }
+
+    public void setInitialText(String text) {
+        if (TextUtils.isEmpty(text) || text.length() > 1) {
+            throw new IllegalArgumentException("Text must only be one character long!");
+        }
+
+        mInitialIcon.setText(text);
+    }
+
+    @ColorInt
+    public int getInitialTextColor() {
+        mInitialIcon.getCurrentTextColor();
+    }
+
+    public void setInitialTextColor(@ColorInt int color) {
+        mInitialIcon.setTextColor(color);
+    }
+
+    public void setInitialTextVisible(boolean visible) {
+        mInitialIcon.setVisibility(visible ? VISIBLE : GONE);
+    }
+
+    public void setInitialTextBackgroundTint(@ColorInt int color) {
+        mInitialIcon.setSupportBackgroundTintList(ColorStateList.valueOf(color));
     }
 
     public void setOnCancelClickListener(OnClickListener listener) {

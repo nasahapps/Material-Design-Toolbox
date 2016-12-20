@@ -5,5 +5,8 @@
         <attr name="chipContactImage" format="reference"/>
         <attr name="chipShowClose" format="boolean"/>
         <attr name="chipShowContactImage" format="boolean"/>
+        <attr name="chipShowInitial" format="boolean"/>
+        <attr name="chipInitialBackgroundColor" format="color"/>
+        <attr name="chipInitialTextColor" format="color"/>
     </declare-styleable>
 </resources>

@@ -11,8 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         app:chipContactImage="@drawable/mdt_test_avatar"
+        app:chipInitialBackgroundColor="@color/mdt_blue_500"
         app:chipShowClose="true"
-        app:chipShowContactImage="true"
+        app:chipShowInitial="true"
         app:chipText="Contact Name"/>
 
 </FrameLayout>
