@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="mdt_chip_text_size">13sp</dimen>
+    <dimen name="mdt_chip_height">32dp</dimen>
     <dimen name="mdt_chip_padding_left_right_smaller">8dp</dimen>
     <dimen name="mdt_chip_padding_left_right">12dp</dimen>
     <dimen name="mdt_chip_padding_top_bottom">8dp</dimen>

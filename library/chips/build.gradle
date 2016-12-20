@@ -24,4 +24,8 @@ android {
 
 dependencies {
     compile project(':library:base')
+    // Used as an overflow layout for chips
+    compile 'org.apmem.tools:layouts:1.10'
+    // Helper library for searching contacts
+    compile 'com.github.tamir7.contacts:contacts:1.1.3'
 }

@@ -25,6 +25,8 @@ import android.view.Display;
 import android.view.View;
 import android.view.WindowManager;
 
+import java.util.Random;
+
 /**
  * Created by Hakeem on 4/12/16.
  */
@@ -245,6 +247,37 @@ public class Utils {
         int newBlue = (color & 0xff) | flippedAlpha;
 
         return (newRed << 16) | (newGreen << 8) | newBlue;
+    }
+
+    @ColorInt
+    public static int getRandomMaterialColor(Context c) {
+        int[] colors = new int[]{
+                R.color.mdt_red_500,
+                R.color.mdt_pink_500,
+                R.color.mdt_purple_500,
+                R.color.mdt_deep_purple_500,
+                R.color.mdt_indigo_500,
+                R.color.mdt_blue_500,
+                R.color.mdt_light_blue_500,
+                R.color.mdt_cyan_500,
+                R.color.mdt_teal_500,
+                R.color.mdt_green_500,
+                R.color.mdt_light_green_500,
+                R.color.mdt_lime_500,
+                R.color.mdt_yellow_500,
+                R.color.mdt_amber_500,
+                R.color.mdt_orange_500,
+                R.color.mdt_deep_orange_500,
+                R.color.mdt_brown_500,
+                R.color.mdt_grey_500,
+                R.color.mdt_blue_grey_500
+        };
+        return ContextCompat.getColor(c, colors[new Random().nextInt(colors.length)]);
+    }
+
+    public static boolean isInNightMode(Context c) {
+        return (c.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK)
+                == Configuration.UI_MODE_NIGHT_YES;
     }
 
 }

@@ -9,4 +9,12 @@
         <attr name="chipInitialBackgroundColor" format="color"/>
         <attr name="chipInitialTextColor" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="ChipLayout">
+        <attr name="chipContactType" format="enum">
+            <enum name="phone_number" value="0"/>
+            <enum name="email" value="1"/>
+        </attr>
+        <attr name="chipEditTextEnabled" format="boolean"/>
+    </declare-styleable>
 </resources>

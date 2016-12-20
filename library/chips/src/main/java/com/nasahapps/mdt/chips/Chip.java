@@ -1,13 +1,11 @@
 package com.nasahapps.mdt.chips;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
+import android.net.Uri;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.Nullable;
@@ -22,11 +20,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
+import com.github.tamir7.contacts.Contact;
 import com.nasahapps.mdt.Utils;
 
 /**
@@ -39,7 +35,24 @@ public class Chip extends LinearLayout implements View.OnClickListener {
     private AppCompatImageView mAvatarImage, mCancelIcon;
 
     public Chip(Context context) {
-        this(context, null);
+        super(context);
+        init(null);
+    }
+
+    public Chip(Context context, Contact contact) {
+        this(context);
+        mText.setText(contact.getDisplayName());
+        if (!TextUtils.isEmpty(contact.getPhotoUri())) {
+            mInitialIcon.setVisibility(GONE);
+            mAvatarImage.setVisibility(VISIBLE);
+            mAvatarImage.setImageURI(Uri.parse(contact.getPhotoUri()));
+            mAvatarImage.setImageDrawable(Utils.getRoundedDrawable(context, mAvatarImage.getDrawable()));
+        } else {
+            mAvatarImage.setVisibility(GONE);
+            mInitialIcon.setVisibility(VISIBLE);
+            mInitialIcon.setText(contact.getDisplayName().substring(0, 1));
+        }
+        mCancelIcon.setVisibility(VISIBLE);
     }
 
     public Chip(Context context, @Nullable AttributeSet attrs) {
@@ -110,7 +123,7 @@ public class Chip extends LinearLayout implements View.OnClickListener {
                     }
                 } else if (showInitial && !TextUtils.isEmpty(mText.getText())) {
                     // Use the first letter of the text as an initial, use that as the left icon
-                    CharSequence initial = mText.getText().subSequence(0, 1);
+                    CharSequence initial = mText.getText().toString();
                     mInitialIcon.setText(initial);
                     int initialBackgroundColor = ta.getColor(R.styleable.Chip_chipInitialBackgroundColor, 0);
                     if (initialBackgroundColor != 0) {
@@ -129,6 +142,7 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         }
 
         setOnClickListener(this);
+        mCancelIcon.setOnClickListener(this);
 
         adjustTextPadding();
     }
@@ -151,103 +165,12 @@ public class Chip extends LinearLayout implements View.OnClickListener {
         mText.setPaddingRelative(textStartPadding, mText.getPaddingTop(), textEndPadding, mText.getPaddingBottom());
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    private void showContactInfoPopup() {
-        LinearLayout openParentLayout = new LinearLayout(getContext());
-        openParentLayout.setOrientation(VERTICAL);
-        openParentLayout.addView(createUnfocusedContactChip(true));
-        openParentLayout.addView(createUnfocusedContactChip(false));
-        openParentLayout.addView(createUnfocusedContactChip(false));
-
-        PopupWindow popupWindow = new PopupWindow(openParentLayout);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            popupWindow.setElevation(getResources().getDimensionPixelSize(R.dimen.mdt_chip_open_layout_elevation));
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            popupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-            popupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        } else {
-            popupWindow.setWindowLayoutMode(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
-        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
-        popupWindow.setOutsideTouchable(true);
-        popupWindow.setOverlapAnchor(true);
-        popupWindow.showAsDropDown(this);
-    }
-
-    private LinearLayout createUnfocusedContactChip(boolean isTopMost) {
-        int dp16 = Utils.dpToPixel(getContext(), 16);
-        int dp40 = Utils.dpToPixel(getContext(), 40);
-
-        int colorControlHighlight = Utils.getColorFromAttribute(getContext(), R.attr.colorControlHighlight);
-        int primaryTextColor, secondaryTextColor;
-        if (Utils.shouldUseWhiteText(colorControlHighlight) && isTopMost) {
-            primaryTextColor = Color.WHITE;
-            secondaryTextColor = ContextCompat.getColor(getContext(), R.color.mdt_white_70);
-        } else {
-            primaryTextColor = Color.BLACK;
-            secondaryTextColor = ContextCompat.getColor(getContext(), R.color.mdt_black_87);
-        }
-
-        LinearLayout layout = new LinearLayout(getContext());
-        // Create the top-most item
-        layout.setOrientation(HORIZONTAL);
-        layout.setGravity(Gravity.CENTER_VERTICAL);
-        int layoutTopBottomPadding = isTopMost ? dp16 : (dp16 / 2);
-        layout.setPadding(dp16, layoutTopBottomPadding, dp16, layoutTopBottomPadding);
-        if (isTopMost) {
-            layout.setBackgroundColor(colorControlHighlight);
-        }
-
-        // Adding the avatar
-        ImageView avatar = new AppCompatImageView(getContext());
-        LayoutParams avatarLp = new LayoutParams(dp40, dp40);
-        avatar.setLayoutParams(avatarLp);
-        avatar.setImageDrawable(Utils.getRoundedDrawable(getContext(), R.drawable.mdt_test_avatar));
-        layout.addView(avatar);
-
-        // Adding the name/email (or email if not top-most)
-        if (isTopMost) {
-            LinearLayout textLayout = new LinearLayout(getContext());
-            textLayout.setOrientation(VERTICAL);
-            LayoutParams textLayoutLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            textLayoutLp.setMargins(dp16, 0, dp16, 0);
-            textLayout.setLayoutParams(textLayoutLp);
-            layout.addView(textLayout);
-
-            TextView name = new AppCompatTextView(getContext());
-            name.setTextColor(primaryTextColor);
-            name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f);
-            name.setText("Contact Name");
-            textLayout.addView(name);
-            TextView email = new AppCompatTextView(getContext());
-            email.setTextColor(secondaryTextColor);
-            email.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f);
-            email.setText("primaryemail@email.com");
-            textLayout.addView(email);
-
-            // Adding the close icon to the top-most item
-            ImageView closeIcon = new AppCompatImageView(getContext());
-            closeIcon.setImageDrawable(Utils.getTintedDrawable(ContextCompat.getDrawable(getContext(), R.drawable.ic_mdt_chip_cancel),
-                    primaryTextColor));
-            layout.addView(closeIcon);
-        } else {
-            TextView email = new AppCompatTextView(getContext());
-            email.setTextColor(secondaryTextColor);
-            email.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f);
-            email.setText("primaryemail@email.com");
-            LayoutParams emailLp = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            emailLp.setMargins(dp16, 0, dp16, 0);
-            email.setLayoutParams(emailLp);
-            layout.addView(email);
-        }
-
-        return layout;
-    }
-
     @Override
     public void onClick(View view) {
-        showContactInfoPopup();
+        if (view == mCancelIcon) {
+            // Remove this Chip from its parent layout
+            ((ViewGroup) getParent()).removeView(this);
+        }
     }
 
     private void setRoundedImage(@DrawableRes int res) {
@@ -308,7 +231,7 @@ public class Chip extends LinearLayout implements View.OnClickListener {
 
     @ColorInt
     public int getInitialTextColor() {
-        mInitialIcon.getCurrentTextColor();
+        return mInitialIcon.getCurrentTextColor();
     }
 
     public void setInitialTextColor(@ColorInt int color) {
