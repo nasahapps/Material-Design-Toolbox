@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.nasahapps.mdt.example"
         minSdkVersion min_sdk_version
-        targetSdkVersion target_sdk_version
+        targetSdkVersion compile_sdk_version
         versionCode 1
         versionName "1.0"
     }
@@ -31,7 +31,7 @@ dependencies {
 }
 
 buildscript {
-    ext.kotlin_version = "1.0.5-3"
+    ext.kotlin_version = "1.1.1"
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
