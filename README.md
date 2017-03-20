@@ -20,8 +20,10 @@ Then add one (or all) of the following dependencies, depending on what you want 
 
 ```groovy
 dependencies {
-    compile 'com.github.nasahapps.Material-Design-Toolbox:base:{latest_version}' // For general utility methods/classes
-    compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:{latest_version}' // For helper methods pertaining to BottomSheets
+    // For general utility methods/classes
+    compile 'com.github.nasahapps.Material-Design-Toolbox:base:{latest_version}' 
+    // For helper methods pertaining to BottomSheets
+    compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:{latest_version}' 
 }
 ```
 
