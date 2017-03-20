@@ -8,6 +8,24 @@ The main purpose of this library is to provide components and helper methods in 
 
 This library supports Android 4.1 (API 16) and up, however, not all components/methods will be supported pre-API 21.
 
+To use, add Jitpack as a repository in your top-level build.gradle file:
+
+```groovy
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
+```
+Then add one (or all) of the following dependencies, depending on what you want specifically:
+
+```groovy
+dependencies {
+    compile 'com.github.nasahapps.Material-Design-Toolbox:base:{latest_version}' // For general utility methods/classes
+    compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:{latest_version}' // For helper methods pertaining to BottomSheets
+}
+
+Note that all modules include the `com.github.nasahapps.Material-Design-Toolbox:base` module by default.
+
 * [Components](#components)
   * [Bottom Navigation](#bottom-navigation)
   * [Bottom Sheets](#bottom-sheets)
