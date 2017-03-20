@@ -1,4 +1,4 @@
-#0.0.3
+# 0.0.3
 
 * Updated Gradle to v3.4.1
 * Updated build tools to v25.0.2
