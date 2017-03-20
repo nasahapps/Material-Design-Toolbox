@@ -41,7 +41,7 @@ abstract class BottomSheetAdapter extends RecyclerView.Adapter<BottomSheetAdapte
         holder.text.setText(item.getText());
         Drawable icon = item.getIcon();
         if (icon != null && mIconTint != 0) {
-            icon = Utils.getTintedDrawableCompat(icon, mIconTint);
+            icon = Utils.getTintedDrawable(icon, mIconTint);
         }
         holder.icon.setImageDrawable(icon);
     }

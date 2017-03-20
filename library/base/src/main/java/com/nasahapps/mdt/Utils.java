@@ -11,7 +11,6 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.AttrRes;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DimenRes;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.TypedValue;
 import android.view.Display;
 import android.view.View;
@@ -116,13 +115,6 @@ public class Utils {
     }
 
     public static Drawable getTintedDrawable(Drawable drawable, @ColorInt int color) {
-        drawable = DrawableCompat.wrap(drawable.mutate());
-        DrawableCompat.setTint(drawable, color);
-        return drawable;
-    }
-
-    // This method tends to work better pre-Lollipop
-    public static Drawable getTintedDrawableCompat(Drawable drawable, @ColorInt int color) {
         drawable = drawable.mutate();
         drawable.setColorFilter(color, PorterDuff.Mode.SRC_IN);
         return drawable;
