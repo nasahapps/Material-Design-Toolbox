@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/itemOne"
+        android:icon="@drawable/ic_history"
+        android:title="Recents"/>
+    <item
+        android:id="@+id/itemTwo"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favorites"/>
+    <item
+        android:id="@+id/itemThree"
+        android:icon="@drawable/ic_location"
+        android:title="Nearby"/>
+    <item
+        android:id="@+id/itemFour"
+        android:icon="@drawable/ic_music"
+        android:title="Music"/>
+    <item
+        android:id="@+id/itemFive"
+        android:icon="@drawable/ic_movie"
+        android:title="Movies"/>
+</menu>

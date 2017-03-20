@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="mdt_scroll_down_behavior">com.nasahapps.mdt.behavior.ScrollDownBehavior</string>
+</resources>

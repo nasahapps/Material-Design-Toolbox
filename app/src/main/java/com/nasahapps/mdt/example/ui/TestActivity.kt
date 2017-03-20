@@ -1,14 +1,12 @@
 package com.nasahapps.mdt.example.ui
 
 import android.os.Bundle
-import com.nasahapps.mdt.FabAnimationHelper
+import android.support.v7.widget.LinearLayoutManager
 import com.nasahapps.mdt.example.R
+import com.nasahapps.mdt.example.ui.mock.MockRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_test.*
 
 class TestActivity : BaseActivity() {
-
-    lateinit var mHelper: FabAnimationHelper
-    var mAnimated = false
 
     override fun getLayoutId(): Int {
         return R.layout.activity_test
@@ -16,16 +14,9 @@ class TestActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mHelper = FabAnimationHelper(fab)
 
-        button?.setOnClickListener {
-            if (mAnimated) {
-                mHelper.animateFromView(bottomView)
-            } else {
-                mHelper.animateToView(bottomView)
-            }
-            mAnimated = !mAnimated
-        }
+        recyclerView?.layoutManager = LinearLayoutManager(this)
+        recyclerView?.adapter = MockRecyclerViewAdapter()
     }
 
 }

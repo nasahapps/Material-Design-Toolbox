@@ -20,89 +20,41 @@ This library supports Android 4.1 (API 16) and up, however, not all components/m
 
 ## Components
 
-### [Bottom Navigation](https://material.google.com/components/bottom-navigation.html)
+### [Bottom Navigation](https://material.io/guidelines/components/bottom-navigation.html)
 
-`BottomNavigationBar`: Displays three to five tabs for switching between top-level views.
+The [`BottomNavigationView`](https://developer.android.com/reference/android/support/design/widget/BottomNavigationView.html) widget is part of the `design` support library.
 
-Dependency: `compile 'com.github.nasahapps.Material-Design-Toolbox:bottomnav:0.0.2'`
-
-To use, add it to your XML layout:
+To have the bottom nav bar hide when scrolling downwards and reappear when scrolling back up, use the
+`ScrollDownBehavior` (part of the base module) when it is part of a `CoordinatorLayout`:
 
 ```xml
-<com.nasahapps.mdt.bottomnavigation.BottomNavigationBar
-        android:id="@+id/bottomNav"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+        
+
+    <android.support.design.widget.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        android:background="#fff"
-        app:bottomNavigationActiveTint="@color/resource"
-        app:bottomNavigationInactiveTint="@color/resource"
-        app:bottomNavigationDarkTheme="true|false"
-        app:bottomNavigationOrientation="horizontal|vertical"/>
+        app:layout_behavior="@string/mdt_scroll_down_behavior"
+        app:menu="@menu/menu_of_items"/>
+        
+
+</android.support.design.widget.CoordinatorLayout>
 ```
 
-Or create it programmatically:
+The string resource to use is `R.string.mdt_scroll_down_behavior`.
 
-```java
-BottomNavigationBar bottomNav = new BottomNavigationBar(context);
-```
-
-XML attributes:
-
-|Name|Type|Values|Default|
-|:-----|:------|:------|:-----|
-bottomNavigationActiveTint | color | | R.attr.colorPrimary
-bottomNavigationInactiveTint | color | | R.attr.textColorSecondary
-bottomNavigationOrientation | enum | horizontal or vertical | horizontal
-bottomNavigationDarkTheme | boolean | | false
-
-You can create new tabs with their text and icon to display, then add them to the bottom nav:
-
-```java
-BottomNavigationBar.Tab tab = bottomNav.newTab("Title", drawable);
-bottomNav.addTab(tab);
-```
-
-If you try to add more than 5 tabs, an Exception will be thrown as that is against Material Design guidelines.
-
-Listen for tab clicks with an `OnTabSelectedListener`:
-
-```java
-void onTabSelected(int position);
-void onTabUnselected(int position);
-void onTabReselected(int position);
-```
-
-If your bottom nav has a non-white background and you want the default `inactiveTint` set correctly,
-it's best to set `bottomNavigationDarkTheme` to `true`.
-
-If you want the bottom nav background to change colors for each individual tab, you can set those colors
-with `setBackgroundColors(@ColorInt int...)` or `setBackgroundColorResources(@ColorRes int...)`.
-
-![](images/bottom_nav_tab_colors.gif)
-
-BottomNavigationBar adjusts appropriately to translucent navigation bars if `android:fitsSystemWindows` is set to `true`:
-
-![](images/bottom_nav_fits_system_windows.gif)
-
-Snackbars will automatically appear above the BottomNavigationBar, but only if the parent layout is a `FrameLayout`
-or a `RelativeLayout`:
-
-![](images/bottom_nav_snackbar.gif)
-
-BottomNavigationBar has a default Behavior to scroll down if laid out in a CoordinatorLayout:
-
-![](images/bottom_nav_scrolling.gif)
-
-Setting `bottomNavigationOrientation` to `vertical` will layout the BottomNavigationBar in a vertical fashion,
-meant for side navigation:
-
-![](images/bottom_nav_side_bar.png)
-
-[BottomNavigationBar Javadoc](library/bottomnav/javadoc/index.html)
-
-### [Bottom Sheets](https://material.google.com/components/bottom-sheets.html)
+### [Bottom Sheets](https://material.io/guidelines/components/bottom-sheets.html)
 
 Dependency: `compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:0.0.2'`
 
@@ -141,7 +93,7 @@ If you want the icons to all be tinted a certain color, you can use `builder.set
 you can use `builder.create()` to build the Dialog but not show it yet in case you want to alter the
 Dialog any further.
 
-### [Buttons](https://material.google.com/components/buttons.html)
+### [Buttons](https://material.io/guidelines/components/buttons.html)
 
 [Buttons](https://developer.android.com/reference/android/widget/Button.html) are a native view widget in the Android SDK.
 
@@ -244,19 +196,19 @@ Custom attributes:
  * the initial state of the stepper (`ACTIVE`, `INACTIVE`, `COMPLETED`, or `ERROR`)
  * default value: `ACTIVE`
 
-### [Tabs](https://material.google.com/components/tabs.html)
+### [Tabs](https://material.io/guidelines/components/tabs.html)
 
 The [`TabLayout`](https://developer.android.com/reference/android/support/design/widget/TabLayout.html) widget is part of the `design` support library.
 
-### [Text Fields](https://material.google.com/components/text-fields.html)
+### [Text Fields](https://material.io/guidelines/components/text-fields.html)
 
 The [`TextInputLayout`](https://developer.android.com/reference/android/support/design/widget/TextInputLayout.html) widget is part of the `design` support library. It is suggested to use a `TextInputEditText` instead of a regular `EditText` in this layout.
 
-### [Toolbars](https://material.google.com/components/toolbars.html)  
+### [Toolbars](https://material.io/guidelines/components/toolbars.html)  
 
 The [`Toolbar`](https://developer.android.com/reference/android/support/v7/widget/Toolbar.html) widget is part of the `appcompat-v7` support library.
 
-### [Tooltips](https://material.google.com/components/tooltips.html)  
+### [Tooltips](https://material.io/guidelines/components/tooltips.html)  
 
 Tooltips (extends `TextView`) are similar to [`Toasts`](https://developer.android.com/reference/android/widget/Toast.html), both in appearance and in function. Creating a `Tooltip` is very similar to creating a `Toast` or `Snackbar`:
 

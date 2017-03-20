@@ -6,11 +6,18 @@ import android.support.annotation.ColorRes
 import android.support.annotation.LayoutRes
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.app.AppCompatDelegate
 
 /**
  * Created by Hakeem on 4/13/16.
  */
 abstract class BaseActivity : AppCompatActivity() {
+
+    companion object {
+        init {
+            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
+        }
+    }
 
     @LayoutRes
     protected open fun getLayoutId() = 0
