@@ -23,6 +23,7 @@ dependencies {
     compile 'com.github.nasahapps.Material-Design-Toolbox:base:{latest_version}' // For general utility methods/classes
     compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:{latest_version}' // For helper methods pertaining to BottomSheets
 }
+```
 
 Note that all modules include the `com.github.nasahapps.Material-Design-Toolbox:base` module by default.
 
