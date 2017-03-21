@@ -41,43 +41,9 @@ Note that all modules include the `com.github.nasahapps.Material-Design-Toolbox:
 
 ## Components
 
-### [Bottom Navigation](https://material.io/guidelines/components/bottom-navigation.html)
-
-The [`BottomNavigationView`](https://developer.android.com/reference/android/support/design/widget/BottomNavigationView.html) widget is part of the `design` support library.
-
-To have the bottom nav bar hide when scrolling downwards and reappear when scrolling back up, use the
-`ScrollDownBehavior` (part of the base module) when it is part of a `CoordinatorLayout`:
-
-```xml
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-        
-
-    <android.support.design.widget.BottomNavigationView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        app:layout_behavior="@string/mdt_scroll_down_behavior"
-        app:menu="@menu/menu_of_items"/>
-        
-
-</android.support.design.widget.CoordinatorLayout>
-```
-
-The string resource to use is `R.string.mdt_scroll_down_behavior`.
-
 ### [Bottom Sheets](https://material.io/guidelines/components/bottom-sheets.html)
 
-Dependency: `compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:0.0.2'`
+Dependency: `compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:{latest_version}'`
 
 Bottom sheets are provided by the `design` module in the support library, by the use of [BottomSheetDialog](https://developer.android.com/reference/android/support/design/widget/BottomSheetDialog.html),
 [BottomSheetDialogFragment](https://developer.android.com/reference/android/support/design/widget/BottomSheetDialogFragment.html),
