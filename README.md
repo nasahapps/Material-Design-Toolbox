@@ -30,8 +30,6 @@ dependencies {
 Note that all modules include the `com.github.nasahapps.Material-Design-Toolbox:base` module by default.
 
 * [Components](#components)
-  * [Bottom Navigation](#bottom-navigation)
-  * [Bottom Sheets](#bottom-sheets)
   * [Buttons](#buttons)
   * [Steppers](#steppers)
   * [Tabs](#tabs)
@@ -40,45 +38,6 @@ Note that all modules include the `com.github.nasahapps.Material-Design-Toolbox:
   * [Tooltips](#tooltips)
 
 ## Components
-
-### [Bottom Sheets](https://material.io/guidelines/components/bottom-sheets.html)
-
-Dependency: `compile 'com.github.nasahapps.Material-Design-Toolbox:bottomsheets:{latest_version}'`
-
-Bottom sheets are provided by the `design` module in the support library, by the use of [BottomSheetDialog](https://developer.android.com/reference/android/support/design/widget/BottomSheetDialog.html),
-[BottomSheetDialogFragment](https://developer.android.com/reference/android/support/design/widget/BottomSheetDialogFragment.html),
-or with your own custom View in a CoordinatorLayout using a [BottomSheetBehavior](https://developer.android.com/reference/android/support/design/widget/BottomSheetBehavior.html).
-
-The Material Design Toolbox, however, provides a utils class that will create [a single-choice list styled as a BottomSheetDialog](https://developer.android.com/guide/topics/ui/dialogs.html#AddingAList)
-in a similar fashion to how you can already create a single-choice Dialog.
-
-For example, the following code will create and show a BottomSheetDialog with a title and its items aligned in a grid.
-
-```java
-new BottomSheetDialogBuilder(context, useGrid)
-        .setTitle(title)
-        .setItems(items, onClickListener)
-        .show();
-```
-
-When initializing the `BottomSheetDialogBuilder`, you pass in a `Context` and whether you want the items to be laid
-out in a list or in a grid.
-
-The type of item the BottomSheetDialogBuilder accepts is a `BottomSheetItem`, which takes a `CharSequence` title and a `Drawable` icon.
-You can also pass in a menu resource instead:
-
-`builder.setItems(R.menu.bottom_sheet, listener)`
-
-The item click listener is very similar to the standard Dialog's OnClickListener:
-
-`void onClick(DialogInterface dialog, int position, int itemId);`
-
-In the `onClick` callback, if you passed in a menu resource instead of a list of items, you can use `itemId`
-to refer to the selected item's menu id you set in XML. Else, use `position` for the item's list position.
-
-If you want the icons to all be tinted a certain color, you can use `builder.setIconTint(colorInt)`. Also
-you can use `builder.create()` to build the Dialog but not show it yet in case you want to alter the
-Dialog any further.
 
 ### [Buttons](https://material.io/guidelines/components/buttons.html)
 
