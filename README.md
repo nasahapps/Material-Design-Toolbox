@@ -30,7 +30,6 @@ dependencies {
 Note that all modules include the `com.github.nasahapps.Material-Design-Toolbox:base` module by default.
 
 * [Components](#components)
-  * [Buttons](#buttons)
   * [Steppers](#steppers)
   * [Tabs](#tabs)
   * [Text Fields](#text-fields)
@@ -38,65 +37,6 @@ Note that all modules include the `com.github.nasahapps.Material-Design-Toolbox:
   * [Tooltips](#tooltips)
 
 ## Components
-
-### [Buttons](https://material.io/guidelines/components/buttons.html)
-
-[Buttons](https://developer.android.com/reference/android/widget/Button.html) are a native view widget in the Android SDK.
-
-By default, a Button is untinted.
-
-![](images/button_untinted.png)
-
-To have a tinted Button (default color: `colorAccent`), in XML you can set the Button's style:
-
-`style="@style/Widget.AppCompat.Button.Colored"`
-
-and this will automatically tint your button's color to your theme's `colorAccent`.
-
-![](images/button_tinted_default.png)
-
-If you want a color other than `colorAccent` you also must include a custom theme to the Button. For example:
-
-```xml
-<style name="CustomButton" parent="@style/ThemeOverlay.AppCompat">
-    <item name="colorAccent">#f00</item>
-</style>
-
-<Button
-    style="@style/Widget.AppCompat.Button.Colored"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Button"
-    android:theme="@style/CustomButton"/>
-```
-
-This results in the following:
-
-![](images/button_tinted_custom.png)
-
-To have a disabled button, in XML set `android:enabled="false"`, or in Java, `button.setEnabled(false)`
-
-![](images/button_disabled.png)
-
-For a flat-styled button, use `style="@style/Widget.AppCompat.Button.Borderless"` for plain black/white text,
- or `style="@style/Widget.AppCompat.Button.Borderless.Colored"` for the text color to be `colorAccent`
-
-![](images/button_flat.png)
-
-For a rounded button, use the [FloatingActionButton](https://developer.android.com/reference/android/support/design/widget/FloatingActionButton.html)
-which is part of the `design` module of the support library.
-
-![](images/button_fab.png)
-
-It automatically themes to your `colorAccent` value. To change this, in XML set `app:backgroundTint="color"`
-or in java, `fab.setBackgroundTintList(colorStateList)`.
-
-If you want a mini FAB, in XML set `app:fabSize="mini"` or in java, `fab.setSize(SIZE_MINI)`
-
-![](images/button_fab_mini.png)
-
-The Material Design guidelines also define a "dropdown" button, which is natively just a [Spinner](https://developer.android.com/reference/android/widget/Spinner.html)
-in the Android SDK.
 
 ### [Steppers](http://www.google.com/design/spec/components/steppers.html)
 
