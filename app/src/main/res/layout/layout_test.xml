@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:text="Dandelion Chocolate"
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            android:textColor="#000"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <RatingBar
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rating="4.5"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:text="4.7 (51)"/>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:background="#ccc"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:text="12 min away"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/mdt_blue_500"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginStart="72dp"
+            android:layout_marginTop="16dp"
+            android:background="#ccc"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:drawableLeft="@drawable/ic_location"
+            android:drawablePadding="32dp"
+            android:drawableStart="@drawable/ic_location"
+            android:drawableTint="@color/mdt_black_87"
+            android:gravity="center_vertical"
+            android:text="740 Valencia St, San Francisco, CA"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/mdt_black_87"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:drawableLeft="@drawable/ic_call"
+            android:drawablePadding="32dp"
+            android:drawableStart="@drawable/ic_call"
+            android:drawableTint="@color/mdt_black_87"
+            android:gravity="center_vertical"
+            android:text="(415) 349-0942"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/mdt_black_87"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:drawableLeft="@drawable/ic_time"
+            android:drawablePadding="32dp"
+            android:drawableStart="@drawable/ic_time"
+            android:drawableTint="@color/mdt_black_87"
+            android:gravity="center_vertical"
+            android:text="Wed, 10 AM - 9PM"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/mdt_black_87"/>
+
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>
