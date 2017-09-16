@@ -46,8 +46,7 @@ class BottomSheetsListFragment : ListFragment() {
             launcherIntent.addCategory(Intent.CATEGORY_LAUNCHER)
             val appList = activity.packageManager.queryIntentActivities(launcherIntent, 0)
             val sheetItems = appList.map {
-                BottomSheetItem(it.loadLabel(activity.packageManager),
-                        it.loadIcon(activity.packageManager))
+                BottomSheetItem(it.loadLabel(activity.packageManager), it.loadIcon(activity.packageManager))
             }
             when (position) {
                 0 -> BottomSheetDialogBuilder(activity, false).setItems(sheetItems, null).show()

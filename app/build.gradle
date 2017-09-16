@@ -29,13 +29,3 @@ dependencies {
     compile project(':library:bottomsheets')
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
-
-buildscript {
-    ext.kotlin_version = "1.1.1"
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-    repositories {
-        jcenter()
-    }
-}
